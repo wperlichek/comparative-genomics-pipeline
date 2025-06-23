@@ -89,6 +89,8 @@ When selecting, keep this in mind:
 - Choosing proteins for later MSA - proteins are more "obviously" informative than DNA sequences
   for this research project
 
-Mammal:
+Mammal: Rabbit (Oryctolagus cuniculus)
 Reasoning:
-Notes:
+- [x] Species has a publicly available genome and proteome - https://www.ncbi.nlm.nih.gov/datasets/taxonomy/9986/
+- [ ] Species is commonly used in research (e.g. neuroscience, evolution)
+- [ ] Species represents its group well (e.g. classic model organism)
