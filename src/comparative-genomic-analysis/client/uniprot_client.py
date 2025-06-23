@@ -1,5 +1,7 @@
 import httpx, logging
 
+logger = logging.getLogger(__name__)
+
 
 class UniProtClient:
     BASE_URL = "https://rest.uniprot.org/uniprotkb/"
@@ -12,7 +14,7 @@ class UniProtClient:
     ) -> str:
 
         if accession_id == "":
-            logging.warning(
+            logger.warning(
                 "Must provide protein's accession id to get its FASTA sequence"
             )
             return ""
