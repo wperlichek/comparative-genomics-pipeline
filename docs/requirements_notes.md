@@ -85,8 +85,10 @@ When selecting, keep this in mind:
 
 #### Final selection (species level):
 
+- Sourced from https://www.ncbi.nlm.nih.gov/
+- Choosing proteins for later MSA - proteins are more "obviously" informative than DNA sequences
+  for this research project
+
 Mammal:
-
 Reasoning:
-
 Notes:
