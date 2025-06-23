@@ -91,6 +91,19 @@ When selecting, keep this in mind:
 
 Mammal: Rabbit (Oryctolagus cuniculus)
 Reasoning:
-- [x] Species has a publicly available genome and proteome - https://www.ncbi.nlm.nih.gov/datasets/taxonomy/9986/
-- [ ] Species is commonly used in research (e.g. neuroscience, evolution)
-- [ ] Species represents its group well (e.g. classic model organism)
+- [x] Species has a publicly available genome and proteome - https://www.ncbi.nlm.nih.gov/datasets/taxonomy/9986/ ~94K protein sequences ~22K Protein-coding genes
+
+https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_964237555.1/
+
+**Annotation Details**:
+
+    - Level: Chromosome (Top tier)
+
+    - Annotation: NCBI RefSeq (Gold standard)
+
+    - Genes: 38,822
+
+    - Protein-coding: 21,895 (robust coverage and annotation depth)
+
+- [X] Species is commonly used in research (e.g. neuroscience, evolution) https://pubmed.ncbi.nlm.nih.gov/?term=%22Oryctolagus+cuniculus%22 228 hits as of 6/23/25
+- [X] Species represents its group well (e.g. classic model organism) Not an outlier. Divergent enough from human without being too divergent.
