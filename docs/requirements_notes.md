@@ -93,6 +93,13 @@ When selecting, keep this in mind:
 
 Mammal: Rabbit (Oryctolagus cuniculus)
 
+UniProt Accession IDs for orthologs: 
+ - SCN1A:
+ - KCNQ2:
+ - SCN2A:
+ - CACNA1H:
+ - GABRA1:
+
 Reasoning:
 - [x] Species has a publicly available genome and proteome - https://www.ncbi.nlm.nih.gov/datasets/taxonomy/9986/ ~94K protein sequences ~22K Protein-coding genes
 
