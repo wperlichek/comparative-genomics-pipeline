@@ -115,6 +115,9 @@ Genes that evolved from a common ancestral gene by speciation and generally perf
 * **Ensembl protein ID:** ENSOCUP00000006283.2
 
 #### KCNQ2
+* **Entrez gene ID:** 127485776
+* **Entrez protein accession:** XP\_051685089.1
+* **NCBI fallback:** https://www.ncbi.nlm.nih.gov/protein/XP_051685089.1 
 
 #### SCN2A
 
