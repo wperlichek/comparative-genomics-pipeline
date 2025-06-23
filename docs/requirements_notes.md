@@ -27,3 +27,34 @@ _Early question_: If someone is epileptic, is there a mutation in a conserved or
 | **SCN2A**   | Voltage-gated sodium channel α subunit | Associated with early-onset epilepsy and developmental issues.                        |
 | **CACNA1H** | T-type voltage-gated calcium channel   | Implicated in generalized and childhood absence seizures.                            |
 | **GABRA1**  | GABA_A receptor subunit α1 (chloride channel) | Important for inhibitory signaling; mutations linked to epilepsy.                    |
+
+### ✅ Step 2. Collect Orthologous Protein Sequences
+
+_Question_: I need to select species other than humans to compare with. How do I decide which species to select? Should I just select randomly?
+
+_Answer_: Do not select randomly - we want to select for biologically meaningful coverage across the evolutionary tree. 
+
+Some guidelines for selection:
+- Span vertebrates and invertebrates 
+- Vary in nervous system complexity 
+- Have good sequence availability
+
+Example:
+    Mammals
+    Birds
+    Reptiles
+    Amphibians
+    Bony Fish
+    Insects
+    Nematodes
+    Cephalopods
+    Jawless Vertebrates
+
+**Orthologous Genes**
+Genes that evolved from a common ancestral gene by speciation and generally perform the same function.
+
+__Question__: With the diversity of groups we've selected (insects, nematodes, etc.), are we sure
+that the epileptic genes we've selected will be found in all of them, e.g. will it be a orthologous gene in this group?
+
+__Answer__: No, it is possible these genes won't be present in some of the groups selected. However,
+knowing which groups have these gene(s) absent can provide insight for the research too.
