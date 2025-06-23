@@ -39,22 +39,54 @@ Some guidelines for selection:
 - Vary in nervous system complexity 
 - Have good sequence availability
 
-Example:
-    Mammals
-    Birds
-    Reptiles
-    Amphibians
-    Bony Fish
-    Insects
-    Nematodes
-    Cephalopods
-    Jawless Vertebrates
+#### Example selection (group level):
+
+    -Mammals
+    -Birds
+    -Reptiles
+    -Amphibians
+    -Bony Fish
+    -Insects
+    -Nematodes
+    -Cephalopods
+    -Jawless Vertebrates
 
 **Orthologous Genes**
 Genes that evolved from a common ancestral gene by speciation and generally perform the same function.
 
-__Question__: With the diversity of groups we've selected (insects, nematodes, etc.), are we sure
+_Question_: With the diversity of groups we've selected (insects, nematodes, etc.), are we sure
 that the epileptic genes we've selected will be found in all of them, e.g. will it be a orthologous gene in this group?
 
-__Answer__: No, it is possible these genes won't be present in some of the groups selected. However,
+_Answer_: No, it is possible these genes won't be present in some of the groups selected. However,
 knowing which groups have these gene(s) absent can provide insight for the research too.
+
+When selecting, keep this in mind:
+
+1. **Start with well-studied model organisms:**
+
+   * Well-annotated genomes and proteomes available
+   * Widely used in research with abundant data and tools
+   * Representative of the taxonomic group and relevant to neuroscience/evolution
+
+2. **Check ortholog availability:**
+
+   * Use NCBI Gene, Ensembl, OrthoDB to confirm gene orthologs exist
+   * Avoid species with missing or poorly annotated orthologs
+
+3. **Consider evolutionary distance and biological relevance:**
+
+   * Include both close relatives (fine differences) and distant relatives (conserved regions)
+   * Select species with interesting traits linked to your research question
+
+4. **Verify data quality:**
+
+   * Prefer species with high-quality reference genomes and protein data
+   * Avoid species with incomplete or low-quality sequence data
+
+#### Final selection (species level):
+
+Mammal:
+
+Reasoning:
+
+Notes:
