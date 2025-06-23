@@ -21,6 +21,7 @@ class UniProtClient:
         else:
             url = f"{self.BASE_URL}{accession_id}"
             headers = {"Accept": "text/x-fasta"}
+            # TODO :: try/except for this call
             response = await self.client.get(url, headers=headers)
             response.raise_for_status()
             return response.text
