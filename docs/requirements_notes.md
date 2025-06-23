@@ -7,60 +7,70 @@
 **Ion Channel Gene:**
 A gene that encodes a protein forming an ion channel — a pore in a cell membrane that selectively allows charged ions (such as sodium, potassium, calcium, or chloride) to pass in and out of cells. Ion channels are essential for generating electrical signals in nerve and muscle cells.
 
-**Neuronal Excitability**
+**Neuronal Excitability:**
 The ability of a neuron to fire an electrical signal (action potential) in response to stimulation. It reflects how easily a neuron "gets excited" to send messages. Neuronal excitability depends on the balance of ion flow across the neuron’s membrane through ion channels.
 
-**Converved Region**
+**Conserved Region:**
 A segment of a protein or gene sequence that remains highly similar or identical across different species over evolutionary time, indicating its important functional or structural role.
 
-**Divergent Region**
+**Divergent Region:**
 A segment of a protein or gene sequence that shows significant variation between species, often reflecting adaptations, less critical function, or evolutionary change.
 
-_Early question_: If someone is epileptic, is there a mutation in a conserved or divergent region, or both, and why?
+> *Early question:*
+> If someone is epileptic, is there a mutation in a conserved or divergent region, or both, and why?
+
+---
 
 ## Top 5 Epilepsy-Related Genes to Study
 
-| Gene Symbol | Protein Type                             | Notes                                                                                 |
-|-------------|----------------------------------------|---------------------------------------------------------------------------------------|
-| **SCN1A**   | Voltage-gated sodium channel α subunit | Key gene linked to Dravet syndrome and other epilepsy forms.                           |
-| **KCNQ2**   | Voltage-gated potassium channel subunit| Involved in neonatal epilepsy; regulates neuronal excitability.                       |
-| **SCN2A**   | Voltage-gated sodium channel α subunit | Associated with early-onset epilepsy and developmental issues.                        |
-| **CACNA1H** | T-type voltage-gated calcium channel   | Implicated in generalized and childhood absence seizures.                            |
-| **GABRA1**  | GABA_A receptor subunit α1 (chloride channel) | Important for inhibitory signaling; mutations linked to epilepsy.                    |
+| Gene Symbol | Protein Type                                   | Notes                                                             |
+| ----------- | ---------------------------------------------- | ----------------------------------------------------------------- |
+| **SCN1A**   | Voltage-gated sodium channel α subunit         | Key gene linked to Dravet syndrome and other epilepsy forms.      |
+| **KCNQ2**   | Voltage-gated potassium channel subunit        | Involved in neonatal epilepsy; regulates neuronal excitability.   |
+| **SCN2A**   | Voltage-gated sodium channel α subunit         | Associated with early-onset epilepsy and developmental issues.    |
+| **CACNA1H** | T-type voltage-gated calcium channel           | Implicated in generalized and childhood absence seizures.         |
+| **GABRA1**  | GABA\_A receptor subunit α1 (chloride channel) | Important for inhibitory signaling; mutations linked to epilepsy. |
+
+---
 
 ### ✅ Step 2. Collect Orthologous Protein Sequences
 
-_Question_: I need to select species other than humans to compare with. How do I decide which species to select? Should I just select randomly?
+> *Question:*
+> I need to select species other than humans to compare with. How do I decide which species to select? Should I just select randomly?
 
-_Answer_: Do not select randomly - we want to select for biologically meaningful coverage across the evolutionary tree. 
+> *Answer:*
+> Do **not** select randomly — we want to select for biologically meaningful coverage across the evolutionary tree.
 
-Some guidelines for selection:
-- Span vertebrates and invertebrates 
-- Vary in nervous system complexity 
-- Have good sequence availability
+**Guidelines for species selection:**
 
-#### Example selection (group level):
+* Span vertebrates and invertebrates
+* Vary in nervous system complexity
+* Have good sequence availability
 
-    -Mammals
-    -Birds
-    -Reptiles
-    -Amphibians
-    -Bony Fish
-    -Insects
-    -Nematodes
-    -Cephalopods
-    -Jawless Vertebrates
+#### Example group-level selection:
 
-**Orthologous Genes**
+* Mammals
+* Birds
+* Reptiles
+* Amphibians
+* Bony Fish
+* Insects
+* Nematodes
+* Cephalopods
+* Jawless Vertebrates
+
+---
+
+**Orthologous Genes:**
 Genes that evolved from a common ancestral gene by speciation and generally perform the same function.
 
-_Question_: With the diversity of groups we've selected (insects, nematodes, etc.), are we sure
-that the epileptic genes we've selected will be found in all of them, e.g. will it be a orthologous gene in this group?
+> *Question:*
+> With the diversity of groups we've selected (insects, nematodes, etc.), are we sure that the epileptic genes we've selected will be found in all of them, e.g., will it be an orthologous gene in this group?
 
-_Answer_: No, it is possible these genes won't be present in some of the groups selected. However,
-knowing which groups have these gene(s) absent can provide insight for the research too.
+> *Answer:*
+> No, it is possible these genes won't be present in some groups. However, knowing which groups lack these genes can provide insight into the research.
 
-When selecting, keep this in mind:
+**Keep in mind when selecting species:**
 
 1. **Start with well-studied model organisms:**
 
@@ -75,7 +85,7 @@ When selecting, keep this in mind:
 
 3. **Consider evolutionary distance and biological relevance:**
 
-   * Include both close relatives (fine differences) and distant relatives (conserved regions)
+   * Include both close relatives (fine differences) and distant relatives (to find conserved regions)
    * Select species with interesting traits linked to your research question
 
 4. **Verify data quality:**
@@ -83,25 +93,26 @@ When selecting, keep this in mind:
    * Prefer species with high-quality reference genomes and protein data
    * Avoid species with incomplete or low-quality sequence data
 
-#### Final selection (species level):
+---
 
-- Sourced from https://www.ncbi.nlm.nih.gov/
-- Choosing proteins for later MSA - proteins are more "obviously" informative than DNA sequences
-  for this research project
+### Final selection (species level):
 
---
+* Sourced from [NCBI](https://www.ncbi.nlm.nih.gov/)
+* Choosing proteins for later Multiple Sequence Alignment (MSA) — proteins are more "obviously" informative than DNA sequences for this research project
 
-## Mammal: Rabbit (_Oryctolagus cuniculus_)
+---
 
-### UniProt data for orthologs: 
+## Mammal: Rabbit (*Oryctolagus cuniculus*)
+
+### UniProt data for orthologs:
 
 #### SCN1A
 
-- **UniProt accession:** G1SSP8  
-- **Entrez gene ID:** 100009591  
-- **Entrez protein accession:** XP_051704506.1  
-- **Ensembl gene ID:** ENSOCUG00000007266.4  
-- **Ensembl protein ID:** ENSOCUP00000006283.2  
+* **UniProt accession:** G1SSP8
+* **Entrez gene ID:** 100009591
+* **Entrez protein accession:** XP\_051704506.1
+* **Ensembl gene ID:** ENSOCUG00000007266.4
+* **Ensembl protein ID:** ENSOCUP00000006283.2
 
 #### KCNQ2
 
@@ -111,27 +122,31 @@ When selecting, keep this in mind:
 
 #### GABRA1
 
-Reasoning:
-- [x] Species has a publicly available genome and proteome - https://www.ncbi.nlm.nih.gov/datasets/taxonomy/9986/ ~94K protein sequences ~22K Protein-coding genes
+---
 
-https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_964237555.1/
+### Reasoning for selecting Rabbit:
 
-**Annotation Details**:
+* ☑ Species has a publicly available genome and proteome
 
-    - Level: Chromosome (Top tier)
+  * \~94,000 protein sequences, \~22,000 protein-coding genes
+  * Source: [https://www.ncbi.nlm.nih.gov/datasets/genome/GCF\_964237555.1/](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_964237555.1/)
+* ☑ High-quality genome annotation
 
-    - Annotation: NCBI RefSeq (Gold standard)
+  * Level: Chromosome (Top tier)
+  * Annotation: NCBI RefSeq (Gold standard)
+  * Genes: 38,822
+  * Protein-coding: 21,895 (robust coverage and annotation depth)
+* ☑ Species is commonly used in research (e.g., neuroscience, evolution)
 
-    - Genes: 38,822
+  * PubMed hits: 228 (as of 6/23/25) for "Oryctolagus cuniculus"
+* ☑ Species represents its group well (classic model organism)
 
-    - Protein-coding: 21,895 (robust coverage and annotation depth)
+  * Not an outlier; divergent enough from human without being too divergent
+* ☑ Ortholog presence confirmed via NCBI Gene, Ensembl, OrthoDB
 
-- [X] Species is commonly used in research (e.g. neuroscience, evolution) - https://pubmed.ncbi.nlm.nih.gov/?term=%22Oryctolagus+cuniculus%22 228 hits as of 6/23/25
-- [X] Species represents its group well (e.g. classic model organism) - Not an outlier. Divergent enough from human without being too divergent.
+  * Confirmed ortholog presence for rabbit
+* ☑ Avoids missing or poorly annotated orthologs
+* ☑ Species has interesting traits linked to the research question
 
-- [X] Use NCBI Gene, Ensembl, OrthoDB to confirm gene orthologs exist - https://www.orthodb.org/?level=&species=&query=2984333at2759 Oryctolagus cuniculus is found as an ortholog
-- [X] Avoid species with missing or poorly annotated orthologs
-
-- [X] Select species with interesting traits linked to your research question - papers show broadly that "Rabbits may experience spontaneous seizures from diverse causes" and "A veterinary review suggests rabbits are suitable for seizure research, as their episodes are measurable and often benign recovery is possible." That was a summary from A.I. but the important part is that at least rabbits are having seizures and their seizure activity has been studied.
-
---
+  * Literature shows rabbits experience spontaneous seizures from diverse causes
+  * Veterinary reviews suggest rabbits are suitable for seizure research, with measurable episodes and often benign recovery
