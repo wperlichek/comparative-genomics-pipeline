@@ -13,7 +13,7 @@ class UniProtClient:
 
         if accession_id == "":
             logging.warning(
-                "Must provide protein's accession id to get its fasta sequence"
+                "Must provide protein's accession id to get its FASTA sequence"
             )
             return ""
         else:
