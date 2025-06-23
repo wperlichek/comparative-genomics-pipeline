@@ -121,6 +121,6 @@ https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_964237555.1/
 - [X] Use NCBI Gene, Ensembl, OrthoDB to confirm gene orthologs exist - https://www.orthodb.org/?level=&species=&query=2984333at2759 Oryctolagus cuniculus is found as an ortholog
 - [X] Avoid species with missing or poorly annotated orthologs
 
-- [X] Select species with interesting traits linked to your research question - papers show broadly that "Rabbits may experience spontaneous seizures from diverse causes" and "A veterinary review suggests rabbits are suitable for seizure research, as their episodes are measurable and often benign recovery is possible." That was a summary from A.I. but the important part is that at least rabbits are having seizures and they're seizure activity has been studied.
+- [X] Select species with interesting traits linked to your research question - papers show broadly that "Rabbits may experience spontaneous seizures from diverse causes" and "A veterinary review suggests rabbits are suitable for seizure research, as their episodes are measurable and often benign recovery is possible." That was a summary from A.I. but the important part is that at least rabbits are having seizures and their seizure activity has been studied.
 
 --
