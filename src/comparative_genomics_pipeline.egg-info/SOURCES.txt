@@ -1,9 +1,0 @@
-README.md
-pyproject.toml
-src/comparative-genomic-analysis/client/__init__.py
-src/comparative-genomic-analysis/client/uniprot_client.py
-src/comparative_genomics_pipeline.egg-info/PKG-INFO
-src/comparative_genomics_pipeline.egg-info/SOURCES.txt
-src/comparative_genomics_pipeline.egg-info/dependency_links.txt
-src/comparative_genomics_pipeline.egg-info/requires.txt
-src/comparative_genomics_pipeline.egg-info/top_level.txt
