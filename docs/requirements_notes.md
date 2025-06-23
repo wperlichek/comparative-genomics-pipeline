@@ -91,14 +91,25 @@ When selecting, keep this in mind:
 
 --
 
-Mammal: Rabbit (Oryctolagus cuniculus)
+## Mammal: Rabbit (_Oryctolagus cuniculus_)
 
-UniProt Accession IDs for orthologs: 
- - SCN1A:
- - KCNQ2:
- - SCN2A:
- - CACNA1H:
- - GABRA1:
+### UniProt data for orthologs: 
+
+#### SCN1A
+
+- **UniProt accession:** G1SSP8  
+- **Entrez gene ID:** 100009591  
+- **Entrez protein accession:** XP_051704506.1  
+- **Ensembl gene ID:** ENSOCUG00000007266.4  
+- **Ensembl protein ID:** ENSOCUP00000006283.2  
+
+#### KCNQ2
+
+#### SCN2A
+
+#### CACNA1H
+
+#### GABRA1
 
 Reasoning:
 - [x] Species has a publicly available genome and proteome - https://www.ncbi.nlm.nih.gov/datasets/taxonomy/9986/ ~94K protein sequences ~22K Protein-coding genes
