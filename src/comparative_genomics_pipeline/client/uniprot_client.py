@@ -21,10 +21,16 @@ class UniProtClient:
         else:
             url = f"{self.BASE_URL}{accession_id}"
             headers = {"Accept": "text/x-fasta"}
-            # TODO :: try/except for this call
-            response = await self.client.get(url, headers=headers)
-            response.raise_for_status()
-            return response.text
+            try:
+                response = await self.client.get(url, headers=headers)
+                response.raise_for_status()
+                return response.text
+            except httpx.HTTPStatusError as e:
+                logger.error(f"HTTP error for {url}: {e.response.status_code} {e.response.text}")
+                return ""
+            except httpx.RequestError as e:
+                logger.error(f"Network error while requesting {url}: {e}")
+                return ""
 
     async def close(self):
         await self.client.aclose()
