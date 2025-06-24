@@ -23,13 +23,14 @@ A segment of a protein or gene sequence that shows significant variation between
 
 ## Top 5 Epilepsy-Related (Human) Genes to Study
 
-| Gene Symbol | Protein Type                                   | Notes                                                             |
-| ----------- | ---------------------------------------------- | ----------------------------------------------------------------- |
-| **SCN1A**   | Voltage-gated sodium channel α subunit         | Key gene linked to Dravet syndrome and other epilepsy forms.      |
-| **KCNQ2**   | Voltage-gated potassium channel subunit        | Involved in neonatal epilepsy; regulates neuronal excitability.   |
-| **SCN2A**   | Voltage-gated sodium channel α subunit         | Associated with early-onset epilepsy and developmental issues.    |
-| **CACNA1H** | T-type voltage-gated calcium channel           | Implicated in generalized and childhood absence seizures.         |
-| **GABRA1**  | GABA\_A receptor subunit α1 (chloride channel) | Important for inhibitory signaling; mutations linked to epilepsy. |
+| Gene Symbol | Protein Type                                   | UniProt Accession | Notes                                                             |
+| ----------- | ---------------------------------------------- | ----------------- | ----------------------------------------------------------------- |
+| **SCN1A**   | Voltage-gated sodium channel α subunit         | `P35498`          | Key gene linked to Dravet syndrome and other epilepsy forms.      |
+| **KCNQ2**   | Voltage-gated potassium channel subunit        | `O43526`          | Involved in neonatal epilepsy; regulates neuronal excitability.   |
+| **SCN2A**   | Voltage-gated sodium channel α subunit         | `Q99250`          | Associated with early-onset epilepsy and developmental issues.    |
+| **CACNA1H** | T-type voltage-gated calcium channel           | `O95180`          | Implicated in generalized and childhood absence seizures.         |
+| **GABRA1**  | GABA\_A receptor subunit α1 (chloride channel) | `P14867`          | Important for inhibitory signaling; mutations linked to epilepsy. |
+
 
 ---
 
