@@ -39,23 +39,27 @@ async def async_main():
     # / Collect Orthologous Protein Sequences
 
     # Align Sequences (MSA)
-    # job_id = await ebi_client.submit_job("")
-    # if not job_id:
-    #     return
+    test_fasta = file_util.open_file_return_as_str(
+        f"{path_config.DATA_OUTPUT_DIR}/orthologs/SCN1A.fasta"
+    )
 
-    # status = ""
-    # while status not in ("FINISHED", "ERROR", "FAILURE"):
-    #     status = await ebi_client.check_status(job_id)
-    #     if status == "FINISHED":
-    #         result = await ebi_client.get_result(job_id, "fa")
-    #         print(result)
-    #     elif status in ("ERROR", "FAILURE"):
-    #         print(f"Job {job_id} failed with status: {status}")
-    #         break
-    #     else:
-    #         await asyncio.sleep(5)  # wait before polling again
+    job_id = await ebi_client.submit_job("")
+    if not job_id:
+        return
 
-    # await ebi_client.close()
+    status = ""
+    while status not in ("FINISHED", "ERROR", "FAILURE"):
+        status = await ebi_client.check_status(job_id)
+        if status == "FINISHED":
+            result = await ebi_client.get_result(job_id, "fa")
+            print(result)
+        elif status in ("ERROR", "FAILURE"):
+            print(f"Job {job_id} failed with status: {status}")
+            break
+        else:
+            await asyncio.sleep(5)  # wait before polling again
+
+    await ebi_client.close()
     # / Align Sequences (MSA)
 
     pass

@@ -10,6 +10,11 @@ def open_file_return_as_json(file):
         return contents
 
 
+def open_file_return_as_str(file):
+    with open(file, "r") as f:
+        return f.read()
+
+
 def save_fasta_to_output_dir(file_name: str = "", dir_name: str = "", fasta: str = ""):
     ## TODO :: try/except protection
     with open(
