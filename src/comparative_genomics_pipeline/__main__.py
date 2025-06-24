@@ -11,10 +11,10 @@ async def async_main():
     uni_prot_client = UniProtClient()
     ncbi_client = NCBIClient()
 
+    # Collect Orthologous Protein Sequences
     genes_to_proteins = file_util.open_file_return_as_json(
         f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json"
     )
-
     for gene_name, ortholog_list in genes_to_proteins.items():
         all_orthologs_as_fasta = ""
         for ortholog in ortholog_list:
@@ -33,6 +33,12 @@ async def async_main():
                     )
                 )
         file_util.save_fasta_to_output_dir(gene_name, all_orthologs_as_fasta)
+    # / Collect Orthologous Protein Sequences
+
+    # Align Sequences (MSA)
+
+    # / Align Sequences (MSA)
+
     pass
 
 
