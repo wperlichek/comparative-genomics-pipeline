@@ -1,0 +1,1 @@
+Not directly used in programming but a MSA viewing tool: https://www.jalview.org/ considered by some to be the gold standard for manual inspection of something like an MSA.
