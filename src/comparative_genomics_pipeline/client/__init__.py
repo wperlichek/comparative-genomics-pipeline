@@ -2,5 +2,6 @@
 
 from .uniprot_client import UniProtClient
 from .ncbi_client import NCBIClient
+from .ebi_client import EBIClient
 
-__all__ = ["UniProtClient", "NCBIClient"]
+__all__ = ["UniProtClient", "NCBIClient", "EBIClient"]
