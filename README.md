@@ -1,5 +1,7 @@
 ## 🧬 Epilepsy Ion Channel Comparative Genomics Pipeline
 
+**WORK IN PROGRESS**
+
 Explore how epilepsy-related ion channel genes have evolved across species using foundational comparative genomics tools.
 
 > 🧪 *Built as part of my transition into computational biology, this pipeline integrates public gene/protein datasets with practical bioinformatics techniques to enable early-stage, cross-species analysis of epilepsy-associated genes.*
