@@ -14,3 +14,9 @@ requires-python = ">=3.10"
 dependencies = [
   "httpx>=0.24.1"
 ]
+
+[project.scripts]
+comparative-genomics-pipeline = "comparative_genomics_pipeline.__main__:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
