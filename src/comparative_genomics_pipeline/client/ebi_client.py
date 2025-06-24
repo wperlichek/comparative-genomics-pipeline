@@ -1,3 +1,64 @@
-class EBIClient:
+import httpx
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+class ClustalOmegaClient:
+    BASE_URL = "https://www.ebi.ac.uk/Tools/services/rest/clustalo"
+    EMAIL = "williamperlichek@gmail.com"
+
     def __init__(self):
-        pass
+        self.client = httpx.AsyncClient()
+
+    async def submit_job(self, fasta_sequence: str) -> str:
+
+        data = {"sequence": fasta_sequence, "email": self.EMAIL}
+
+        try:
+            response = await self.client.post(f"{self.BASE_URL}/run/", data=data)
+            response.raise_for_status()
+            job_id = response.text.strip()
+            logger.info(f"Job submitted successfully: {job_id}")
+            return job_id
+        except httpx.HTTPStatusError as e:
+            logger.error(
+                f"HTTP error during job submission: {e.response.status_code} {e.response.text}"
+            )
+        except httpx.RequestError as e:
+            logger.error(f"Network error during job submission: {e}")
+        return ""
+
+    async def check_status(self, job_id: str) -> str:
+        try:
+            response = await self.client.get(f"{self.BASE_URL}/status/{job_id}")
+            response.raise_for_status()
+            status = response.text.strip()
+            logger.info(f"Job {job_id} status: {status}")
+            return status
+        except httpx.HTTPStatusError as e:
+            logger.error(
+                f"HTTP error checking status for {job_id}: {e.response.status_code} {e.response.text}"
+            )
+        except httpx.RequestError as e:
+            logger.error(f"Network error checking status for {job_id}: {e}")
+        return ""
+
+    async def get_result(self, job_id: str, result_type: str = "fa") -> str:
+        try:
+            url = f"{self.BASE_URL}/result/{job_id}/{result_type}"
+            response = await self.client.get(url)
+            response.raise_for_status()
+            return response.text
+        except httpx.HTTPStatusError as e:
+            logger.error(
+                f"HTTP error fetching result {result_type} for {job_id}: {e.response.status_code} {e.response.text}"
+            )
+        except httpx.RequestError as e:
+            logger.error(
+                f"Network error fetching result {result_type} for {job_id}: {e}"
+            )
+        return ""
+
+    async def close(self):
+        await self.client.aclose()
