@@ -221,3 +221,10 @@ Genes that evolved from a common ancestral gene by speciation and generally perf
 * **Ensembl protein**: ENSGALP00010013552
 
 ---
+
+Clustal Omega (Multiple Sequence Alignment)
+- See https://www.ebi.ac.uk/jdispatcher/msa/clustalo for example
+- Pass concataneted FASTA sequence
+
+Phylogenic Tree Generation
+- PHYLIP or FASTA often preferred (Clustal Omega can produce these)
