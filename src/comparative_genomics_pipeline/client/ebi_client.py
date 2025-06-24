@@ -4,7 +4,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class ClustalOmegaClient:
+class EBIClient:
     BASE_URL = "https://www.ebi.ac.uk/Tools/services/rest/clustalo"
     EMAIL = "williamperlichek@gmail.com"
 
