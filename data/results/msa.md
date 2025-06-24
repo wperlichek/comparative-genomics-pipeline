@@ -2,14 +2,14 @@
 
 ### Basic Info
 
-1. What gene(s) am I analyzing?
-2. Which species are included in this alignment?
-3. What tool(s) did I use to create the alignment?
+1. What gene(s) am I analyzing? **CACNA1H, GABRA1, KCNQ2, SCN1A, and SCN2A**
+2. Which species are included in this alignment? **So far, Homo sapiens, Oryctolagus cuniculus, and Gallus gallus** 
+3. What tool(s) did I use to create the alignment? **Clustal Omega from European Bioinformatics Institute (REST API)**
 
 ### Ortholog Data
 
-4. Do I have UniProt or Entrez Protein IDs for all sequences?
-5. Are there any missing IDs or sequences that I need to find or update?
+4. Do I have UniProt or Entrez Protein IDs for all sequences? **Yes**
+5. Are there any missing IDs or sequences that I need to find or update? **No**
 
 ### Alignment Quality
 
