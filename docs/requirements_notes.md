@@ -21,7 +21,7 @@ A segment of a protein or gene sequence that shows significant variation between
 
 ---
 
-## Top 5 Epilepsy-Related Genes to Study
+## Top 5 Epilepsy-Related (Human) Genes to Study
 
 | Gene Symbol | Protein Type                                   | Notes                                                             |
 | ----------- | ---------------------------------------------- | ----------------------------------------------------------------- |
@@ -122,9 +122,25 @@ Genes that evolved from a common ancestral gene by speciation and generally perf
 
 #### SCN2A
 
+* **UniProt accession:** A0A5F9C773
+* **Entrez gene ID:** 100351658
+* **Entrez protein accession:** XP\_008256914.1
+* **Ensembl gene ID:** ENSOCUG00000005533.4
+* **Ensembl protein ID:** ENSOCUP00000025500.1; ENSOCUP00000029697.1
+
 #### CACNA1H
 
+* **Entrez gene ID:** 127486418
+* **Entrez protein:** XP_051686345.1
+* **NCBI fallback:** https://www.ncbi.nlm.nih.gov/gene/127486418
+
 #### GABRA1
+
+* **UniProt**: G1TAX4
+* **Entrez gene**: 100357047
+* **Entrez protein**: XP_002710402.2
+* **Ensembl**: ENSOCUG00000016109.4
+* **Ensembl protein**: ENSOCUP00000013846.3
 
 ---
 
