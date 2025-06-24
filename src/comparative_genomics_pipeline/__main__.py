@@ -15,14 +15,24 @@ async def async_main():
         f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json"
     )
 
-    protein_ids_and_needed_sources = ""  # {id: source}
-
-    # Iterate and make one or other call, concatenating a new fasta file and save it?
-    fasta_sequence_accession = (
-        await uni_prot_client.fetch_protein_fasta_sequence_by_accession_id("")
-    )
-    fasta_sequence_entrez = await ncbi_client.fetch_protein_fasta_by_entrez_id("")
-
+    for gene_name, ortholog_list in genes_to_proteins.items():
+        all_orthologs_as_fasta = ""
+        for ortholog in ortholog_list:
+            if "uniprot_id" in ortholog and ortholog["uniprot_id"] != "":
+                all_orthologs_as_fasta += (
+                    await uni_prot_client.fetch_protein_fasta_sequence_by_accession_id(
+                        ortholog["uniprot_id"]
+                    )
+                )
+            elif (
+                "entrez_protein_id" in ortholog and ortholog["entrez_protein_id"] != ""
+            ):
+                all_orthologs_as_fasta += (
+                    await ncbi_client.fetch_protein_fasta_by_entrez_id(
+                        ortholog["entrez_protein_id"]
+                    )
+                )
+        file_util.save_fasta_to_output_dir(gene_name, all_orthologs_as_fasta)
     pass
 
 
