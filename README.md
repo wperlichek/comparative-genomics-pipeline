@@ -1,3 +1,3 @@
-# comparative-genomics-pipeline
+Explore epilepsy-related genes across groups using basic comparative genomics techniques.
 
-Explore epilepsy-related genes across groups using fundamental comparative genomics techniques. See `docs/requirements.md` for more details.
+This pipeline is a work in progress, built as part of my transition into computational biology. It uses public gene and protein data to explore cross-species comparisons, with a focus on practical tools and real biological formats. The goal is to prototype a simple, end-to-end pipeline for early-stage exploratory analysis. See docs/requirements.md for details.
