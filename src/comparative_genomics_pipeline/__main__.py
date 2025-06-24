@@ -12,6 +12,8 @@ async def async_main():
     ncbi_client = NCBIClient()
     ebi_client = EBIClient()
 
+    # TODO :: heavily modularize all of these steps
+
     # Collect Orthologous Protein Sequences
     genes_to_proteins = file_util.open_file_return_as_json(
         f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json"
@@ -50,13 +52,13 @@ async def async_main():
             status = await ebi_client.check_status(job_id)
             if status == "FINISHED":
                 result = await ebi_client.get_result(job_id, "fa")
-                print(result)
+                file_util.save_fasta_to_output_dir(job_id, "msa", result)
             elif status in ("ERROR", "FAILURE"):
                 print(f"Job {job_id} failed with status: {status}")
                 break
             else:
                 await asyncio.sleep(5)  # wait before polling again
-        await ebi_client.close()
+    await ebi_client.close()
     # / Align Sequences (MSA)
 
     pass
