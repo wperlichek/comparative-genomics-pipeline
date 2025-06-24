@@ -10,7 +10,9 @@ def open_file_return_as_json(file):
         return contents
 
 
-def save_fasta_to_output_dir(file_name: str = "", fasta: str = ""):
+def save_fasta_to_output_dir(file_name: str = "", dir_name: str = "", fasta: str = ""):
     ## TODO :: try/except protection
-    with open(f"{path_config.DATA_OUTPUT_DIR}/{file_name}.fasta", "w") as fasta_file:
+    with open(
+        f"{path_config.DATA_OUTPUT_DIR}/{dir_name}/{file_name}.fasta", "w"
+    ) as fasta_file:
         fasta_file.write(fasta)
