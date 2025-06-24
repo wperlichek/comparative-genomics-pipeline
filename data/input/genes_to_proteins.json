@@ -9,6 +9,11 @@
             "species": "Oryctolagus cuniculus",
             "uniprot_id": "G1SSP8",
             "entrez_protein_id": ""
+        },
+        {
+            "species": "Gallus gallus",
+            "uniprot_id": "A0A8V1A1D3",
+            "entrez_protein_id": "XP_004942836.4"
         }
     ],
     "KCNQ2": [
@@ -21,6 +26,11 @@
             "species": "Oryctolagus cuniculus",
             "uniprot_id": "",
             "entrez_protein_id": "XP_051685089.1"
+        },
+        {
+            "species": "Gallus gallus",
+            "uniprot_id": "A0A8V0ZLH7",
+            "entrez_protein_id": "XP_040506889.1"
         }
     ],
     "SCN2A": [
@@ -33,6 +43,11 @@
             "species": "Oryctolagus cuniculus",
             "uniprot_id": "A0A5F9C773",
             "entrez_protein_id": "XP_008256914.1"
+        },
+        {
+            "species": "Gallus gallus",
+            "uniprot_id": "A0A8V1A5Z8",
+            "entrez_protein_id": "XP_040559277.1"
         }
     ],
     "CACNA1H": [
@@ -45,6 +60,11 @@
             "species": "Oryctolagus cuniculus",
             "uniprot_id": "",
             "entrez_protein_id": "XP_051686345.1"
+        },
+        {
+            "species": "Gallus gallus",
+            "uniprot_id": "A0A8V0Z849",
+            "entrez_protein_id": "XP_015149910.3"
         }
     ],
     "GABRA1": [
@@ -57,6 +77,11 @@
             "species": "Oryctolagus cuniculus",
             "uniprot_id": "G1TAX4",
             "entrez_protein_id": "XP_002710402.2"
+        },
+        {
+            "species": "Gallus gallus",
+            "uniprot_id": "A0A8V0YC88",
+            "entrez_protein_id": "XP_046756226.1"
         }
     ]
 }

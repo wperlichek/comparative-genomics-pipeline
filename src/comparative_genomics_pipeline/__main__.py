@@ -9,7 +9,7 @@ async def async_main():
     uni_prot_client = UniProtClient()
     fasta_sequence = await uni_prot_client.fetch_protein_fasta_sequence_by_accession_id(accession_id)
     print(f"FASTA sequence for {accession_id}:\n{fasta_sequence}")
-    # TODO ::    One more organism in data/input/genes_to_proteins.json needed for MSA
+    # TODO ::    
     #            Need client for entrez_protein_id (Biopython could work)
     #            Need client for MSA (European bioinformatics Clustal Omega REST API)
     pass

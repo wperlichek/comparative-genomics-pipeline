@@ -171,3 +171,53 @@ Genes that evolved from a common ancestral gene by speciation and generally perf
 
   * Literature shows rabbits experience spontaneous seizures from diverse causes
   * Veterinary reviews suggest rabbits are suitable for seizure research, with measurable episodes and often benign recovery
+
+---
+
+## Mammal: Chicken ("Gallus gallus")
+
+## Reasoning: Chicken is the most model big organism.
+
+### UniProt data for orthologs:
+
+#### SCN1A
+
+* **UniProt accession:** A0A8V1A1D3
+* **Entrez gene ID:** SCN1A
+* **Entrez protein accession:** XP\_004942836.4
+* **Ensembl gene ID:** ENSGALG00010026770.1
+* **Ensembl protein ID:** ENSGALP00010039668.1
+
+#### KCNQ2
+
+* **UniProt accession:** A0A8V0ZLH7
+* **Entrez gene ID:** KCNQ2
+* **Entrez protein accession:** XP\_040506889.1
+* **Ensembl gene ID:** ENSGALG00010023174.1
+* **Ensembl protein ID:** ENSGALP00010034224.1
+
+#### SCN2A
+
+* **UniProt accession:** A0A8V1A5Z8
+* **Entrez gene ID:** SCN2A
+* **Entrez protein accession:** XP\_040559277.1
+* **Ensembl gene ID:** ENSGALG00010025597.1
+* **Ensembl protein ID:** ENSGALP00010038628.1
+
+#### CACNA1H
+
+* **UniProt accession:** A0A8V0Z849
+* **Entrez gene ID:** CACNA1H
+* **Entrez protein accession:** XP\_015149910.3
+* **Ensembl gene ID:** ENSGALG00010017430.1
+* **Ensembl protein ID:** ENSGALP00010024632.1
+
+#### GABRA1
+
+* **UniProt**: A0A8V0YC88
+* **Entrez gene**: GABRA1
+* **Entrez protein**: XP\_046756226.1
+* **Ensembl**: ENSGALG00010009841
+* **Ensembl protein**: ENSGALP00010013552
+
+---
