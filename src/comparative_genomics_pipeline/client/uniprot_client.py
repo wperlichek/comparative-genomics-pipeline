@@ -19,10 +19,9 @@ class UniProtClient:
             )
             return ""
         else:
-            url = f"{self.BASE_URL}{accession_id}"
-            headers = {"Accept": "text/x-fasta"}
+            url = f"{self.BASE_URL}{accession_id}.fasta"
             try:
-                response = await self.client.get(url, headers=headers)
+                response = await self.client.get(url)
                 response.raise_for_status()
                 return response.text
             except httpx.HTTPStatusError as e:
