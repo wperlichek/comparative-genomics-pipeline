@@ -12,6 +12,6 @@ Explore how epilepsy-related ion channel genes have evolved across species using
 ### Current Status
 
 6/24/25 —  
-Collected orthologous protein sequences for 5 key genes using NCBI and UniProt APIs.  
-Ran multiple sequence alignments (MSAs) and saved the results in `data/output/msa`.  
-Next up: figuring out how to actually interpret these alignments—doing some reading on best practices for MSA analysis before moving on to phylogenetic tree building.
+Collected orthologous protein sequences for 5 key genes using NCBI and UniProt APIs; saved in `data/output/orthologs`.
+Ran multiple sequence alignments (MSAs); results are in `data/output/msa`.  
+Next up: figuring out how to actually interpret these alignments—reading up on best practices for MSA analysis before moving on to phylogenetic tree building.
