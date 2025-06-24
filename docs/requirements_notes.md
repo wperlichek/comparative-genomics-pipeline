@@ -225,6 +225,7 @@ Genes that evolved from a common ancestral gene by speciation and generally perf
 Clustal Omega (Multiple Sequence Alignment)
 - See https://www.ebi.ac.uk/jdispatcher/msa/clustalo for example
 - Pass concataneted FASTA sequence
+- Web API: https://www.ebi.ac.uk/jdispatcher/docs/webservices/#openapi
 
 Phylogenic Tree Generation
 - PHYLIP or FASTA often preferred (Clustal Omega can produce these)
