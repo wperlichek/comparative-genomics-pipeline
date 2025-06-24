@@ -1,32 +1,28 @@
 import asyncio, logging, json
 from .config import logging_config, path_config
 from .client import UniProtClient, NCBIClient
+from .util import file_util
 
 logger = logging.getLogger(__name__)
 
 
 async def async_main():
-    accession_id = "G1SSP8"
-    entrez_protein_id = "XP_051685089.1"
+
     uni_prot_client = UniProtClient()
     ncbi_client = NCBIClient()
 
-    print("Data input path: " + f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json")
+    genes_to_proteins = file_util.open_file_return_as_json(
+        f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json"
+    )
 
-    with open(f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json", "r") as f:
-        genes = json.load(f)
-        for gene_name, ortholog_list in genes.items():
-            print(gene_name)
-            print(ortholog_list)
+    protein_ids_and_needed_sources = ""  # {id: source}
 
+    # Iterate and make one or other call, concatenating a new fasta file and save it?
     fasta_sequence_accession = (
-        await uni_prot_client.fetch_protein_fasta_sequence_by_accession_id(accession_id)
+        await uni_prot_client.fetch_protein_fasta_sequence_by_accession_id("")
     )
-    fasta_sequence_entrez = await ncbi_client.fetch_protein_fasta_by_entrez_id(
-        entrez_protein_id
-    )
-    print(f"FASTA sequence for {accession_id}:\n{fasta_sequence_accession}")
-    print(f"FASTA sequence for {entrez_protein_id}:\n{fasta_sequence_entrez}")
+    fasta_sequence_entrez = await ncbi_client.fetch_protein_fasta_by_entrez_id("")
+
     pass
 
 
