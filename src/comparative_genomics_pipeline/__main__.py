@@ -45,6 +45,7 @@ async def async_main():
     for file_path in orthologs_dir.glob("*.fasta"):
         ortholog_fasta = file_util.open_file_return_as_str(file_path)
         job_id = await ebi_client.submit_job(ortholog_fasta)
+        gene_name = file_path.stem
         if not job_id:
             return
         status = ""
@@ -52,7 +53,7 @@ async def async_main():
             status = await ebi_client.check_status(job_id)
             if status == "FINISHED":
                 result = await ebi_client.get_result(job_id, "fa")
-                file_util.save_fasta_to_output_dir(job_id, "msa", result)
+                file_util.save_fasta_to_output_dir(gene_name, "msa", result)
             elif status in ("ERROR", "FAILURE"):
                 print(f"Job {job_id} failed with status: {status}")
                 break
