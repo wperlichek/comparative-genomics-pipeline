@@ -1,0 +1,62 @@
+{
+    "SCN1A": [
+        {
+            "species": "Homo sapiens",
+            "uniprot_id": "P35498",
+            "entrez_protein_id": ""
+        },
+        {
+            "species": "Oryctolagus cuniculus",
+            "uniprot_id": "G1SSP8",
+            "entrez_protein_id": ""
+        }
+    ],
+    "KCNQ2": [
+        {
+            "species": "Homo sapiens",
+            "uniprot_id": "O43526",
+            "entrez_protein_id": ""
+        },
+        {
+            "species": "Oryctolagus cuniculus",
+            "uniprot_id": "",
+            "entrez_protein_id": "XP_051685089.1"
+        }
+    ],
+    "SCN2A": [
+        {
+            "species": "Homo sapiens",
+            "uniprot_id": "Q99250",
+            "entrez_protein_id": ""
+        },
+        {
+            "species": "Oryctolagus cuniculus",
+            "uniprot_id": "A0A5F9C773",
+            "entrez_protein_id": "XP_008256914.1"
+        }
+    ],
+    "CACNA1H": [
+        {
+            "species": "Homo sapiens",
+            "uniprot_id": "O95180",
+            "entrez_protein_id": ""
+        },
+        {
+            "species": "Oryctolagus cuniculus",
+            "uniprot_id": "",
+            "entrez_protein_id": "XP_051686345.1"
+        }
+    ],
+    "GABRA1": [
+        {
+            "species": "Homo sapiens",
+            "uniprot_id": "P14867",
+            "entrez_protein_id": ""
+        },
+        {
+            "species": "Oryctolagus cuniculus",
+            "uniprot_id": "G1TAX4",
+            "entrez_protein_id": "XP_002710402.2"
+        }
+    ]
+}
