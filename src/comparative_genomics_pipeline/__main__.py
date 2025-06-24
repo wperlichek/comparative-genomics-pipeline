@@ -1,5 +1,5 @@
-import asyncio, logging
-from .config import logging_config
+import asyncio, logging, json
+from .config import logging_config, path_config
 from .client import UniProtClient, NCBIClient
 
 logger = logging.getLogger(__name__)
@@ -9,6 +9,10 @@ async def async_main():
     entrez_protein_id = "XP_051685089.1"
     uni_prot_client = UniProtClient()
     ncbi_client = NCBIClient()
+    
+    with open("{path_config.DATA_INPUT_DIR}/genes_to_proteins.json", "r") as f:
+        data = json.load(f)
+
     fasta_sequence_accession = await uni_prot_client.fetch_protein_fasta_sequence_by_accession_id(accession_id)
     fasta_sequence_entrez = await ncbi_client.fetch_protein_fasta_by_entrez_id(entrez_protein_id)
     print(f"FASTA sequence for {accession_id}:\n{fasta_sequence_accession}")
