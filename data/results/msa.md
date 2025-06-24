@@ -1,9 +1,47 @@
-# MSA Observations – [Project_Name]
-**Date:** YYYY-MM-DD  
-**Species / Sequences Analyzed:**  
-- Species A – accession XYZ  
-- Species B – accession ABC  
-- Species C – accession DEF  
+# MSA Observations – [Comparative-Genomics-Pipeline]
+**Date:** 2025-06-24  
+
+# Ortholog Collection Summary  
+**Genes Selected:** SCN1A, KCNQ2, SCN2A, CACNA1H, GABRA1  
+**Species:** Homo sapiens, Oryctolagus cuniculus, Gallus gallus  
+**Notes:** All genes have at least 3 orthologous protein sequences collected. In some cases, UniProt or Entrez IDs are missing; these will be updated as needed.
+
+---
+
+## Gene: SCN1A
+| Species               | UniProt ID | Entrez Protein ID     |
+|----------------------|------------|------------------------|
+| Homo sapiens          | P35498     | *(missing)*            |
+| Oryctolagus cuniculus | G1SSP8     | *(missing)*            |
+| Gallus gallus         | A0A8V1A1D3 | XP_004942836.4         |
+
+## Gene: KCNQ2
+| Species               | UniProt ID | Entrez Protein ID     |
+|----------------------|------------|------------------------|
+| Homo sapiens          | O43526     | *(missing)*            |
+| Oryctolagus cuniculus | *(missing)*| XP_051685089.1         |
+| Gallus gallus         | A0A8V0ZLH7 | XP_040506889.1         |
+
+## Gene: SCN2A
+| Species               | UniProt ID | Entrez Protein ID     |
+|----------------------|------------|------------------------|
+| Homo sapiens          | Q99250     | *(missing)*            |
+| Oryctolagus cuniculus | A0A5F9C773 | XP_008256914.1         |
+| Gallus gallus         | A0A8V1A5Z8 | XP_040559277.1         |
+
+## Gene: CACNA1H
+| Species               | UniProt ID | Entrez Protein ID     |
+|----------------------|------------|------------------------|
+| Homo sapiens          | O95180     | *(missing)*            |
+| Oryctolagus cuniculus | *(missing)*| XP_051686345.1         |
+| Gallus gallus         | A0A8V0Z849 | XP_015149910.3         |
+
+## Gene: GABRA1
+| Species               | UniProt ID | Entrez Protein ID     |
+|----------------------|------------|------------------------|
+| Homo sapiens          | P14867     | *(missing)*            |
+| Oryctolagus cuniculus | G1TAX4     | XP_002710402.2         |
+| Gallus gallus         | A0A8V0YC88 | XP_046756226.1         |
 
 ---
 
