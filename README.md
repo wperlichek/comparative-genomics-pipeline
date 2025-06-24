@@ -1,3 +1,17 @@
-Explore epilepsy-related genes across groups using basic comparative genomics techniques.
+## 🧬 Epilepsy Ion Channel Comparative Genomics Pipeline
 
-This pipeline is a work in progress, built as part of my transition into computational biology. It uses public gene and protein data to explore cross-species comparisons, with a focus on practical tools and real biological formats. The goal is to prototype a simple, end-to-end pipeline for early-stage exploratory analysis. See docs/requirements.md for details.
+Explore how epilepsy-related ion channel genes have evolved across species using foundational comparative genomics tools.
+
+> 🧪 *Built as part of my transition into computational biology, this pipeline integrates public gene/protein datasets with practical bioinformatics techniques to enable early-stage, cross-species analysis of epilepsy-associated genes.*
+
+### 🚀 Pipeline Flow  
+`Fetch orthologs → Align sequences → Build phylogenetic trees → Score conservation → Map human variants → (Optional) Visualize in 3D → Store & run on AWS`
+
+📁 **Requirements:** [docs/requirements.md](docs/requirements.md)
+
+### Current Status
+
+6/24/25 —  
+Collected orthologous protein sequences for 5 key genes using NCBI and UniProt APIs.  
+Ran multiple sequence alignments (MSAs) and saved the results in `data/output/msa`.  
+Next up: figuring out how to actually interpret these alignments—doing some reading on best practices for MSA analysis before moving on to phylogenetic tree building.
