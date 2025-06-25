@@ -7,14 +7,7 @@ from .util import file_util
 logger = logging.getLogger(__name__)
 
 
-async def async_main():
-    uni_prot_client = UniProtClient()
-    ncbi_client = NCBIClient()
-    ebi_client = EBIClient()
-
-    # TODO :: heavily modularize all of these steps
-
-    # Collect Orthologous Protein Sequences
+async def collect_orthologous_sequences(uni_prot_client, ncbi_client):
     genes_to_proteins = file_util.open_file_return_as_json(
         f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json"
     )
@@ -38,9 +31,9 @@ async def async_main():
         file_util.save_fasta_to_output_dir(
             gene_name, "orthologs", all_orthologs_as_fasta
         )
-    # / Collect Orthologous Protein Sequences
 
-    # Align Sequences (MSA)
+
+async def align_sequences_msa(ebi_client):
     orthologs_dir = Path(path_config.DATA_OUTPUT_DIR) / "orthologs"
     for file_path in orthologs_dir.glob("*.fasta"):
         ortholog_fasta = file_util.open_file_return_as_str(file_path)
@@ -59,9 +52,18 @@ async def async_main():
                 break
             else:
                 await asyncio.sleep(5)  # wait before polling again
-    await ebi_client.close()
-    # / Align Sequences (MSA)
 
+
+async def async_main():
+    uni_prot_client = UniProtClient()
+    ncbi_client = NCBIClient()
+    ebi_client = EBIClient()
+
+    await collect_orthologous_sequences(uni_prot_client, ncbi_client)
+    await align_sequences_msa(ebi_client)
+    await ebi_client.close()
+
+    # Add more modular steps here as needed
     pass
 
 
