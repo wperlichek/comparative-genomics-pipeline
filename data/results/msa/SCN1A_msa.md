@@ -39,6 +39,7 @@ Here’s a clean, polished markdown version of your answers with some light form
    * 81–208
 
      *Observation:* This sequence would stretch to 278 if we ignored pos 209 being different only for *Gallus Gallus*.
+
    * 352–449
    * 1252–1383
 
@@ -62,7 +63,10 @@ Here’s a clean, polished markdown version of your answers with some light form
 ### Biological Insight
 
 9. **Are the highly conserved regions associated with known functional domains or motifs?**
-   \[To be determined]
+    * 81–208
+    *Observations:*: Within topological domain. Within transmembrane. 
+    More study is needed but it appears this region could be important 
+    for core functionalities of the protein.
 
 10. **Could any gaps or insertions correspond to exon/intron boundaries or species-specific features?**
     \[To be investigated]
