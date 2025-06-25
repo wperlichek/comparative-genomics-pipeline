@@ -94,23 +94,29 @@ Here’s a clean, polished markdown version of your answers with some light form
 ### Alignment Reliability
 
 11. **Are there regions that look poorly aligned or contain many mismatches?**
-    \[To be assessed]
+    *~680-690
+    *~1388-1415
+    *~1955-end
 
 12. **Should I consider trimming these regions before further analysis?**
-    \[Pending evaluation]
+    The sequences are only 2000BP long for this proteins... At this
+    early stage it's probably not worth the extra work. The regions 
+    are _relatively_ small and unlikely to compromise downstream results,
+    like the tree generation should be OK and represenative for now. 
+    We can tighten this up in further iterations.
 
 ---
 
 ### Next Steps for Analysis
 
 13. **What tool or method should I use for trimming (if needed)?**
-    \[Consider tools like trimAl or manual curation]
+    TBD
 
 14. **Which phylogenetic tree-building tool do I want to try first?**
     I used EBI's phyl tree generation Web API to create .nwk trees
 
 15. **Do I need to re-run the alignment with different parameters or additional sequences?**
-    \[To decide based on quality assessment]
+    TBD
 
 ---
 
