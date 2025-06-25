@@ -103,7 +103,7 @@ Here’s a clean, polished markdown version of your answers with some light form
     \[Consider tools like trimAl or manual curation]
 
 14. **Which phylogenetic tree-building tool do I want to try first?**
-    \[Options include IQ-TREE, FastTree, or MEGA]
+    I used EBI's phyl tree generation Web API to create .nwk trees
 
 15. **Do I need to re-run the alignment with different parameters or additional sequences?**
     \[To decide based on quality assessment]
@@ -113,10 +113,13 @@ Here’s a clean, polished markdown version of your answers with some light form
 ### Reflection & Notes
 
 16. **What surprised me or stood out when viewing the alignment?**
-    \[Personal observations]
+    My conserved sequences didn't line up perfectly with known features.
+    I understand in nature this is often not the case, but I expected
+    to have more obvious features connected to my observations from my
+    MSA...
 
 17. **What questions or uncertainties do I have about this alignment?**
-    \[List any doubts or curiosities]
+    I am skeptical what insights I can gain from the alignment so far and need more domain knowledge.
 
 18. **What files or screenshots do I want to save for reference?**
-    \[Document relevant file names and images]
+    I saved SCNA1.png, the jalview of the MSA.
