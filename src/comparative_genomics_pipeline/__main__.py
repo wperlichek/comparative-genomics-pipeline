@@ -28,13 +28,19 @@ async def collect_orthologous_sequences(uni_prot_client, ncbi_client):
                         ortholog["entrez_protein_id"]
                     )
                 )
-        file_util.save_fasta_to_output_dir(
-            gene_name, "orthologs", all_orthologs_as_fasta
-        )
+        # Use direct path reference for orthologs
+        orthologs_dir = path_config.ORTHOLOGS_OUTPUT_DIR
+        orthologs_dir.mkdir(parents=True, exist_ok=True)
+        file_path = orthologs_dir / f"{gene_name}.fasta"
+        with open(file_path, "w") as fasta_file:
+            fasta_file.write(all_orthologs_as_fasta)
 
 
 async def align_sequences_msa(ebi_client):
-    orthologs_dir = Path(path_config.DATA_OUTPUT_DIR) / "orthologs"
+    # Use direct path reference for orthologs and msa
+    orthologs_dir = path_config.ORTHOLOGS_OUTPUT_DIR
+    msa_dir = path_config.MSA_OUTPUT_DIR
+    msa_dir.mkdir(parents=True, exist_ok=True)
     for file_path in orthologs_dir.glob("*.fasta"):
         ortholog_fasta = file_util.open_file_return_as_str(file_path)
         job_id = await ebi_client.submit_job(ortholog_fasta)
@@ -46,7 +52,9 @@ async def align_sequences_msa(ebi_client):
             status = await ebi_client.check_status(job_id)
             if status == "FINISHED":
                 result = await ebi_client.get_result(job_id, "fa")
-                file_util.save_fasta_to_output_dir(gene_name, "msa", result)
+                msa_path = msa_dir / f"{gene_name}.fasta"
+                with open(msa_path, "w") as msa_file:
+                    msa_file.write(result)
             elif status in ("ERROR", "FAILURE"):
                 print(f"Job {job_id} failed with status: {status}")
                 break
@@ -55,7 +63,10 @@ async def align_sequences_msa(ebi_client):
 
 
 async def generate_phylogenetic_trees(ebi_client):
-    orthologs_dir = Path(path_config.DATA_OUTPUT_DIR) / "orthologs"
+    # Use direct path reference for orthologs and trees
+    orthologs_dir = path_config.ORTHOLOGS_OUTPUT_DIR
+    trees_dir = path_config.TREES_OUTPUT_DIR
+    trees_dir.mkdir(parents=True, exist_ok=True)
     for file_path in orthologs_dir.glob("*.fasta"):
         with open(file_path, "r") as f:
             fasta_str = f.read()
@@ -69,9 +80,14 @@ async def generate_phylogenetic_trees(ebi_client):
         print(f"Job {job_id} status: {status}")
         if status == "FINISHED":
             tree = await ebi_client.get_phylogenetic_tree(job_id)
-            print(
-                f"Tree for {file_path.name} (first 200 chars):\n{tree[:200] if tree else 'No tree returned'}\n"
-            )
+            if tree:
+                gene_name = file_path.stem
+                tree_path = trees_dir / f"{gene_name}.nwk"
+                with open(tree_path, "w") as tree_file:
+                    tree_file.write(tree)
+                print(f"Tree for {file_path.name} saved to {tree_path}")
+            else:
+                print(f"No tree returned for {file_path.name}")
         else:
             print(f"Job {job_id} did not finish successfully.")
 

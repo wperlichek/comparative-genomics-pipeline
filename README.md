@@ -11,6 +11,12 @@ Explore how epilepsy-related ion channel genes have evolved across species using
 
 📁 **Requirements:** [docs/requirements.md](docs/requirements.md)
 
+### Running locally
+```BASH
+pip install -e .
+comparative-genomics-pipeline
+```
+
 ### Current Status
 
 6/24/25 —  

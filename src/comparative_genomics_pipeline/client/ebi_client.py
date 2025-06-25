@@ -74,7 +74,7 @@ class EBIClient:
         Fetch the phylogenetic tree in Newick format from the Clustal Omega job result.
         Returns the tree as a string, or None on error.
         """
-        return await self.get_result(job_id, result_type="ph")
+        return await self.get_result(job_id, result_type="phylotree")
 
     async def close(self):
         await self.client.aclose()
