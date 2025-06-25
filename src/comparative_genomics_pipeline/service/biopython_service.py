@@ -34,35 +34,53 @@ def visualize_and_save_trees(tree_files=None, output_dir=None):
 def compute_conservation_scores(msa_file, output_file=None):
     """
     Compute conservation (Shannon entropy) for each column in the MSA and save as CSV.
-    Uses Biopython for alignment parsing and consensus extraction.
-    Args:
-        msa_file (Path): Path to the MSA FASTA file.
-        output_file (Path or None): Where to save the CSV. If None, saves to CONSERVATION_OUTPUT_DIR.
-    Returns:
-        Path to the output CSV file.
+    Outputs both entropy with and without gaps.
     """
     alignment = AlignIO.read(str(msa_file), "fasta")
     aln_len = alignment.get_alignment_length()
     scores = []
     for i in range(aln_len):
-        column = str(alignment[:, i]).replace("-", "")  # remove gaps
-        total = len(column)
-        if total == 0:
-            entropy = 0.0
+        column_full = str(alignment[:, i])  # includes gaps
+        column_nogap = column_full.replace("-", "")  # excludes gaps
+
+        # With gaps
+        total_full = len(column_full)
+        if total_full == 0:
+            entropy_full = 0.0
+        else:
+            freqs_full = [column_full.count(aa) / total_full for aa in set(column_full)]
+            entropy_full = -sum(p * np.log2(p) for p in freqs_full if p > 0)
+            entropy_full = abs(entropy_full)
+
+        # Without gaps
+        total_nogap = len(column_nogap)
+        if total_nogap == 0:
+            entropy_nogap = 0.0
             consensus = "-"
         else:
-            freqs = [column.count(aa) / total for aa in set(column)]
-            entropy = -sum(p * np.log2(p) for p in freqs if p > 0)
-            entropy = abs(entropy)  # Ensure non-negative
-            consensus = max(set(column), key=column.count)
-        scores.append((i + 1, entropy, consensus))
+            freqs_nogap = [
+                column_nogap.count(aa) / total_nogap for aa in set(column_nogap)
+            ]
+            entropy_nogap = -sum(p * np.log2(p) for p in freqs_nogap if p > 0)
+            entropy_nogap = abs(entropy_nogap)
+            consensus = max(set(column_nogap), key=column_nogap.count)
+
+        scores.append((i + 1, entropy_full, entropy_nogap, consensus))
+
     if output_file is None:
         output_dir = path_config.CONSERVATION_OUTPUT_DIR
         output_dir.mkdir(parents=True, exist_ok=True)
         output_file = output_dir / f"{msa_file.stem}_conservation.csv"
     with open(output_file, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(["Position", "ShannonEntropy", "ConsensusResidue"])
+        writer.writerow(
+            [
+                "Position",
+                "ShannonEntropy_WithGaps",
+                "ShannonEntropy_NoGaps",
+                "ConsensusResidue",
+            ]
+        )
         writer.writerows(scores)
     print(f"Saved conservation scores to {output_file}")
     return output_file

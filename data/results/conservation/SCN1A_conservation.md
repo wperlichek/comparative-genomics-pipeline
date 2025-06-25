@@ -1,6 +1,6 @@
 # Conservation Score Analysis Worksheet
 
-**Note:** These are preliminary results to help interpret conservation across aligned sequences.
+**Note:** These are _preliminary_ results to help interpret conservation across aligned sequences.
 
 ---
 
@@ -10,10 +10,10 @@
    SCN1A
 
 2. **Which species are included in the alignment?**
-   [List species]
+   Home sapiens, Gallus gallus, and Oryctolagus cuniculus
 
 3. **How were conservation scores calculated?**
-   Shannon entropy per alignment column, consensus residue (see pipeline documentation for details)
+   Shannon entropy per alignment column, consensus residue - see `compute_conservation_scores()` in biopython_service.py
 
 ---
 
