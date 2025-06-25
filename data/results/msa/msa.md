@@ -1,61 +1,98 @@
+Here’s a clean, polished markdown version of your answers with some light formatting and smoothing for clarity and flow:
+
+---
+
 # MSA Analysis Worksheet
 
-**NOTE**: These are not final but _preliminary_ results meant to help build confidence in the pipeline and not to conclude anything. 
+**Note:** These are *preliminary* results intended to build confidence in the pipeline and are not final conclusions.
+
+---
 
 ### Basic Info
 
-1. What gene(s) am I analyzing? **CACNA1H, GABRA1, KCNQ2, SCN1A, and SCN2A**
-2. Which species are included in this alignment? **So far, Homo sapiens, Oryctolagus cuniculus, and Gallus gallus** 
-3. What tool(s) did I use to create the alignment? **Clustal Omega from European Bioinformatics Institute (REST API)**
+1. **What gene(s) am I analyzing?**
+   SCN1A
+
+2. **Which species are included in this alignment?**
+   *Homo sapiens*, *Oryctolagus cuniculus*, and *Gallus gallus*
+
+3. **What tool(s) did I use to create the alignment?**
+   Clustal Omega via the European Bioinformatics Institute (REST API)
+
+---
 
 ### Ortholog Data
 
-4. Do I have UniProt or Entrez Protein IDs for all sequences? **Yes**
-5. Are there any missing IDs or sequences that I need to find or update? **No**
+4. **Do I have UniProt or Entrez Protein IDs for all sequences?**
+   Yes
+
+5. **Are there any missing IDs or sequences that I need to find or update?**
+   No
+
+---
 
 ### Alignment Quality
 
-6. Which parts of the alignment look highly conserved (similar or identical across species)?
+6. **Which parts of the alignment look highly conserved (similar or identical across species)?**
+   Highly conserved regions visually identified at the following position ranges:
 
-Highly conserved regions were visually identified at the following position ranges:
+   * 81–208
+   * 352–449
+   * 1252–1383
 
--81–208
--352–449
--1252–1383
+7. **Are there regions with many gaps or insertions? Where exactly (positions)?**
+   Regions with many gaps or insertions:
 
-7. Are there regions with many gaps or insertions? Where exactly (positions)?
+   * 680–690
+     *Observation:* Small region, may require inspection later.
+   * 2011–end
+     *Observation:* Protein termini often show variability; gaps here are expected as functional domains tend to be conserved internally, while terminal regions can vary due to synthesis completion and species differences.
 
-Regions with many gaps or insertions:
+8. **Do any sequences show suspicious large insertions or deletions compared to others?**
+   \[To be filled after further inspection]
 
-- 680-690
-Observation: Small, but could need inspection later.
-
-- 2011-End 
-Observation: These protein ends could be a sort of "wildcard"
-cap when protein creation finishes, seeing gaps in proteins
-comparisons like this could be expected.
-
-
-8. Do any sequences show suspicious large insertions or deletions compared to others?
+---
 
 ### Biological Insight
 
-9. Are the highly conserved regions associated with known functional domains or motifs?
-10. Could any gaps or insertions correspond to exon/intron boundaries or species-specific features?
+9. **Are the highly conserved regions associated with known functional domains or motifs?**
+   \[To be determined]
+
+10. **Could any gaps or insertions correspond to exon/intron boundaries or species-specific features?**
+    \[To be investigated]
+
+---
 
 ### Alignment Reliability
 
-11. Are there regions that look poorly aligned or contain many mismatches?
-12. Should I consider trimming these regions before further analysis?
+11. **Are there regions that look poorly aligned or contain many mismatches?**
+    \[To be assessed]
+
+12. **Should I consider trimming these regions before further analysis?**
+    \[Pending evaluation]
+
+---
 
 ### Next Steps for Analysis
 
-13. What tool or method should I use for trimming (if needed)?
-14. Which phylogenetic tree-building tool do I want to try first?
-15. Do I need to re-run the alignment with different parameters or additional sequences?
+13. **What tool or method should I use for trimming (if needed)?**
+    \[Consider tools like trimAl or manual curation]
+
+14. **Which phylogenetic tree-building tool do I want to try first?**
+    \[Options include IQ-TREE, FastTree, or MEGA]
+
+15. **Do I need to re-run the alignment with different parameters or additional sequences?**
+    \[To decide based on quality assessment]
+
+---
 
 ### Reflection & Notes
 
-16. What surprised me or stood out when viewing the alignment?
-17. What questions or uncertainties do I have about this alignment?
-18. What files or screenshots do I want to save for reference?
+16. **What surprised me or stood out when viewing the alignment?**
+    \[Personal observations]
+
+17. **What questions or uncertainties do I have about this alignment?**
+    \[List any doubts or curiosities]
+
+18. **What files or screenshots do I want to save for reference?**
+    \[Document relevant file names and images]
