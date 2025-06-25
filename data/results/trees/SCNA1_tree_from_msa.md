@@ -9,10 +9,13 @@
    [Note any species that cluster differently than expected based on known biology.]
 
 3. **How well supported are the branches (if support values are available)?**
-   [Comment on branch support/confidence if shown in the tree.]
+   
 
 4. **Do the tree’s groupings match known evolutionary relationships?**
-   [Compare your tree to published phylogenies or accepted taxonomy.]
+   Yes, mostly. The chicken is a bird that diverged from mammals so we
+   expect to see distance from rabbit and human.
 
 5. **What might explain any discrepancies or surprises in the tree?**
-   [Consider alignment quality, sequence selection, or biological phenomena.]
+   The KCNQ2.png suggests this protein is highly conserved across human,
+   rabbit, and chicken. Other genes show more obvious evolutionary
+   distance. 
