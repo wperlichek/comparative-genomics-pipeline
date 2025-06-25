@@ -103,6 +103,8 @@ async def async_main():
     await generate_phylogenetic_trees(ebi_client)
     await ebi_client.close()
 
+    biopython_service.compute_conservation_for_all_msas()
+
     # Visualize all generated trees as PNGs
     biopython_service.visualize_and_save_trees()
 
