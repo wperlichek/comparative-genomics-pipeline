@@ -14,7 +14,8 @@ requires-python = ">=3.10"
 dependencies = [
   "httpx>=0.24.1",
   "biopython",
-  "matplotlib"
+  "matplotlib",
+  "pandas"
 ]
 
 [project.scripts]

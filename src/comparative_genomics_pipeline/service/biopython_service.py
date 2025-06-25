@@ -4,6 +4,7 @@ from Bio.Align import AlignInfo
 import matplotlib.pyplot as plt
 import numpy as np
 import csv
+import pandas as pd
 from ..config import path_config
 
 
@@ -94,3 +95,39 @@ def compute_conservation_for_all_msas(msa_dir=None):
         msa_dir = path_config.MSA_OUTPUT_DIR
     for msa_file in Path(msa_dir).glob("*.fasta"):
         compute_conservation_scores(msa_file)
+
+
+def plot_conservation_scores(csv_file, output_dir=None):
+    """
+    Plot Shannon entropy (with and without gaps) from a conservation CSV file.
+    Saves the plot as a PNG in the output_dir (defaults to CONSERVATION_OUTPUT_DIR).
+    """
+    if output_dir is None:
+        output_dir = path_config.CONSERVATION_OUTPUT_DIR
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    df = pd.read_csv(csv_file)
+    plt.figure(figsize=(12, 5))
+    plt.plot(
+        df["Position"], df["ShannonEntropy_WithGaps"], label="With Gaps", alpha=0.7
+    )
+    plt.plot(df["Position"], df["ShannonEntropy_NoGaps"], label="No Gaps", alpha=0.7)
+    plt.xlabel("Alignment Position")
+    plt.ylabel("Shannon Entropy")
+    plt.title(f"Conservation (Shannon Entropy): {csv_file.stem}")
+    plt.legend()
+    plt.tight_layout()
+    png_path = output_dir / f"{csv_file.stem}_entropy.png"
+    plt.savefig(png_path)
+    plt.close()
+    print(f"Saved conservation plot to {png_path}")
+
+
+def plot_all_conservation_scores(conservation_dir=None):
+    """
+    Plot conservation scores for all CSVs in the given directory.
+    """
+    if conservation_dir is None:
+        conservation_dir = path_config.CONSERVATION_OUTPUT_DIR
+    for csv_file in Path(conservation_dir).glob("*_conservation.csv"):
+        plot_conservation_scores(csv_file)
