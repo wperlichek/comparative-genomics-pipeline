@@ -66,9 +66,21 @@ Here’s a clean, polished markdown version of your answers with some light form
     * From: https://www.uniprot.org/uniprotkb/P35498/entry
 
     * 81–208
-    *Observations:*: Within topological domain. Within transmembrane. 
+    *Observations:* Within topological domain. Within transmembrane. 
     More study is needed but it appears this region could be important 
     for core functionalities of the protein.
+
+    * 352–449
+    *Observations:* Extracellular. Pore-forming. Helical. Transmembrane.
+    
+    Inconclusive..
+
+    * 1252–1383
+    *Observations:* Transmembrane. Topological domain. Transmembrane... etc.. etc.. 
+
+    Inconclusive...
+
+
 
 10. **Could any gaps or insertions correspond to exon/intron boundaries or species-specific features?**
     \[To be investigated]
