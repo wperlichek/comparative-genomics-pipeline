@@ -1,7 +1,3 @@
-Here’s a clean, polished markdown version of your answers with some light formatting and smoothing for clarity and flow:
-
----
-
 # MSA Analysis Worksheet
 
 **Note:** These are *preliminary* results intended to build confidence in the pipeline and are not final conclusions.
