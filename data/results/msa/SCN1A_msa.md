@@ -49,6 +49,7 @@ Here’s a clean, polished markdown version of your answers with some light form
    * 680–690
 
      *Observation:* Small region, may require inspection later. Used Occupancy plot to determine this. 
+
    * 2011–end
 
      *Observation:* Protein termini often show variability; gaps here are expected as functional domains tend to be conserved internally, while terminal regions can vary due to synthesis completion and species differences.
@@ -83,7 +84,10 @@ Here’s a clean, polished markdown version of your answers with some light form
 
 
 10. **Could any gaps or insertions correspond to exon/intron boundaries or species-specific features?**
-    \[To be investigated]
+    Yes - Specifically 680-690 looks like it could be an exon on chicken
+    ![chicken possible exon](SCNA1A_possible_chicken_exon.png). 
+    _This requires more analysis
+    into specific, annotated exon boundaries._
 
 ---
 
