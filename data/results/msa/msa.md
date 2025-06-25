@@ -44,12 +44,13 @@ Here’s a clean, polished markdown version of your answers with some light form
    Regions with many gaps or insertions:
 
    * 680–690
-     *Observation:* Small region, may require inspection later.
+     *Observation:* Small region, may require inspection later. Used Occupancy plot to determine this. 
    * 2011–end
      *Observation:* Protein termini often show variability; gaps here are expected as functional domains tend to be conserved internally, while terminal regions can vary due to synthesis completion and species differences.
 
 8. **Do any sequences show suspicious large insertions or deletions compared to others?**
-   \[To be filled after further inspection]
+   * 680-690
+     *Observation:* This looks like a deletion event. *Homo sapiens* and *Oryctolagus cuniculus* have this but it's missing for *Gallus gallus*. Used Conservation plot to determine this. Worth noting that Quality plot is also very low here.
 
 ---
 
