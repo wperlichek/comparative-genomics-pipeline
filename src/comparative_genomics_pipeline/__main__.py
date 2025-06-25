@@ -3,6 +3,7 @@ from pathlib import Path
 from .config import logging_config, path_config
 from .client import UniProtClient, NCBIClient, EBIClient
 from .util import file_util
+from .service import biopython_service
 
 logger = logging.getLogger(__name__)
 
@@ -101,6 +102,9 @@ async def async_main():
     await align_sequences_msa(ebi_client)
     await generate_phylogenetic_trees(ebi_client)
     await ebi_client.close()
+
+    # Visualize all generated trees as PNGs
+    biopython_service.visualize_and_save_trees()
 
     # Add more modular steps here as needed
     pass

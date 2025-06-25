@@ -12,7 +12,9 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-  "httpx>=0.24.1"
+  "httpx>=0.24.1",
+  "biopython",
+  "matplotlib"
 ]
 
 [project.scripts]
