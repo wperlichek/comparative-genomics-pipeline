@@ -54,6 +54,28 @@ async def align_sequences_msa(ebi_client):
                 await asyncio.sleep(5)  # wait before polling again
 
 
+async def generate_phylogenetic_trees(ebi_client):
+    orthologs_dir = Path(path_config.DATA_OUTPUT_DIR) / "orthologs"
+    for file_path in orthologs_dir.glob("*.fasta"):
+        with open(file_path, "r") as f:
+            fasta_str = f.read()
+        print(f"Submitting {file_path.name} for tree generation...")
+        job_id = await ebi_client.submit_job(fasta_str)
+        if not job_id:
+            print(f"Submission failed for {file_path.name}")
+            continue
+        await asyncio.sleep(15)  # Wait for job to (hopefully) finish
+        status = await ebi_client.check_status(job_id)
+        print(f"Job {job_id} status: {status}")
+        if status == "FINISHED":
+            tree = await ebi_client.get_phylogenetic_tree(job_id)
+            print(
+                f"Tree for {file_path.name} (first 200 chars):\n{tree[:200] if tree else 'No tree returned'}\n"
+            )
+        else:
+            print(f"Job {job_id} did not finish successfully.")
+
+
 async def async_main():
     uni_prot_client = UniProtClient()
     ncbi_client = NCBIClient()
@@ -61,6 +83,7 @@ async def async_main():
 
     await collect_orthologous_sequences(uni_prot_client, ncbi_client)
     await align_sequences_msa(ebi_client)
+    await generate_phylogenetic_trees(ebi_client)
     await ebi_client.close()
 
     # Add more modular steps here as needed
