@@ -25,4 +25,4 @@ Ran multiple sequence alignments (MSAs); results are in `data/output/msa`.
 Next up: figuring out how to actually interpret these alignments—reading up on best practices for MSA analysis before moving on to phylogenetic tree building, analysis WIP at `/data/results/msa/SCN1A_msa.md`
 
 6/25/25 —  
-Debugged the EBI Clustal Omega API integration for both MSA and tree generation, and made sure the tree step works with unaligned ortholog FASTA files. Did some hands-on analysis of the resulting trees and alignments, jotting down observations and questions in `/data/results/trees/trees_from_msa.md` and `/data/results/msa/SCN1A_msa.md`.
+Debugged the EBI Clustal Omega API integration for both MSA and tree generation. Did some hands-on analysis of the resulting trees and alignments, jotting down observations and questions in `/data/results/trees/trees_from_msa.md` and `/data/results/msa/SCN1A_msa.md`.
