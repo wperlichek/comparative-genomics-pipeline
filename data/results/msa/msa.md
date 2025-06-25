@@ -1,5 +1,7 @@
 # MSA Analysis Worksheet
 
+**NOTE**: These are not final but _preliminary_ results meant to help build confidence in the pipeline and not to conclude anything. 
+
 ### Basic Info
 
 1. What gene(s) am I analyzing? **CACNA1H, GABRA1, KCNQ2, SCN1A, and SCN2A**
@@ -14,7 +16,26 @@
 ### Alignment Quality
 
 6. Which parts of the alignment look highly conserved (similar or identical across species)?
+
+Highly conserved regions were visually identified at the following position ranges:
+
+-81–208
+-352–449
+-1252–1383
+
 7. Are there regions with many gaps or insertions? Where exactly (positions)?
+
+Regions with many gaps or insertions:
+
+- 680-690
+Observation: Small, but could need inspection later.
+
+- 2011-End 
+Observation: These protein ends could be a sort of "wildcard"
+cap when protein creation finishes, seeing gaps in proteins
+comparisons like this could be expected.
+
+
 8. Do any sequences show suspicious large insertions or deletions compared to others?
 
 ### Biological Insight
