@@ -20,29 +20,39 @@
 ## Conservation Results
 
 4. **Which regions are most highly conserved?**
-   [List position ranges with lowest entropy or highest consensus]
+   *~81-210
+   *~1254-1383
+
+   There are others but these stand out
 
 5. **Which regions are most variable?**
-   [List position ranges with highest entropy or lowest consensus]
+   *~1900-End
+   *~1384-1414
+   *~1026-1085
+   *~276-327
 
 6. **Are there any notable patterns in conservation (e.g., domains, motifs, or functional sites)?**
-   [Describe any patterns, e.g., conserved domains, variable loops, etc.]
+   TBD
 
 7. **Do conserved regions correspond to known functional or structural domains?**
-   [Yes/No/Partially, and elaborate]
+   TBD
 
 8. **Are there any regions with missing data or gaps that affect conservation scores?**
-   [Describe any such regions]
+   *680-690
 
 ---
 
 ## Interpretation
 
 9. **What might explain the observed conservation/variability?**
-   [Evolutionary constraints, species-specific adaptations, etc.]
+   Some regions are used for core neural functionality and required. 
+   Some variable regions don't contain required functionality
+   or indicate loss of functionality (like in Gallus gallus 680-690)
 
 10. **How might these results inform further analysis or experiments?**
-    [e.g., focus on conserved regions for mutagenesis, map variants to conserved/variable sites, etc.]
+    Focus on regions which are known to be assoicated with seizures. 
+    Then see if they are conservered.
+    This will require understanding epilepsy in humans, rabbits, and chickens.
 
 ---
 
