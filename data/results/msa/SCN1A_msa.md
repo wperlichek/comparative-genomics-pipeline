@@ -63,6 +63,8 @@ Here’s a clean, polished markdown version of your answers with some light form
 ### Biological Insight
 
 9. **Are the highly conserved regions associated with known functional domains or motifs?**
+    * From: https://www.uniprot.org/uniprotkb/P35498/entry
+
     * 81–208
     *Observations:*: Within topological domain. Within transmembrane. 
     More study is needed but it appears this region could be important 
