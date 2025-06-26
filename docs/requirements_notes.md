@@ -1,5 +1,63 @@
 # Comparative Genomics Pipeline for Epilepsy-Related Ion Channels
 
+## Project Overview
+
+This pipeline enables modular, reproducible comparative genomics analysis of epilepsy-associated ion channel genes across a broad range of species. It integrates public gene/protein datasets, multiple sequence alignment, phylogenetic tree building, conservation scoring, human variant mapping, and visualization. The project is under active development, with a focus on expanding species coverage, improving analysis, and supporting scientific interpretation.
+
+## Current Capabilities
+
+- Fetches orthologous protein sequences for selected genes (SCN1A, KCNQ2, SCN2A, CACNA1H, GABRA1) from UniProt and NCBI for human, rabbit, chicken, and lamprey (with easy extension to more species).
+- Performs multiple sequence alignment (MSA) using EBI Clustal Omega API.
+- Builds phylogenetic trees from unaligned FASTA files.
+- Computes conservation scores (Shannon entropy, consensus) for each MSA and outputs results as CSV and PNG.
+- Fetches and maps human disease variants from UniProt onto conservation plots.
+- Fetches 3D protein structures (PDB) for selected genes.
+- Modular design: easy to add new genes, species, or analysis steps.
+- Markdown documentation and progress logs for scientific transparency.
+
+## Planned/Upcoming Features
+
+- Generalize variant/conservation overlay for all genes and species.
+- Add/expand unit tests, code linting, and static analysis for code quality.
+- Expand and polish documentation for public/academic use.
+- Add support for more model and non-model organisms (e.g., reptiles, amphibians, fish, invertebrates).
+- Integrate 3D structure visualization and mapping of variants onto structures.
+- Enable cloud/DevOps support (e.g., AWS, Docker, Nextflow) for scalable, reproducible runs.
+- Summarize research findings, plan further research, and write scientific conclusions.
+
+## Requirements
+
+- Python 3.10+
+- pandas
+- biopython
+- matplotlib
+- httpx
+- (optional) jupyter, seaborn, scipy, requests, tqdm
+
+Install with:
+
+```bash
+pip install -e .
+```
+
+## Usage Notes
+
+- Not yet battle-tested for public use—expect quirks and rough edges. More details, tips, and polish coming soon.
+- To clear all pipeline output data:
+
+```bash
+rm -f ./data/output/*/*
+```
+
+- Input species/genes are currently configured in `data/input/genes_to_proteins.json`. To focus on a subset (e.g., human, rabbit, chicken, lamprey), edit this file accordingly.
+- All data and results are under active analysis; interpretation is ongoing.
+
+## Scientific Context
+
+The lamprey has been extensively studied because its relatively simple brain is thought in many respects to reflect the brain structure of early vertebrate ancestors. Comparing ion channel genes and epilepsy-associated variants across human, rabbit, chicken, and lamprey provides insight into the evolutionary conservation and divergence of these genes, and may help identify when seizure susceptibility first emerged in vertebrate evolution.
+
+---
+
 ## 🧠 Phase 1: Define Scope & Collect Data
 
 ### ✅ Step 1. Define Research Scope
@@ -236,10 +294,53 @@ Genes that evolved from a common ancestral gene by speciation and generally perf
 
 ---
 
+## Project Goals & Aims
+- Build a modular, reproducible comparative genomics pipeline for epilepsy-related ion channel genes
+- Integrate public gene/protein datasets, MSA, phylogenetic tree building, conservation analysis, and human variant mapping
+- Support analysis across a broad range of species (currently: human, rabbit, chicken, lamprey; easily extendable)
+- Enable robust, scalable, and cloud-ready workflows (Docker, AWS, Nextflow)
+- Output standard formats (FASTA, CSV, PNG, PDB, markdown) for scientific analysis and reproducibility
+- Document all steps, code, and scientific reasoning for transparency and collaboration
+- Plan for future expansion: more species, 3D structure mapping, cloud/DevOps, and deeper scientific interpretation
+
+## Technical Requirements & Cloud/DevOps (Planned & In Progress)
+
+### Core Software & Libraries
+- Python >=3.10
+- pandas
+- biopython
+- matplotlib
+- httpx
+- (optional) jupyter, seaborn, scipy, requests, tqdm
+
+### Data & File Structure
+- Input: `data/input/genes_to_proteins.json` (configurable for any species set)
+- Output: All results (FASTA, MSA, trees, CSV, PNG, PDB) in `data/output/` subfolders
+- Results and analysis: Markdown and images in `data/results/`
+
+### Cloud/DevOps & AWS (Planned/Prototype)
+- Pipeline designed for modularity and reproducibility, with future support for:
+  - **AWS S3**: Store input/output data, results, and logs in S3 buckets for scalable, cloud-based workflows
+  - **AWS Batch or EC2**: Run compute-intensive steps (e.g., MSA, tree building) on cloud VMs or batch jobs
+  - **AWS Lambda**: Trigger pipeline steps or automate data movement
+  - **Docker**: Containerize the pipeline for reproducible local/cloud execution
+  - **Nextflow**: Orchestrate multi-step workflows, enable parallelization, and support cloud backends (including AWS Batch)
+  - **CloudFormation/Terraform**: Infrastructure as code for reproducible AWS setup
+- Credentials and configuration managed via environment variables or config files (never hardcoded)
+- Logging and error handling designed for cloud-scale runs
+
+### Example AWS Usage (Planned)
+- Upload input FASTA/MSA files to S3
+- Trigger pipeline run via Lambda or Nextflow on AWS Batch
+- Store all outputs (CSV, PNG, PDB, logs) in S3 for downstream analysis
+- Use Docker images for all compute steps to ensure reproducibility
+
+---
+
 Clustal Omega (Multiple Sequence Alignment)
 - See https://www.ebi.ac.uk/jdispatcher/msa/clustalo for example
-- Pass concataneted FASTA sequence
+- Pass concatenated FASTA sequence
 - Web API: https://www.ebi.ac.uk/jdispatcher/docs/webservices/#openapi
 
-Phylogenic Tree Generation
+Phylogenetic Tree Generation
 - PHYLIP or FASTA often preferred (Clustal Omega can produce these)
