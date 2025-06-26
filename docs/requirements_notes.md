@@ -232,7 +232,7 @@ Genes that evolved from a common ancestral gene by speciation and generally perf
 * Insects: Fruit fly (*Drosophila melanogaster*) — all five genes have clear orthologs
 * Nematodes: *Caenorhabditis elegans* — all five genes have orthologs
 * Cephalopods: California two-spot octopus (*Octopus bimaculoides*) — genome/proteome available, some ion channel orthologs present
-* Jawless Vertebrates: Sea lamprey (*Petromyzon marinus*) — NCBI/Ensembl annotated proteome, some ion channel orthologs present
+* Jawless Vertebrates: Sea lamprey (*Petromyzon marinus*) — NCBI/Ensembl annotated proteome, some ion channel orthologs present. The lamprey has been extensively studied because its relatively simple brain is thought in many respects to reflect the brain structure of early vertebrate ancestors.
 
 ---
 
