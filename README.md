@@ -30,3 +30,6 @@ Next up: figuring out how to actually interpret these alignments—reading up on
 
 6/25/25 —  
 Debugged the EBI Clustal Omega API integration for both MSA and tree generation. Did some hands-on analysis of the resulting trees and alignments, jotting down observations and questions in `/data/results/trees/trees_from_msa.md` and `/data/results/msa/SCN1A_msa.md`.
+
+6/25/25 (later) —  
+UniProt variant extraction is working now. All annotated human protein variants for SCN1A are being pulled (others possible too). Output is in `data/output/variants/P35498_variants.csv`. Next up: try to overlay these variants on alignments/conservation plots.
