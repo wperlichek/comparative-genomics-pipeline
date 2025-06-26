@@ -72,12 +72,12 @@ pip install -e .
 ## Cloud & Containerization Roadmap (AWS, Docker, Nextflow)
 
 ### 1. Containerize the Pipeline with Docker
-- [ ] Write a `Dockerfile`:
+- [ x ] Write a `Dockerfile`:
     - Use `python:3.10-slim` as the base image
     - Copy all source code and requirements into the image
     - Run `pip install -e .` during build
     - Set the entrypoint to your main script (e.g., `comparative-genomics-pipeline`)
-- [ ] Build and test locally:
+- [ x ] Build and test locally:
     - `docker build -t genomics-pipeline .`
     - `docker run -v $(pwd)/data:/app/data genomics-pipeline`
 
