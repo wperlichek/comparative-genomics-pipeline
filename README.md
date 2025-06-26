@@ -14,6 +14,7 @@ Explore how epilepsy-related ion channel genes have evolved across species using
 - **UniProtKB**: For protein sequences and human variant annotations
 - **NCBI Entrez**: For additional protein orthologs
 - **EBI Clustal Omega**: For multiple sequence alignment and phylogenetic tree generation
+- **RCSB PDB**: For 3D protein structure files (PDB)
 
 
 📁 **Requirements:** [docs/requirements.md](docs/requirements.md)
@@ -36,6 +37,7 @@ rm -f /data/output/*/* # clear all data
 - [x] Score conservation
 - [x] Map human variants
 - [x] Overlay variants on conservation plot
+- [x] Fetch and save 3D protein structures (PDB)
 - [ ] Visualize in 3D
 - [ ] Store & run on AWS
 - [ ] Clean and unit test all code
@@ -62,7 +64,7 @@ Debugged the EBI Clustal Omega API integration for both MSA and tree generation.
 UniProt variant extraction is working now. All annotated human protein variants for SCN1A are being pulled (others possible too). Output is in `data/output/variants/P35498_variants.csv`. Next up: try to overlay these variants on alignments/conservation plots.
 
 6/26/25 —  
-Mapped human protein variants onto conservation scores for SCN1A and created a worksheet to help interpret the results. See `/data/results/variants/conservation_variant_map.md`.
+Mapped human protein variants onto conservation scores for SCN1A and created a worksheet to help interpret the results (`/data/results/variants/conservation_variant_map.md`). Fetched and saved 3D protein structure for SCN1A (P35498) from RCSB PDB as a PDB file named with both accession and PDB ID.
 
 ## 📊 Sneak Peek: Example Outputs
 

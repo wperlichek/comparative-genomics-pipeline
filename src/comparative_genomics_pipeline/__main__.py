@@ -1,6 +1,6 @@
 import asyncio
 import logging
-from .client import UniProtClient, NCBIClient, EBIClient
+from .client import UniProtClient, NCBIClient, EBIClient, pdp_client
 from .config import logging_config, path_config
 from .util import file_util
 from .service import biopython_service
@@ -98,6 +98,7 @@ async def async_main():
     uni_prot_client = UniProtClient()
     ncbi_client = NCBIClient()
     ebi_client = EBIClient()
+    pdb_client = pdp_client.PDBClient()
 
     await collect_orthologous_sequences(uni_prot_client, ncbi_client)
     await align_sequences_msa(ebi_client)
@@ -118,8 +119,14 @@ async def async_main():
     conservation_csv = str(Path(path_config.CONSERVATION_OUTPUT_DIR) / f"{gene_symbol}_conservation.csv")
     variants_csv = str(Path(output_dir) / f"{accession}_variants.csv")
     biopython_service.plot_variants_on_conservation(conservation_csv, variants_csv, output_dir)
-    await uni_prot_client.close()
-    pass
+
+    # Example: fetch a PDB structure for SCN1A if available (e.g., AlphaFold model)
+    # Replace with a real PDB ID if known
+    pdb_id = "7DTD"  # Example: replace with actual PDB ID for your protein
+    pdb_path = pdb_client.fetch_pdb(pdb_id, accession=accession)
+    if pdb_path:
+        logger.info(f"Saved PDB structure to {pdb_path}")
+    pdb_client.close()
 
 
 def main():
