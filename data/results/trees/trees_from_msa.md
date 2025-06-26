@@ -36,13 +36,21 @@
 
    - Do the relationships among vertebrates and invertebrates match established evolutionary history?
 
-   
+   It appears to from my high-level understanding.
 
    - Are there any surprising placements or long branches that suggest rapid evolution or gene loss in certain lineages?
+
+   For GABRA1, yes. The length between "chicken" and "lizard" is significant, suggesting rapid evolution or gene loss.
 
 7. **What changes, if any, are observed in the findings or interpretations compared to the tree with only mammals and birds?**
    - Are the mammal/bird groupings still as distinct, or do new patterns emerge?
 
+   They are still distinct but grouped closer with reptile than I assumed.
+
    - Do any of the new groups cluster closer to mammals, birds, or form their own distinct branches?
 
+   No.
+
    - How does the inclusion of distant groups (e.g., insects, nematodes) highlight conserved versus divergent regions of the protein?
+
+   We see groups very far in branch length, suggesting for some proteins that are highly conserved among smaller groups, they are not highly conserved when more groups are added.
