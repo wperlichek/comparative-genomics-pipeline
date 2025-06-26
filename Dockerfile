@@ -9,9 +9,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install Python dependencies
+# Copy only dependency files first for better caching
 COPY pyproject.toml ./
+COPY README.md ./
+
+# Copy the rest of your code (including src/)
 COPY . .
+
+# Install Python dependencies (after all files are present)
 RUN pip install --upgrade pip && pip install -e .
 
 # Create data directories (if not present)
