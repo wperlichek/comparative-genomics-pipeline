@@ -32,7 +32,11 @@
 
    Taking GARBA1 as example, it's interesting that human, rabbit, and chicken now appear close together compared to distance in the other groups.
 
+   My key observation here is that although chicken and human might have appear divergent when we only had Human, rabbit, chicken plotted, when we start plotting much different groups, we see how similar human, chicken, and rabbit are in all protein structures we're analyzing.
+
    - Do the relationships among vertebrates and invertebrates match established evolutionary history?
+
+   
 
    - Are there any surprising placements or long branches that suggest rapid evolution or gene loss in certain lineages?
 
