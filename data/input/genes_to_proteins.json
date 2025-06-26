@@ -22,7 +22,7 @@
         },
         {
             "species": "Xenopus tropicalis",
-            "uniprot_id": "A0A1L8FZB6",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_002938372.2"
         },
         {
@@ -42,12 +42,12 @@
         },
         {
             "species": "Octopus bimaculoides",
-            "uniprot_id": "A0A0L8H3N5",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_014776807.1"
         },
         {
             "species": "Petromyzon marinus",
-            "uniprot_id": "A0A3P7X3A8",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_002591921.1"
         }
     ],
@@ -74,7 +74,7 @@
         },
         {
             "species": "Xenopus tropicalis",
-            "uniprot_id": "A0A1L8FZB7",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_002938373.1"
         },
         {
@@ -94,12 +94,12 @@
         },
         {
             "species": "Octopus bimaculoides",
-            "uniprot_id": "A0A0L8H3N6",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_014776808.1"
         },
         {
             "species": "Petromyzon marinus",
-            "uniprot_id": "A0A3P7X3A9",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_002591922.1"
         }
     ],
@@ -126,7 +126,7 @@
         },
         {
             "species": "Xenopus tropicalis",
-            "uniprot_id": "A0A1L8FZB8",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_002938374.1"
         },
         {
@@ -146,12 +146,12 @@
         },
         {
             "species": "Octopus bimaculoides",
-            "uniprot_id": "A0A0L8H3N7",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_014776809.1"
         },
         {
             "species": "Petromyzon marinus",
-            "uniprot_id": "A0A3P7X3B0",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_002591923.1"
         }
     ],
@@ -178,7 +178,7 @@
         },
         {
             "species": "Xenopus tropicalis",
-            "uniprot_id": "A0A1L8FZB9",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_002938375.1"
         },
         {
@@ -198,12 +198,12 @@
         },
         {
             "species": "Octopus bimaculoides",
-            "uniprot_id": "A0A0L8H3N8",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_014776810.1"
         },
         {
             "species": "Petromyzon marinus",
-            "uniprot_id": "A0A3P7X3B1",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_002591924.1"
         }
     ],
@@ -230,7 +230,7 @@
         },
         {
             "species": "Xenopus tropicalis",
-            "uniprot_id": "A0A1L8FZC0",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_002938376.1"
         },
         {
@@ -250,12 +250,12 @@
         },
         {
             "species": "Octopus bimaculoides",
-            "uniprot_id": "A0A0L8H3N9",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_014776811.1"
         },
         {
             "species": "Petromyzon marinus",
-            "uniprot_id": "A0A3P7X3B2",
+            "uniprot_id": "",
             "entrez_protein_id": "XP_002591925.1"
         }
     ]
