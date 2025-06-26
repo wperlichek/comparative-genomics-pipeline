@@ -88,12 +88,11 @@ Mapped human protein variants onto conservation scores for SCN1A and created a w
 6/26/25 (later) —  
 Added orthologs and analysis for additional model organisms (reptiles, amphibians, bony fish, insects, nematodes, cephalopods, jawless vertebrates) across all pipeline steps. Worksheets and outputs now reflect this expanded set. Next: analyze the impact of these new groups before moving on to DevOps/cloud (AWS) integration.
 
-6/26/25 (later) —  
-Are non-human species—such as reptiles, amphibians, bony fish, insects, nematodes, cephalopods, and jawless vertebrates—much less likely to experience seizures or epilepsy because their ion channel genes have diverged significantly from humans? Specifically, do the human variants that cause epilepsy fail to have the same effect in these species due to this evolutionary divergence?
+6/26/25 (latest) —
+- Dockerfile is now running and ready for AWS ECR integration.
+- Discovered a bug: some UniProt IDs returned 404 errors, leading to a data update. Need to revisit assumptions about sequence availability and ID validity.
 
-Additionally, jawless vertebrates like lamprey represent some of the most ancient lineages. Do they experience seizures at all? If not, at what point in vertebrate evolution do seizure-like phenomena begin to appear? 
-
-It's fascinating that the lamprey—despite being so evolutionarily distant from humans—shows little branch length difference for SCN1A in the phylogenetic tree. SCN1A is like "legacy code" in vertebrates: highly conserved and maintained across hundreds of millions of years. But do lampreys actually experience seizures? SCN1A may be legacy code, but does it have the same "bugs" (disease-causing variants) across all these groups, or do the effects differ?
+It's notable that lamprey, though evolutionarily distant from humans, shows little branch length difference for SCN1A in the phylogenetic tree. SCN1A is highly conserved across vertebrates, but it's unclear if lampreys experience seizures or if disease-causing variants have similar effects in all groups.
 
 ## 📊 Sneak Peek: Example Outputs
 
