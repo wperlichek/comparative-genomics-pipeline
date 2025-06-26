@@ -16,6 +16,9 @@ COPY README.md ./
 # Copy the rest of your code (including src/)
 COPY . .
 
+# Make entrypoint script executable
+RUN chmod +x /app/entrypoint.sh
+
 # Install Python dependencies (after all files are present)
 RUN pip install --upgrade pip && pip install -e .
 
@@ -26,4 +29,4 @@ RUN mkdir -p /app/data/input /app/data/output /app/data/results
 ENV PYTHONUNBUFFERED=1
 
 # Default command (can be overridden)
-CMD ["comparative-genomics-pipeline"]
+ENTRYPOINT ["/app/entrypoint.sh"]

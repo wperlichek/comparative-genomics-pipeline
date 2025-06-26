@@ -28,11 +28,25 @@ pip install -e .
 comparative-genomics-pipeline
 ```
 
-### Clear existing data
+#### Clear existing data
 
 ```BASH
 rm -f ./data/output/*/* # clear all pipeline output data
 ```
+
+### 🐳 Running with Docker
+
+You can run the entire pipeline in a containerized environment using Docker:
+
+```BASH
+# Build the Docker image (run from project root)
+docker build -t comparative-genomics-pipeline .
+
+# Run the pipeline in a container, mounting your local data directory
+docker run --rm -v $(pwd)/data:/app/data comparative-genomics-pipeline
+```
+
+This will ensure all outputs appear in your local `data` directory, just as with a local run.
 
 ## ✅ Pipeline Steps
 
