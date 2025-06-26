@@ -9,6 +9,15 @@ Explore how epilepsy-related ion channel genes have evolved across species using
 ### 🚀 Pipeline Flow  
 `Fetch orthologs → Align sequences → Build phylogenetic trees → Score conservation → Map human variants → (Optional) Visualize in 3D → Store & run on AWS`
 
+## 🚦 Data Sources
+
+- **UniProtKB**: For protein sequences and human variant annotations (API: https://rest.uniprot.org)
+- **NCBI Entrez**: For additional protein orthologs (API: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/)
+- **EBI Clustal Omega**: For multiple sequence alignment and phylogenetic tree generation (API: https://www.ebi.ac.uk/Tools/services/rest/clustalo)
+
+*This pipeline directly integrates these public APIs for robust, up-to-date, and reproducible comparative genomics analysis.*
+
+
 📁 **Requirements:** [docs/requirements.md](docs/requirements.md)
 
 ### Running locally
@@ -16,10 +25,30 @@ Explore how epilepsy-related ion channel genes have evolved across species using
 pip install -e .
 comparative-genomics-pipeline
 ```
-
+### Clear existing data
 ```BASH
 rm -f /home/wperlichek/comparative-genomics-pipeline/data/output/*/* # clear all data
 ```
+
+## ✅ Pipeline Steps
+
+- [x] Fetch orthologs
+- [x] Align sequences
+- [x] Build phylogenetic trees
+- [x] Score conservation
+- [x] Map human variants
+- [x] Overlay variants on conservation plot
+- [ ] Visualize in 3D
+- [ ] Store & run on AWS
+- [ ] Clean and unit test all code
+- [ ] Code analysis (linting, type checks, static analysis)
+- [ ] Expand and polish documentation
+
+## ✅ Research & Reporting
+
+- [ ] Summarize research findings
+- [ ] Plan further research
+- [ ] Write conclusions and discussion
 
 ### Current Status
 

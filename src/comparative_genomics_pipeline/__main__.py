@@ -113,6 +113,10 @@ async def async_main():
     output_dir = str(path_config.VARIANTS_OUTPUT_DIR)
     logger.info(f"Fetching variants for {accession}...")
     await uni_prot_client.fetch_protein_variants_by_accession_id(accession, output_dir)
+    # Overlay variants on conservation plot
+    conservation_csv = str(Path(path_config.CONSERVATION_OUTPUT_DIR) / "P35498_conservation.csv")
+    variants_csv = str(Path(output_dir) / f"{accession}_variants.csv")
+    biopython_service.plot_variants_on_conservation(conservation_csv, variants_csv, output_dir)
     await uni_prot_client.close()
     pass
 

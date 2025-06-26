@@ -131,3 +131,34 @@ def plot_all_conservation_scores(conservation_dir=None):
         conservation_dir = path_config.CONSERVATION_OUTPUT_DIR
     for csv_file in Path(conservation_dir).glob("*_conservation.csv"):
         plot_conservation_scores(csv_file)
+
+
+def plot_variants_on_conservation(conservation_csv, variants_csv, output_dir=None):
+    """
+    Overlay variant positions on conservation plot.
+    """
+    consv = pd.read_csv(conservation_csv)
+    vars = pd.read_csv(variants_csv)
+    # Try to extract integer positions from variant CSV
+    def parse_pos(x):
+        try:
+            if '{' in str(x):
+                return int(eval(x)['value'])
+            return int(x)
+        except Exception:
+            return None
+    vars['Position'] = vars['position'].apply(parse_pos)
+    plt.figure(figsize=(12, 4))
+    plt.plot(consv['Position'], consv[consv.columns[1]], label='Conservation')
+    plt.vlines(vars['Position'], ymin=consv[consv.columns[1]].min(), ymax=consv[consv.columns[1]].max(), color='red', alpha=0.5, label='Variants')
+    plt.xlabel("Protein Position")
+    plt.ylabel("Conservation (entropy)")
+    plt.title(f"Conservation and Variant Positions: {Path(conservation_csv).stem}")
+    plt.legend()
+    plt.tight_layout()
+    if output_dir is None:
+        output_dir = Path(variants_csv).parent
+    out_path = Path(output_dir) / f"{Path(conservation_csv).stem}_with_variants.png"
+    plt.savefig(out_path)
+    plt.close()
+    print(f"Saved conservation+variant plot to {out_path}")
