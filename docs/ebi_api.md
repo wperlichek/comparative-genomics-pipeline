@@ -31,6 +31,9 @@ response = httpx.post(url, data=data)
 job_id = response.text.strip()
 ```
 
+**Note:**
+Clustal Omega alignments may not be fully deterministic between runs, especially if the input sequence order changes or the service is updated. For reproducible downstream results (like conservation scores), always use the same input order and avoid regenerating alignments unless your sequences change.
+
 ## 3. Checking Job Status
 Check the status of your job using:
 ```
