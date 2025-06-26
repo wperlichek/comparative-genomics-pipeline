@@ -15,8 +15,6 @@ Explore how epilepsy-related ion channel genes have evolved across species using
 - **NCBI Entrez**: For additional protein orthologs (API: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/)
 - **EBI Clustal Omega**: For multiple sequence alignment and phylogenetic tree generation (API: https://www.ebi.ac.uk/Tools/services/rest/clustalo)
 
-*This pipeline directly integrates these public APIs for robust, up-to-date, and reproducible comparative genomics analysis.*
-
 
 📁 **Requirements:** [docs/requirements.md](docs/requirements.md)
 
