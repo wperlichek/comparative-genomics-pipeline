@@ -27,10 +27,18 @@
 
 6. **How do the expanded groups (reptiles, amphibians, bony fish, insects, nematodes, cephalopods, jawless vertebrates) affect the tree’s structure and interpretation?**
    - Are new major clades or unexpected groupings observed with the inclusion of these additional species?
+
+   Taking SCNA1 as example: all new groups are still about same group length, suggesting as before that SCNA1 is highly conserved and important. 
+
+   Taking GARBA1 as example, it's interesting that human, rabbit, and chicken now appear close together compared to distance in the other groups.
+
    - Do the relationships among vertebrates and invertebrates match established evolutionary history?
+
    - Are there any surprising placements or long branches that suggest rapid evolution or gene loss in certain lineages?
 
 7. **What changes, if any, are observed in the findings or interpretations compared to the tree with only mammals and birds?**
    - Are the mammal/bird groupings still as distinct, or do new patterns emerge?
+
    - Do any of the new groups cluster closer to mammals, birds, or form their own distinct branches?
+
    - How does the inclusion of distant groups (e.g., insects, nematodes) highlight conserved versus divergent regions of the protein?
