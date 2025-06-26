@@ -11,9 +11,9 @@ Explore how epilepsy-related ion channel genes have evolved across species using
 
 ## 🚦 Data Sources
 
-- **UniProtKB**: For protein sequences and human variant annotations (API: https://rest.uniprot.org)
-- **NCBI Entrez**: For additional protein orthologs (API: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/)
-- **EBI Clustal Omega**: For multiple sequence alignment and phylogenetic tree generation (API: https://www.ebi.ac.uk/Tools/services/rest/clustalo)
+- **UniProtKB**: For protein sequences and human variant annotations
+- **NCBI Entrez**: For additional protein orthologs
+- **EBI Clustal Omega**: For multiple sequence alignment and phylogenetic tree generation
 
 
 📁 **Requirements:** [docs/requirements.md](docs/requirements.md)
