@@ -27,9 +27,11 @@ Explore how epilepsy-related ion channel genes have evolved across species using
 pip install -e .
 comparative-genomics-pipeline
 ```
+
 ### Clear existing data
+
 ```BASH
-rm -f /data/output/*/* # clear all data
+rm -f ./data/output/*/* # clear all pipeline output data
 ```
 
 ## ✅ Pipeline Steps
