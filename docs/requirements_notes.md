@@ -222,6 +222,20 @@ Genes that evolved from a common ancestral gene by speciation and generally perf
 
 ---
 
+## Expanded Group-Level Selection
+
+* Mammals: Human (*Homo sapiens*) — all five genes present, well-studied
+* Birds: Chicken (*Gallus gallus*) — classic model, all five genes annotated
+* Reptiles: Green anole (*Anolis carolinensis*) — robust UniProt/NCBI/Ensembl coverage
+* Amphibians: Western clawed frog (*Xenopus tropicalis*) — classic model, all five genes annotated
+* Bony Fish: Zebrafish (*Danio rerio*) — gold-standard, all five genes present
+* Insects: Fruit fly (*Drosophila melanogaster*) — all five genes have clear orthologs
+* Nematodes: *Caenorhabditis elegans* — all five genes have orthologs
+* Cephalopods: California two-spot octopus (*Octopus bimaculoides*) — genome/proteome available, some ion channel orthologs present
+* Jawless Vertebrates: Sea lamprey (*Petromyzon marinus*) — NCBI/Ensembl annotated proteome, some ion channel orthologs present
+
+---
+
 Clustal Omega (Multiple Sequence Alignment)
 - See https://www.ebi.ac.uk/jdispatcher/msa/clustalo for example
 - Pass concataneted FASTA sequence
