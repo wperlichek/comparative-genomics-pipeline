@@ -1,9 +1,10 @@
-import asyncio, logging, json
-from pathlib import Path
-from .config import logging_config, path_config
+import asyncio
+import logging
 from .client import UniProtClient, NCBIClient, EBIClient
+from .config import logging_config, path_config
 from .util import file_util
 from .service import biopython_service
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -103,17 +104,16 @@ async def async_main():
     await generate_phylogenetic_trees(ebi_client)
     await ebi_client.close()
 
-    # Compute conservation scores for all MSAs
-    from .service import biopython_service
-
     biopython_service.compute_conservation_for_all_msas()
-    # Plot conservation scores for all CSVs
     biopython_service.plot_all_conservation_scores()
-
-    # Visualize all generated trees as PNGs
     biopython_service.visualize_and_save_trees()
 
-    # Add more modular steps here as needed
+    # Fetch and save variants for P35498
+    accession = "P35498"
+    output_dir = str(path_config.VARIANTS_OUTPUT_DIR)
+    logger.info(f"Fetching variants for {accession}...")
+    await uni_prot_client.fetch_protein_variants_by_accession_id(accession, output_dir)
+    await uni_prot_client.close()
     pass
 
 

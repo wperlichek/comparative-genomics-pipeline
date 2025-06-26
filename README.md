@@ -17,6 +17,10 @@ pip install -e .
 comparative-genomics-pipeline
 ```
 
+```BASH
+rm -f /home/wperlichek/comparative-genomics-pipeline/data/output/*/* # clear all data
+```
+
 ### Current Status
 
 6/24/25 —  
