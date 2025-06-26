@@ -25,7 +25,7 @@ comparative-genomics-pipeline
 ```
 ### Clear existing data
 ```BASH
-rm -f /home/wperlichek/comparative-genomics-pipeline/data/output/*/* # clear all data
+rm -f /data/output/*/* # clear all data
 ```
 
 ## ✅ Pipeline Steps
