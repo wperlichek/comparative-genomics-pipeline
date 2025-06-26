@@ -129,3 +129,17 @@
 
 18. **What files or screenshots do I want to save for reference?**
     I saved SCNA1.png, the jalview of the MSA.
+
+---
+
+### Expanded Group Analysis
+
+19. **How does the inclusion of additional groups (reptiles, amphibians, bony fish, insects, nematodes, cephalopods, jawless vertebrates) affect the alignment?**
+    - Are previously conserved regions still conserved across all groups?
+    - Do new variable or conserved regions appear with the expanded set?
+    - Are there regions that are only conserved within vertebrates, or only within invertebrates?
+    - Do any sequences from the new groups show unusual insertions, deletions, or alignment issues?
+
+20. **What new biological insights or hypotheses emerge from the broader MSA?**
+    - Are there regions that may be functionally important across all animals, or only in certain lineages?
+    - How does the expanded alignment inform your understanding of protein evolution and function?

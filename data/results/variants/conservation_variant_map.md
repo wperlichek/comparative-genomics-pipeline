@@ -58,5 +58,12 @@
 
 ---
 
+## 6. Expanded Group Analysis
+- Are any variants now in regions conserved across all groups?
+- Did any regions change from variable to conserved (or vice versa) with more species?
+- Any new patterns or surprises with the expanded set?
+
+---
+
 **Reference Figure:**
 ![SCN1A Conservation with Variants](../../output/variants/SCN1A_conservation_with_variants.png)

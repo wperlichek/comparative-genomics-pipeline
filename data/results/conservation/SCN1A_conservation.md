@@ -56,6 +56,20 @@
 
 ---
 
+## Expanded Group Analysis
+
+11. **How does the inclusion of additional groups (reptiles, amphibians, bony fish, insects, nematodes, cephalopods, jawless vertebrates) affect the conservation results?**
+    - Are previously conserved regions still conserved across all groups?
+    - Do new variable or conserved regions appear with the expanded set?
+    - Are there regions that are only conserved within vertebrates, or only within invertebrates?
+    - Do any groups show unique patterns of conservation or divergence?
+
+12. **What new biological insights or hypotheses emerge from the broader comparative analysis?**
+    - Are there regions that may be functionally important across all animals, or only in certain lineages?
+    - How might these findings guide future experiments or evolutionary studies?
+
+---
+
 ## Visualization
 
 - [Optional: Insert or link to plots, heatmaps, or color-coded alignments showing conservation scores.]
