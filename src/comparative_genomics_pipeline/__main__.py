@@ -16,20 +16,16 @@ async def collect_orthologous_sequences(uni_prot_client, ncbi_client):
     for gene_name, ortholog_list in genes_to_proteins.items():
         all_orthologs_as_fasta = ""
         for ortholog in ortholog_list:
+            fasta = ""
             if "uniprot_id" in ortholog and ortholog["uniprot_id"] != "":
-                all_orthologs_as_fasta += (
-                    await uni_prot_client.fetch_protein_fasta_sequence_by_accession_id(
-                        ortholog["uniprot_id"]
-                    )
+                fasta = await uni_prot_client.fetch_protein_fasta_sequence_by_accession_id(
+                    ortholog["uniprot_id"]
                 )
-            elif (
-                "entrez_protein_id" in ortholog and ortholog["entrez_protein_id"] != ""
-            ):
-                all_orthologs_as_fasta += (
-                    await ncbi_client.fetch_protein_fasta_by_entrez_id(
-                        ortholog["entrez_protein_id"]
-                    )
+            if not fasta and "entrez_protein_id" in ortholog and ortholog["entrez_protein_id"] != "":
+                fasta = await ncbi_client.fetch_protein_fasta_by_entrez_id(
+                    ortholog["entrez_protein_id"]
                 )
+            all_orthologs_as_fasta += fasta
         # Use direct path reference for orthologs
         orthologs_dir = path_config.ORTHOLOGS_OUTPUT_DIR
         orthologs_dir.mkdir(parents=True, exist_ok=True)

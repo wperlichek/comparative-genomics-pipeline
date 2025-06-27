@@ -344,3 +344,24 @@ Clustal Omega (Multiple Sequence Alignment)
 
 Phylogenetic Tree Generation
 - PHYLIP or FASTA often preferred (Clustal Omega can produce these)
+
+---
+
+## 2025-06-27: Pipeline Focus Update
+
+- For now, the analysis is focused on a single gene (SCN1A) and three mammalian species (human, mouse, monkey) to ensure data quality and realistic comparative genomics. This temporary scaling down is for robust validation and to simplify initial testing. Broader species and gene sets can be reintroduced after this minimal set is fully validated.
+
+- Update: Only SCN1A is present in `data/input/genes_to_proteins.json`, with entries for Homo sapiens and Mus musculus. Add Macaca mulatta (monkey) as soon as a valid ortholog is confirmed.
+
+- Remove checklist items for reptiles and amphibians for now, as the dataset is mammals-only and focused on SCN1A.
+
+## Ortholog ID Confirmation Checklist
+
+For each gene and species in `data/input/genes_to_proteins.json`, confirm:
+- [ ] Species name is correct and matches the intended model organism
+- [ ] UniProt ID is valid and fetches the correct protein
+- [ ] Entrez protein ID (if present) is valid and fetches the correct protein
+- [ ] Sequence length and description match expectations for the gene
+- [ ] No duplicate or missing entries for any gene/species pair
+
+Record any issues or corrections needed below each entry.
