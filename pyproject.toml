@@ -15,7 +15,9 @@ dependencies = [
   "httpx>=0.24.1",
   "biopython",
   "matplotlib",
-  "pandas"
+  "pandas",
+  "scipy",
+  "numpy"
 ]
 
 [project.scripts]

@@ -6,6 +6,7 @@ import numpy as np
 import csv
 import pandas as pd
 from ..config import path_config
+from ..visualization import ConservationPlotter, PhylogeneticPlotter, VariantPlotter
 
 
 def visualize_and_save_trees(tree_files=None, output_dir=None):
@@ -181,3 +182,86 @@ def plot_variants_on_conservation(conservation_csv, variants_csv, output_dir=Non
     plt.savefig(out_path)
     plt.close()
     print(f"Saved conservation+variant plot to {out_path}")
+
+
+# Scientific plotting functions with enhanced rigor and clarity
+
+def plot_conservation_scientific(csv_file, output_dir=None):
+    """
+    Create publication-quality conservation plots with statistical rigor.
+    
+    Args:
+        csv_file (Path): Path to conservation CSV file
+        output_dir (Path, optional): Output directory for plots
+        
+    Returns:
+        Path: Path to saved scientific plot
+    """
+    plotter = ConservationPlotter()
+    return plotter.plot_conservation_with_confidence(Path(csv_file), 
+                                                   Path(output_dir) if output_dir else None)
+
+
+def plot_all_conservation_scientific(conservation_dir=None):
+    """
+    Create scientific conservation plots for all CSVs in the given directory.
+    
+    Args:
+        conservation_dir (Path, optional): Directory containing conservation CSV files
+    """
+    if conservation_dir is None:
+        conservation_dir = path_config.CONSERVATION_OUTPUT_DIR
+    
+    plotter = ConservationPlotter()
+    csv_files = list(Path(conservation_dir).glob("*_conservation.csv"))
+    
+    for csv_file in csv_files:
+        try:
+            plotter.plot_conservation_with_confidence(csv_file, Path(conservation_dir))
+            print(f"Created scientific conservation plot for {csv_file.name}")
+        except Exception as e:
+            print(f"Error creating scientific plot for {csv_file.name}: {e}")
+
+
+def visualize_trees_scientific(tree_files=None, output_dir=None):
+    """
+    Create publication-quality phylogenetic tree visualizations.
+    
+    Args:
+        tree_files (list[Path], optional): List of .nwk tree file paths
+        output_dir (Path, optional): Where to save PNGs
+    """
+    if output_dir is None:
+        output_dir = path_config.TREES_OUTPUT_DIR
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    if tree_files is None:
+        tree_files = list(output_dir.glob("*.nwk"))
+
+    plotter = PhylogeneticPlotter()
+    
+    for tree_path in tree_files:
+        try:
+            plotter.plot_tree_scientific(Path(tree_path), output_dir)
+            print(f"Created scientific tree visualization for {tree_path.name}")
+        except Exception as e:
+            print(f"Error creating scientific tree plot for {tree_path.name}: {e}")
+
+
+def plot_variants_scientific(conservation_csv, variants_csv, output_dir=None):
+    """
+    Create publication-quality variant overlay plots with statistical analysis.
+    
+    Args:
+        conservation_csv (Path): Path to conservation scores CSV
+        variants_csv (Path): Path to variants CSV  
+        output_dir (Path, optional): Output directory for plots
+        
+    Returns:
+        Path: Path to saved scientific plot
+    """
+    plotter = VariantPlotter()
+    return plotter.plot_variants_with_statistics(Path(conservation_csv), 
+                                               Path(variants_csv),
+                                               Path(output_dir) if output_dir else None)

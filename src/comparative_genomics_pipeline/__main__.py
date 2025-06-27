@@ -102,8 +102,15 @@ async def async_main():
     await ebi_client.close()
 
     biopython_service.compute_conservation_for_all_msas()
+    
+    # Generate both traditional and scientific plots
+    logger.info("Generating traditional plots...")
     biopython_service.plot_all_conservation_scores()
     biopython_service.visualize_and_save_trees()
+    
+    logger.info("Generating scientific publication-quality plots...")
+    biopython_service.plot_all_conservation_scientific()
+    biopython_service.visualize_trees_scientific()
 
     # Fetch and save variants for SCN1A (P35498)
     accession = "P35498"
@@ -111,10 +118,16 @@ async def async_main():
     output_dir = str(path_config.VARIANTS_OUTPUT_DIR)
     logger.info(f"Fetching variants for {accession}...")
     await uni_prot_client.fetch_protein_variants_by_accession_id(accession, output_dir)
-    # Overlay variants on conservation plot
+    
+    # Generate both traditional and scientific variant plots
     conservation_csv = str(Path(path_config.CONSERVATION_OUTPUT_DIR) / f"{gene_symbol}_conservation.csv")
     variants_csv = str(Path(output_dir) / f"{accession}_variants.csv")
+    
+    logger.info("Generating traditional variant plot...")
     biopython_service.plot_variants_on_conservation(conservation_csv, variants_csv, output_dir)
+    
+    logger.info("Generating scientific variant plot with statistical analysis...")
+    biopython_service.plot_variants_scientific(conservation_csv, variants_csv, output_dir)
 
     # Example: fetch a PDB structure for SCN1A if available (e.g., AlphaFold model)
     # Replace with a real PDB ID if known
