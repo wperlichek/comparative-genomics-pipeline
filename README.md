@@ -94,7 +94,7 @@ Added orthologs and analysis for additional model organisms (reptiles, amphibian
 
 It's notable that lamprey, though evolutionarily distant from humans, shows little branch length difference for SCN1A in the phylogenetic tree. SCN1A is highly conserved across vertebrates, but it's unclear if lampreys experience seizures or if disease-causing variants have similar effects in all groups.
 
-## 2025-06-27: Focused Analysis Log
+6/27/25 -
 
 - Scaled down the pipeline to focus on a single gene (SCN1A) and three mammals: human (*Homo sapiens*), mouse (*Mus musculus*), and monkey (*Macaca mulatta*) for initial validation and data quality. This minimal set will help ensure robust, realistic comparative genomics before expanding to more genes or species.
 
