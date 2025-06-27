@@ -38,6 +38,16 @@ def compute_conservation_scores(msa_file, output_file=None):
     Outputs both entropy with and without gaps.
     """
     alignment = AlignIO.read(str(msa_file), "fasta")
+    print(
+        f"DEBUG: Alignment has {len(alignment)} sequences, length {alignment.get_alignment_length()}"
+    )
+    # Print first 5 columns for inspection
+    for i in range(5):
+        column_full = str(alignment[:, i])
+        column_nogap = column_full.replace("-", "")
+        print(f"Col {i+1}: full='{column_full}', nogap='{column_nogap}'")
+        print(f"  unique (full): {set(column_full)}")
+        print(f"  unique (nogap): {set(column_nogap)}")
     aln_len = alignment.get_alignment_length()
     scores = []
     for i in range(aln_len):
@@ -139,18 +149,27 @@ def plot_variants_on_conservation(conservation_csv, variants_csv, output_dir=Non
     """
     consv = pd.read_csv(conservation_csv)
     vars = pd.read_csv(variants_csv)
+
     # Try to extract integer positions from variant CSV
     def parse_pos(x):
         try:
-            if '{' in str(x):
-                return int(eval(x)['value'])
+            if "{" in str(x):
+                return int(eval(x)["value"])
             return int(x)
         except Exception:
             return None
-    vars['Position'] = vars['position'].apply(parse_pos)
+
+    vars["Position"] = vars["position"].apply(parse_pos)
     plt.figure(figsize=(12, 4))
-    plt.plot(consv['Position'], consv[consv.columns[1]], label='Conservation')
-    plt.vlines(vars['Position'], ymin=consv[consv.columns[1]].min(), ymax=consv[consv.columns[1]].max(), color='red', alpha=0.5, label='Variants')
+    plt.plot(consv["Position"], consv[consv.columns[1]], label="Conservation")
+    plt.vlines(
+        vars["Position"],
+        ymin=consv[consv.columns[1]].min(),
+        ymax=consv[consv.columns[1]].max(),
+        color="red",
+        alpha=0.5,
+        label="Variants",
+    )
     plt.xlabel("Protein Position")
     plt.ylabel("Conservation (entropy)")
     plt.title(f"Conservation and Variant Positions: {Path(conservation_csv).stem}")

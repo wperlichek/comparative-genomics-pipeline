@@ -97,6 +97,7 @@ It's notable that lamprey, though evolutionarily distant from humans, shows litt
 6/27/25 -
 
 - Scaled down the pipeline to focus on a single gene (SCN1A) and three mammals: human (*Homo sapiens*), mouse (*Mus musculus*), and monkey (*Macaca mulatta*) for initial validation and data quality. This minimal set will help ensure robust, realistic comparative genomics before expanding to more genes or species.
+- Note: Current alignments show very little sequence diversity, so conservation scores are zero. Pipeline and code are working, but more diverse orthologs are needed for meaningful conservation analysis.
 
 ## 📊 Sneak Peek: Example Outputs
 
