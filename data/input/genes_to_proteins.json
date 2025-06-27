@@ -19,6 +19,11 @@
             "species": "Gallus gallus",
             "uniprot_id": "A0A8V1A8W9",
             "entrez_protein_id": ""
+        },
+        {
+            "species": "Parus major",
+            "uniprot_id": "",
+            "entrez_protein_id": "XP_015490172.1"
         }
     ]
 }
