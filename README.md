@@ -48,7 +48,7 @@ A Python pipeline for analyzing evolutionary conservation of epilepsy-associated
 
 ```bash
 # Local installation
-git clone https://github.com/[your-username]/comparative-genomics-pipeline
+git clone https://github.com/wperlichek/comparative-genomics-pipeline
 cd comparative-genomics-pipeline
 pip install -e .
 comparative-genomics-pipeline
@@ -56,6 +56,9 @@ comparative-genomics-pipeline
 # Docker (recommended for reproducibility)
 docker build -t genomics-pipeline .
 docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
+
+# Clear previous results
+rm -rf ./data/output/*
 ```
 
 📁 **Full requirements:** [docs/requirements.md](docs/requirements.md)
