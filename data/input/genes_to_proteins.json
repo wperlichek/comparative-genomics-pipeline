@@ -14,6 +14,11 @@
             "species": "Macaca mulatta",
             "uniprot_id": "A0A1D5QX02",
             "entrez_protein_id": "XP_001101023.1"
+        },
+        {
+            "species": "Gallus gallus",
+            "uniprot_id": "A0A8V1A8W9",
+            "entrez_protein_id": ""
         }
     ]
 }
