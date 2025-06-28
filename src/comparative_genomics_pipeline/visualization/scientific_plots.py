@@ -537,8 +537,6 @@ class VariantPlotter(BasePlotter):
         y_min, y_max = ax.get_ylim()
         ax.fill_between(consv_df['Position'], 0, 0.5, alpha=0.1, color='green', 
                        label='Highly Conserved Zone', zorder=0)
-        ax.fill_between(consv_df['Position'], 1.5, y_max, alpha=0.1, color='red',
-                       label='Variable Zone', zorder=0)
         
         # Intelligent variant clustering and display
         variant_positions = vars_df['parsed_position'].values
@@ -600,9 +598,6 @@ class VariantPlotter(BasePlotter):
         ax.grid(True, alpha=self.theme.grid_alpha)
         ax.legend(loc='upper right', fontsize=self.theme.legend_fontsize)
         
-        # Add comprehensive statistics text box
-        if not stats_results.get('error'):
-            self._add_comprehensive_statistics_textbox(ax, stats_results, len(variant_positions))
     
     def _plot_variant_conservation_dist(self, ax: plt.Axes, consv_df: pd.DataFrame,
                                       vars_df: pd.DataFrame, stats_results: Dict[str, Any]) -> None:
