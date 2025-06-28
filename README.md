@@ -110,6 +110,17 @@ docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
 |:----------------:|:----------------:|:---------------:|
 | ![Conservation](data/output/conservation/SCN1A_conservation_entropy.png) | ![Tree](data/output/trees/SCN1A.png) | ![Variants](data/output/variants/SCN1A_conservation_with_variants.png) |
 
+## Daily Log
+
+### 2025-06-28
+Confirmed that loss of function variants occurred in highly conserved regions, which was expected and validates the accuracy of the data pipeline.
+
+**Question:** After asking what "loss of function" means and learning that SCN1A LoF variants reduce sodium current, I expected this would cause hypoexcitability, but Dravet syndrome causes hyperexcitability and seizures. Why does REDUCING sodium current promote hyperexcitability?
+
+**Answer:** SCN1A is preferentially expressed in GABAergic interneurons. LoF variants impair interneuron firing, reducing GABA release and disinhibiting the network. Excitatory neurons use multiple sodium channel subtypes and are less SCN1A-dependent.
+
+**Reference:** [Science Translational Medicine - Interneuron-specific dual-AAV SCN1A gene replacement corrects epileptic phenotypes in mouse models of Dravet syndrome](https://www.science.org/doi/10.1126/scitranslmed.adn5603)
+
 ---
 
 *Self-directed computational biology project. Ongoing development and validation.*
