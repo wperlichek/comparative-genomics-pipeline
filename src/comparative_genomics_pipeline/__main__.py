@@ -54,7 +54,7 @@ async def align_sequences_msa(ebi_client):
                 with open(msa_path, "w") as msa_file:
                     msa_file.write(result)
             elif status in ("ERROR", "FAILURE"):
-                print(f"Job {job_id} failed with status: {status}")
+                logger.error(f"Job {job_id} failed with status: {status}")
                 break
             else:
                 await asyncio.sleep(5)  # wait before polling again
@@ -68,14 +68,14 @@ async def generate_phylogenetic_trees(ebi_client):
     for file_path in orthologs_dir.glob("*.fasta"):
         with open(file_path, "r") as f:
             fasta_str = f.read()
-        print(f"Submitting {file_path.name} for tree generation...")
+        logger.info(f"Submitting {file_path.name} for tree generation...")
         job_id = await ebi_client.submit_job(fasta_str)
         if not job_id:
-            print(f"Submission failed for {file_path.name}")
+            logger.error(f"Submission failed for {file_path.name}")
             continue
         await asyncio.sleep(15)  # Wait for job to (hopefully) finish
         status = await ebi_client.check_status(job_id)
-        print(f"Job {job_id} status: {status}")
+        logger.info(f"Job {job_id} status: {status}")
         if status == "FINISHED":
             tree = await ebi_client.get_phylogenetic_tree(job_id)
             if tree:
@@ -83,11 +83,11 @@ async def generate_phylogenetic_trees(ebi_client):
                 tree_path = trees_dir / f"{gene_name}.nwk"
                 with open(tree_path, "w") as tree_file:
                     tree_file.write(tree)
-                print(f"Tree for {file_path.name} saved to {tree_path}")
+                logger.info(f"Tree for {file_path.name} saved to {tree_path}")
             else:
-                print(f"No tree returned for {file_path.name}")
+                logger.warning(f"No tree returned for {file_path.name}")
         else:
-            print(f"Job {job_id} did not finish successfully.")
+            logger.warning(f"Job {job_id} did not finish successfully.")
 
 
 async def async_main():
@@ -99,7 +99,11 @@ async def async_main():
     await collect_orthologous_sequences(uni_prot_client, ncbi_client)
     await align_sequences_msa(ebi_client)
     await generate_phylogenetic_trees(ebi_client)
+    
+    # Clean up async clients
     await ebi_client.close()
+    await uni_prot_client.close()
+    await ncbi_client.close()
 
     biopython_service.compute_conservation_for_all_msas()
     
