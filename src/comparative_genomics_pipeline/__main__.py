@@ -100,6 +100,13 @@ async def async_main():
     await align_sequences_msa(ebi_client)
     await generate_phylogenetic_trees(ebi_client)
     
+    # Fetch and save variants for SCN1A (P35498)
+    accession = "P35498"
+    gene_symbol = "SCN1A"
+    output_dir = str(path_config.VARIANTS_OUTPUT_DIR)
+    logger.info(f"Fetching variants for {accession}...")
+    await uni_prot_client.fetch_protein_variants_by_accession_id(accession, output_dir)
+
     # Clean up async clients
     await ebi_client.close()
     await uni_prot_client.close()
@@ -115,13 +122,6 @@ async def async_main():
     logger.info("Generating scientific publication-quality plots...")
     biopython_service.plot_all_conservation_scientific()
     biopython_service.visualize_trees_scientific()
-
-    # Fetch and save variants for SCN1A (P35498)
-    accession = "P35498"
-    gene_symbol = "SCN1A"
-    output_dir = str(path_config.VARIANTS_OUTPUT_DIR)
-    logger.info(f"Fetching variants for {accession}...")
-    await uni_prot_client.fetch_protein_variants_by_accession_id(accession, output_dir)
     
     # Generate both traditional and scientific variant plots
     conservation_csv = str(Path(path_config.CONSERVATION_OUTPUT_DIR) / f"{gene_symbol}_conservation.csv")
