@@ -7,7 +7,7 @@ name = "comparative-genomics-pipeline"
 version = "0.1.0"
 description = "Compare protein expression across groups with focus on key epilepsy-related genes"
 authors = [
-  { name = "William Perlichek", email = "williamperlichek@gmail.com" }
+  { name = "William P", email = "author@gmail.com" }
 ]
 readme = "README.md"
 requires-python = ">=3.10"
