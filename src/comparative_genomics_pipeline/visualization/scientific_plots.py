@@ -533,14 +533,14 @@ class VariantPlotter(BasePlotter):
                color=self.theme.primary_color, linewidth=self.theme.line_width,
                alpha=self.theme.alpha, label='Conservation', zorder=1)
         
-        # Add conservation threshold zones
-        y_min, y_max = ax.get_ylim()
-        ax.fill_between(consv_df['Position'], 0, 0.5, alpha=0.1, color='green', 
-                       label='Highly Conserved Zone', zorder=0)
         
         # Intelligent variant clustering and display
         variant_positions = vars_df['parsed_position'].values
         lof_positions = [177, 227, 393, 939, 959, 1289]
+        
+        # Define y-axis limits for vertical lines
+        y_min = consv_df['ShannonEntropy_NoGaps'].min()
+        y_max = consv_df['ShannonEntropy_NoGaps'].max()
         
         # Cluster nearby variants if enabled
         if self.config.cluster_nearby_variants and len(variant_positions) > self.config.max_annotation_density:
