@@ -121,6 +121,8 @@ Confirmed that loss of function variants occurred in highly conserved regions, w
 
 **Reference:** [Science Translational Medicine - Interneuron-specific dual-AAV SCN1A gene replacement corrects epileptic phenotypes in mouse models of Dravet syndrome](https://www.science.org/doi/10.1126/scitranslmed.adn5603)
 
+Updated conservation-variant plot to separate LoF variants (red) from all variants (orange) in the bottom histogram for better visualization of where critical variants cluster in the conservation distribution.
+
 ---
 
 *Self-directed computational biology project. Ongoing development and validation.*

@@ -135,7 +135,7 @@ class ConservationPlotter(BasePlotter):
         # Formatting
         ax.set_xlabel('Alignment Position', fontsize=self.theme.label_fontsize)
         ax.set_ylabel('Shannon Entropy (bits)', fontsize=self.theme.label_fontsize)
-        ax.set_title(f'Conservation Analysis: {title_base.replace("_", " ").title()}',
+        ax.set_title(f'Conservation Analysis: {title_base.replace("_", " ").title()} (5 vertebrate species)',
                     fontsize=self.theme.title_fontsize, pad=20)
         
         # Add grid
@@ -263,7 +263,7 @@ class PhylogeneticPlotter(BasePlotter):
     
     def _enhance_tree_plot(self, ax: plt.Axes, tree, title_base: str) -> None:
         """Enhance tree plot with scientific formatting."""
-        ax.set_title(f'Phylogenetic Tree: {title_base.replace("_", " ").title()}',
+        ax.set_title(f'Phylogenetic Tree: {title_base.replace("_", " ").title()} (5 vertebrate species)',
                     fontsize=self.theme.title_fontsize, pad=20)
         
         # Remove axis ticks and labels for cleaner look
@@ -457,7 +457,7 @@ class VariantPlotter(BasePlotter):
         # Formatting
         ax.set_xlabel('Protein Position', fontsize=self.theme.label_fontsize)
         ax.set_ylabel('Conservation (Shannon Entropy)', fontsize=self.theme.label_fontsize)
-        ax.set_title(f'Conservation & Variants: {title_base.replace("_", " ").title()}',
+        ax.set_title(f'Conservation & Variants: {title_base.replace("_", " ").title()} (5 vertebrate species)',
                     fontsize=self.theme.title_fontsize, pad=20)
         
         ax.grid(True, alpha=self.theme.grid_alpha)
@@ -478,6 +478,19 @@ class VariantPlotter(BasePlotter):
         variant_scores = stats_results['variant_conservation']
         background_scores = stats_results['background_conservation']
         
+        # Get LoF variant conservation scores
+        lof_positions = [177, 227, 393, 939, 959, 1289]
+        variant_positions = vars_df['parsed_position'].values
+        lof_mask = np.isin(variant_positions, lof_positions)
+        
+        # Get conservation scores for LoF variants
+        lof_conservation = []
+        for pos in variant_positions[lof_mask]:
+            if pos in consv_df['Position'].values:
+                conservation_score = consv_df[consv_df['Position'] == pos]['ShannonEntropy_NoGaps'].iloc[0]
+                lof_conservation.append(conservation_score)
+        lof_conservation = np.array(lof_conservation)
+        
         # Create overlaid histograms
         bins = np.linspace(min(np.min(variant_scores), np.min(background_scores)),
                           max(np.max(variant_scores), np.max(background_scores)), 20)
@@ -486,6 +499,11 @@ class VariantPlotter(BasePlotter):
                color=self.theme.primary_color, label='Background', edgecolor='white')
         ax.hist(variant_scores, bins=bins, alpha=0.7, density=True,
                color=self.theme.accent_color, label='Variants', edgecolor='white')
+        
+        # Add LoF variants if we have any
+        if len(lof_conservation) > 0:
+            ax.hist(lof_conservation, bins=bins, alpha=0.8, density=True,
+                   color='red', label='Loss-of-function', edgecolor='white')
         
         # Add mean lines
         ax.axvline(stats_results['background_mean'], color=self.theme.primary_color,
