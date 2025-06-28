@@ -179,49 +179,89 @@ class ConservationPlotter(BasePlotter):
                        label=f'{self.config.confidence_level*100:.0f}% CI (Without Gaps)')
     
     def _add_conservation_legend(self, ax: plt.Axes, df: pd.DataFrame) -> None:
-        """Add scientific legend with key statistics."""
-        # Calculate key statistics
+        """Add scientific legend with key statistics and data summary."""
+        # Calculate comprehensive statistics
         gaps_mean = df['ShannonEntropy_WithGaps'].mean()
         nogaps_mean = df['ShannonEntropy_NoGaps'].mean()
-        highly_conserved = (df['ShannonEntropy_NoGaps'] < 0.5).sum()
-        variable_regions = (df['ShannonEntropy_NoGaps'] > 2.0).sum()
+        gaps_std = df['ShannonEntropy_WithGaps'].std()
+        nogaps_std = df['ShannonEntropy_NoGaps'].std()
         
-        # Create legend with statistics
+        # Conservation thresholds based on Shannon entropy
+        highly_conserved = (df['ShannonEntropy_NoGaps'] < 0.5).sum()
+        moderately_conserved = ((df['ShannonEntropy_NoGaps'] >= 0.5) & 
+                               (df['ShannonEntropy_NoGaps'] < 1.5)).sum()
+        variable_regions = (df['ShannonEntropy_NoGaps'] >= 1.5).sum()
+        total_positions = len(df)
+        
+        # Create comprehensive legend with percentages
         legend_elements = [
             mpatches.Patch(color=self.theme.primary_color, alpha=self.theme.alpha,
-                          label=f'With Gaps (μ={gaps_mean:.2f})'),
+                          label=f'With Gaps: {gaps_mean:.2f}±{gaps_std:.2f}'),
             mpatches.Patch(color=self.theme.secondary_color, alpha=self.theme.alpha,
-                          label=f'Without Gaps (μ={nogaps_mean:.2f})'),
-            mpatches.Patch(color='white', label=f'Highly Conserved: {highly_conserved} sites'),
-            mpatches.Patch(color='white', label=f'Variable Regions: {variable_regions} sites')
+                          label=f'No Gaps: {nogaps_mean:.2f}±{nogaps_std:.2f}'),
+            mpatches.Patch(color='white', 
+                          label=f'Highly Conserved: {highly_conserved}/{total_positions} ({highly_conserved/total_positions*100:.1f}%)'),
+            mpatches.Patch(color='white', 
+                          label=f'Moderate: {moderately_conserved}/{total_positions} ({moderately_conserved/total_positions*100:.1f}%)'),
+            mpatches.Patch(color='white', 
+                          label=f'Variable: {variable_regions}/{total_positions} ({variable_regions/total_positions*100:.1f}%)')
         ]
         
         ax.legend(handles=legend_elements, loc='upper right', 
-                 frameon=True, fancybox=True, shadow=True)
+                 frameon=True, fancybox=True, shadow=True, fontsize=self.theme.legend_fontsize)
     
     def _plot_conservation_distribution(self, ax: plt.Axes, df: pd.DataFrame) -> None:
-        """Plot conservation score distribution."""
+        """Plot conservation score distribution with enhanced information."""
         entropy_nogaps = df['ShannonEntropy_NoGaps'].values
         
-        # Histogram
-        n_bins = min(30, len(entropy_nogaps) // 5)
-        ax.hist(entropy_nogaps, bins=n_bins, color=self.theme.secondary_color,
-               alpha=0.7, density=True, edgecolor='white')
+        # Histogram with optimal binning
+        n_bins = min(30, max(10, len(entropy_nogaps) // 5))
+        counts, bins, patches = ax.hist(entropy_nogaps, bins=n_bins, color=self.theme.secondary_color,
+                                       alpha=0.7, density=True, edgecolor='white')
         
-        # Add distribution curve if we have enough data
+        # Color-code bins by conservation level
+        for i, (count, patch) in enumerate(zip(counts, patches)):
+            bin_center = (bins[i] + bins[i+1]) / 2
+            if bin_center < 0.5:  # Highly conserved
+                patch.set_facecolor('#2E8B57')  # Sea green
+            elif bin_center < 1.5:  # Moderately conserved
+                patch.set_facecolor(self.theme.secondary_color)
+            else:  # Variable
+                patch.set_facecolor('#FF6347')  # Tomato
+        
+        # Add distribution curve and statistics
         if len(entropy_nogaps) > 10:
             kde_x = np.linspace(entropy_nogaps.min(), entropy_nogaps.max(), 100)
             try:
                 kde = stats.gaussian_kde(entropy_nogaps)
                 ax.plot(kde_x, kde(kde_x), color=self.theme.error_color, 
-                       linewidth=2, label='Kernel Density')
+                       linewidth=2, label='Density Curve')
             except np.linalg.LinAlgError:
-                pass  # Skip KDE if singular matrix
+                pass
+        
+        # Add quartile lines
+        quartiles = np.percentile(entropy_nogaps, [25, 50, 75])
+        for i, q in enumerate(quartiles):
+            linestyle = '--' if i == 1 else ':'
+            ax.axvline(q, color='black', linestyle=linestyle, alpha=0.6, 
+                      label=f'Q{i+1}: {q:.2f}' if i == 1 else None)
+        
+        # Enhanced statistics in corner
+        stats_text = f'μ={np.mean(entropy_nogaps):.2f}, σ={np.std(entropy_nogaps):.2f}\n'
+        stats_text += f'Range: {np.min(entropy_nogaps):.2f}-{np.max(entropy_nogaps):.2f}\n'
+        stats_text += f'Skew: {stats.skew(entropy_nogaps):.2f}'
+        
+        ax.text(0.98, 0.98, stats_text, transform=ax.transAxes, 
+               verticalalignment='top', horizontalalignment='right',
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.8),
+               fontsize=self.theme.tick_fontsize)
         
         ax.set_xlabel('Shannon Entropy (bits)', fontsize=self.theme.label_fontsize)
         ax.set_ylabel('Density', fontsize=self.theme.label_fontsize) 
-        ax.set_title('Conservation Score Distribution', fontsize=self.theme.label_fontsize)
+        ax.set_title('Conservation Distribution & Statistics', fontsize=self.theme.label_fontsize)
         ax.grid(True, alpha=self.theme.grid_alpha)
+        if ax.get_legend_handles_labels()[0]:  # Only show legend if we have items
+            ax.legend(loc='upper left', fontsize=self.theme.tick_fontsize)
 
 
 class PhylogeneticPlotter(BasePlotter):
@@ -262,7 +302,7 @@ class PhylogeneticPlotter(BasePlotter):
         return output_path
     
     def _enhance_tree_plot(self, ax: plt.Axes, tree, title_base: str) -> None:
-        """Enhance tree plot with scientific formatting."""
+        """Enhance tree plot with comprehensive scientific formatting."""
         ax.set_title(f'Phylogenetic Tree: {title_base.replace("_", " ").title()} (5 vertebrate species)',
                     fontsize=self.theme.title_fontsize, pad=20)
         
@@ -270,18 +310,34 @@ class PhylogeneticPlotter(BasePlotter):
         ax.set_xticks([])
         ax.set_yticks([])
         
-        # Add scale information if branch lengths are meaningful
-        if self.config.show_branch_lengths:
-            # Add scale bar (this is a simplified implementation)
-            tree_info = self._get_tree_statistics(tree)
-            scale_text = f"Tree Statistics:\n"
-            scale_text += f"Total Length: {tree_info['total_length']:.4f}\n"
-            scale_text += f"Max Distance: {tree_info['max_distance']:.4f}\n"
-            scale_text += f"Taxa: {tree_info['taxa_count']}"
-            
-            ax.text(0.02, 0.02, scale_text, transform=ax.transAxes,
+        # Enhanced tree statistics and metadata
+        tree_info = self._get_comprehensive_tree_statistics(tree)
+        
+        # Create comprehensive information box
+        info_text = f"Tree Analysis:\n"
+        info_text += f"Species: {tree_info['taxa_count']}\n"
+        info_text += f"Internal nodes: {tree_info['internal_nodes']}\n"
+        
+        if tree_info['total_length'] > 0:
+            info_text += f"Total length: {tree_info['total_length']:.4f}\n"
+            info_text += f"Max root-tip: {tree_info['max_distance']:.4f}\n"
+            info_text += f"Avg branch: {tree_info['avg_branch_length']:.4f}\n"
+            info_text += f"Tree depth: {tree_info['tree_depth']}"
+        else:
+            info_text += "Topology only (no branch lengths)"
+        
+        ax.text(0.02, 0.02, info_text, transform=ax.transAxes,
+               verticalalignment='bottom', fontsize=self.theme.tick_fontsize,
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.9, edgecolor='gray'))
+        
+        # Add evolutionary context if we have branch lengths
+        if tree_info['total_length'] > 0 and self.config.show_branch_lengths:
+            # Add scale bar
+            scale_length = tree_info['max_distance'] / 10  # 10% of max distance
+            ax.text(0.98, 0.02, f"Scale: {scale_length:.4f} substitutions/site", 
+                   transform=ax.transAxes, horizontalalignment='right',
                    verticalalignment='bottom', fontsize=self.theme.tick_fontsize,
-                   bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
+                   bbox=dict(boxstyle='round', facecolor='yellow', alpha=0.7))
     
     def _get_tree_statistics(self, tree) -> Dict[str, float]:
         """Calculate basic tree statistics."""
@@ -298,6 +354,44 @@ class PhylogeneticPlotter(BasePlotter):
             'total_length': total_length or 0,
             'max_distance': max_distance,
             'taxa_count': len(terminals)
+        }
+    
+    def _get_comprehensive_tree_statistics(self, tree) -> Dict[str, float]:
+        """Calculate comprehensive tree statistics for enhanced display."""
+        terminals = tree.get_terminals()
+        all_clades = list(tree.find_clades())
+        internal_nodes = [c for c in all_clades if not c.is_terminal()]
+        
+        total_length = tree.total_branch_length() or 0
+        
+        # Calculate distances and depths
+        max_distance = 0
+        distances = []
+        for terminal in terminals:
+            try:
+                distance = tree.distance(tree.root, terminal)
+                distances.append(distance)
+                max_distance = max(max_distance, distance)
+            except:
+                pass
+        
+        # Branch length statistics
+        branch_lengths = []
+        for clade in all_clades:
+            if hasattr(clade, 'branch_length') and clade.branch_length is not None:
+                branch_lengths.append(clade.branch_length)
+        
+        avg_branch_length = np.mean(branch_lengths) if branch_lengths else 0
+        tree_depth = len(tree.get_path(terminals[0])) if terminals else 0
+        
+        return {
+            'total_length': total_length,
+            'max_distance': max_distance,
+            'taxa_count': len(terminals),
+            'internal_nodes': len(internal_nodes),
+            'avg_branch_length': avg_branch_length,
+            'tree_depth': tree_depth,
+            'branch_length_std': np.std(branch_lengths) if len(branch_lengths) > 1 else 0
         }
 
 
@@ -419,53 +513,82 @@ class VariantPlotter(BasePlotter):
     def _plot_variant_overlay_main(self, ax: plt.Axes, consv_df: pd.DataFrame,
                                   vars_df: pd.DataFrame, stats_results: Dict[str, Any],
                                   title_base: str) -> None:
-        """Plot main conservation curve with variant overlay."""
-        # Conservation curve
+        """Plot main conservation curve with intelligent variant overlay."""
+        # Conservation curve with enhanced visibility
         ax.plot(consv_df['Position'], consv_df['ShannonEntropy_NoGaps'],
                color=self.theme.primary_color, linewidth=self.theme.line_width,
-               alpha=self.theme.alpha, label='Conservation')
+               alpha=self.theme.alpha, label='Conservation', zorder=1)
         
-        # Variant positions
-        variant_positions = vars_df['parsed_position'].values
+        # Add conservation threshold zones
         y_min, y_max = ax.get_ylim()
+        ax.fill_between(consv_df['Position'], 0, 0.5, alpha=0.1, color='green', 
+                       label='Highly Conserved Zone', zorder=0)
+        ax.fill_between(consv_df['Position'], 1.5, y_max, alpha=0.1, color='red',
+                       label='Variable Zone', zorder=0)
         
-        # Identify loss-of-function variants
-        lof_positions = [177, 227, 393, 939, 959, 1289]  # From grep analysis
-        lof_mask = np.isin(variant_positions, lof_positions)
-        regular_positions = variant_positions[~lof_mask]
-        lof_variant_positions = variant_positions[lof_mask]
+        # Intelligent variant clustering and display
+        variant_positions = vars_df['parsed_position'].values
+        lof_positions = [177, 227, 393, 939, 959, 1289]
         
-        # Plot regular variants
+        # Cluster nearby variants if enabled
+        if self.config.cluster_nearby_variants and len(variant_positions) > self.config.max_annotation_density:
+            clustered_positions = self._cluster_variants(variant_positions)
+            regular_positions, lof_variant_positions = self._separate_lof_variants(clustered_positions, lof_positions)
+        else:
+            lof_mask = np.isin(variant_positions, lof_positions)
+            regular_positions = variant_positions[~lof_mask]
+            lof_variant_positions = variant_positions[lof_mask]
+        
+        # Plot regular variants with density adaptation
         if len(regular_positions) > 0:
-            if stats_results.get('significant', False) and self.config.highlight_significant:
-                variant_color = self.theme.accent_color
-                variant_label = f'Variants (p={stats_results["p_value"]:.3e})'
+            if len(regular_positions) > self.config.max_annotation_density:
+                # Use scatter plot for high density
+                conservation_at_variants = [consv_df[consv_df['Position'] == pos]['ShannonEntropy_NoGaps'].iloc[0] 
+                                          for pos in regular_positions if pos in consv_df['Position'].values]
+                ax.scatter(regular_positions[:len(conservation_at_variants)], conservation_at_variants, 
+                          color=self.theme.accent_color, alpha=0.7, s=20, 
+                          label=f'Variants (n={len(regular_positions)})', zorder=3)
             else:
+                # Use vertical lines for lower density
                 variant_color = self.theme.accent_color
-                variant_label = f'Variants (n={len(regular_positions)})'
-            
-            ax.vlines(regular_positions, y_min, y_max,
-                     colors=variant_color, alpha=self.config.variant_line_alpha,
-                     linewidth=self.config.variant_line_width, label=variant_label)
+                if stats_results.get('significant', False) and self.config.highlight_significant:
+                    variant_label = f'Variants (p={stats_results["p_value"]:.3e})'
+                else:
+                    variant_label = f'Variants (n={len(regular_positions)})'
+                
+                ax.vlines(regular_positions, y_min, y_max,
+                         colors=variant_color, alpha=self.config.variant_line_alpha,
+                         linewidth=self.config.variant_line_width, label=variant_label, zorder=2)
         
-        # Highlight loss-of-function variants in red
+        # Always highlight loss-of-function variants prominently
         if len(lof_variant_positions) > 0:
             ax.vlines(lof_variant_positions, y_min, y_max,
-                     colors='red', alpha=0.8,
-                     linewidth=3, label=f'Loss-of-function (n={len(lof_variant_positions)})')
+                     colors='red', alpha=0.9, linewidth=4, 
+                     label=f'Loss-of-function (n={len(lof_variant_positions)})', zorder=4)
+            
+            # Add LoF variant annotations if not too many
+            if len(lof_variant_positions) <= 10:
+                for pos in lof_variant_positions:
+                    if pos in consv_df['Position'].values:
+                        conservation_score = consv_df[consv_df['Position'] == pos]['ShannonEntropy_NoGaps'].iloc[0]
+                        ax.annotate(f'{pos}', xy=(pos, conservation_score), 
+                                   xytext=(5, 10), textcoords='offset points',
+                                   fontsize=self.theme.tick_fontsize-1, 
+                                   bbox=dict(boxstyle='round,pad=0.3', facecolor='red', alpha=0.7),
+                                   color='white', weight='bold')
         
-        # Formatting
+        # Enhanced formatting
         ax.set_xlabel('Protein Position', fontsize=self.theme.label_fontsize)
         ax.set_ylabel('Conservation (Shannon Entropy)', fontsize=self.theme.label_fontsize)
         ax.set_title(f'Conservation & Variants: {title_base.replace("_", " ").title()} (5 vertebrate species)',
                     fontsize=self.theme.title_fontsize, pad=20)
         
         ax.grid(True, alpha=self.theme.grid_alpha)
-        ax.legend(loc='upper right')
+        ax.legend(loc='upper right', fontsize=self.theme.legend_fontsize)
         
-        # Add statistics text box
+        # Add comprehensive statistics text box
         if not stats_results.get('error'):
-            self._add_statistics_textbox(ax, stats_results)
+            self._add_comprehensive_statistics_textbox(ax, stats_results, len(variant_positions))
     
     def _plot_variant_conservation_dist(self, ax: plt.Axes, consv_df: pd.DataFrame,
                                       vars_df: pd.DataFrame, stats_results: Dict[str, Any]) -> None:
@@ -539,3 +662,72 @@ class VariantPlotter(BasePlotter):
                verticalalignment='bottom', horizontalalignment='right',
                fontsize=self.theme.tick_fontsize,
                bbox=dict(boxstyle='round', facecolor='white', alpha=0.9, edgecolor='gray'))
+    
+    def _add_comprehensive_statistics_textbox(self, ax: plt.Axes, stats_results: Dict[str, Any], total_variants: int) -> None:
+        """Add comprehensive statistical results with variant summary."""
+        if np.isnan(stats_results['p_value']):
+            stats_text = "Insufficient data for statistical testing"
+        else:
+            p_val = stats_results['p_value']
+            cohens_d = stats_results['cohens_d']
+            variant_mean = stats_results['variant_mean']
+            background_mean = stats_results['background_mean']
+            
+            stats_text = f"Variant Analysis Summary:\n"
+            stats_text += f"Total variants: {total_variants}\n"
+            stats_text += f"Variant conservation: {variant_mean:.3f} ± {np.std(stats_results['variant_conservation']):.3f}\n"
+            stats_text += f"Background: {background_mean:.3f}\n"
+            stats_text += f"Mann-Whitney p: {p_val:.2e}\n"
+            stats_text += f"Effect size: {cohens_d:.3f}\n"
+            
+            # Interpret effect size
+            if abs(cohens_d) < 0.2:
+                effect_interp = "negligible"
+            elif abs(cohens_d) < 0.5:
+                effect_interp = "small"
+            elif abs(cohens_d) < 0.8:
+                effect_interp = "medium"
+            else:
+                effect_interp = "large"
+            
+            stats_text += f"Effect: {effect_interp}"
+            
+            if stats_results['significant']:
+                stats_text += " (significant)"
+            
+        ax.text(0.98, 0.02, stats_text, transform=ax.transAxes,
+               verticalalignment='bottom', horizontalalignment='right',
+               fontsize=self.theme.tick_fontsize,
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.95, edgecolor='gray'))
+    
+    def _cluster_variants(self, positions: np.ndarray) -> np.ndarray:
+        """Cluster nearby variants to reduce visual complexity."""
+        if len(positions) <= self.config.max_annotation_density:
+            return positions
+        
+        sorted_positions = np.sort(positions)
+        clustered = []
+        
+        i = 0
+        while i < len(sorted_positions):
+            cluster_start = sorted_positions[i]
+            cluster_positions = [cluster_start]
+            
+            # Find all positions within cluster distance
+            j = i + 1
+            while j < len(sorted_positions) and sorted_positions[j] - cluster_start <= self.config.cluster_distance:
+                cluster_positions.append(sorted_positions[j])
+                j += 1
+            
+            # Use median position to represent cluster
+            clustered.append(int(np.median(cluster_positions)))
+            i = j
+        
+        return np.array(clustered)
+    
+    def _separate_lof_variants(self, positions: np.ndarray, lof_positions: List[int]) -> Tuple[np.ndarray, np.ndarray]:
+        """Separate loss-of-function variants from regular variants."""
+        lof_mask = np.isin(positions, lof_positions)
+        regular_positions = positions[~lof_mask]
+        lof_variant_positions = positions[lof_mask]
+        return regular_positions, lof_variant_positions

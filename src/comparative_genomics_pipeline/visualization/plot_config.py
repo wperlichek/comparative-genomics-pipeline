@@ -43,15 +43,17 @@ class PlotTheme:
 class PlotConfig:
     """Configuration for specific plot types."""
     
-    # Figure dimensions (inches)
-    figsize_conservation: Tuple[int, int] = (12, 6)
-    figsize_phylogeny: Tuple[int, int] = (10, 8) 
-    figsize_variants: Tuple[int, int] = (14, 6)
+    # Figure dimensions (inches) - optimized for information density
+    figsize_conservation: Tuple[int, int] = (14, 8)
+    figsize_phylogeny: Tuple[int, int] = (12, 10) 
+    figsize_variants: Tuple[int, int] = (16, 8)
     
     # Conservation plot specific
     conservation_smoothing_window: int = 5
     show_confidence_intervals: bool = True
     confidence_level: float = 0.95
+    show_data_summary: bool = True
+    max_annotation_density: int = 50  # Maximum annotations before summarizing
     
     # Phylogeny specific
     tree_layout: str = 'rectangular'  # 'rectangular', 'circular', 'radial'
@@ -63,6 +65,9 @@ class PlotConfig:
     variant_line_width: float = 1.0
     highlight_significant: bool = True
     significance_threshold: float = 0.05
+    show_variant_summary: bool = True
+    cluster_nearby_variants: bool = True
+    cluster_distance: int = 10  # Group variants within this distance
     
     # Output settings
     output_format: str = 'png'

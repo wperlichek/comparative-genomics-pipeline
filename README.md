@@ -106,9 +106,9 @@ docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
 
 ## Sample Outputs
 
-| Conservation Plot | Phylogenetic Tree | Variant Overlay |
-|:----------------:|:----------------:|:---------------:|
-| ![Conservation](data/output/conservation/SCN1A_conservation_entropy.png) | ![Tree](data/output/trees/SCN1A.png) | ![Variants](data/output/variants/SCN1A_conservation_with_variants.png) |
+| Phylogenetic Analysis | Conservation & Variant Analysis |
+|:--------------------:|:-------------------------------:|
+| ![Tree](data/output/trees/SCN1A_scientific.png) | ![Variants](data/output/variants/SCN1A_conservation_variants_scientific.png) |
 
 ## Daily Log
 
