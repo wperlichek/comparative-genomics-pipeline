@@ -123,6 +123,10 @@ Confirmed that loss of function variants occurred in highly conserved regions, w
 
 Updated conservation-variant plot to separate LoF variants (red) from all variants (orange) in the bottom histogram for better visualization of where critical variants cluster in the conservation distribution.
 
+**Question:** Are variants more likely to occur in regions that are highly conserved because of nature or because we more strictly analyze variants in sequences that are highly conserved and it's a part of their definition?
+
+**Answer:** This is primarily a methodological artifact rather than biological reality. The apparent enrichment of variants in conserved regions occurs because: (1) We preferentially analyze protein-coding and functionally important regions that are inherently more conserved, (2) These regions receive more clinical scrutiny leading to better variant detection, and (3) Biologically, variants in truly conserved regions are actually less frequent due to purifying selection, but when present are more likely to be pathogenic and thus reported. The SCN1A analysis validates this - LoF variants cluster in conserved functional domains where they have measurable phenotypic impact.
+
 ---
 
 *Self-directed computational biology project. Ongoing development and validation.*
