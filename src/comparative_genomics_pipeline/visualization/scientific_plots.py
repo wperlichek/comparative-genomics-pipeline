@@ -429,17 +429,30 @@ class VariantPlotter(BasePlotter):
         variant_positions = vars_df['parsed_position'].values
         y_min, y_max = ax.get_ylim()
         
-        # Color variants by significance if statistical test was performed
-        if stats_results.get('significant', False) and self.config.highlight_significant:
-            variant_color = self.theme.error_color
-            variant_label = f'Variants (p={stats_results["p_value"]:.3e})'
-        else:
-            variant_color = self.theme.accent_color
-            variant_label = f'Variants (n={len(variant_positions)})'
+        # Identify loss-of-function variants
+        lof_positions = [177, 227, 393, 939, 959, 1289]  # From grep analysis
+        lof_mask = np.isin(variant_positions, lof_positions)
+        regular_positions = variant_positions[~lof_mask]
+        lof_variant_positions = variant_positions[lof_mask]
         
-        ax.vlines(variant_positions, y_min, y_max,
-                 colors=variant_color, alpha=self.config.variant_line_alpha,
-                 linewidth=self.config.variant_line_width, label=variant_label)
+        # Plot regular variants
+        if len(regular_positions) > 0:
+            if stats_results.get('significant', False) and self.config.highlight_significant:
+                variant_color = self.theme.accent_color
+                variant_label = f'Variants (p={stats_results["p_value"]:.3e})'
+            else:
+                variant_color = self.theme.accent_color
+                variant_label = f'Variants (n={len(regular_positions)})'
+            
+            ax.vlines(regular_positions, y_min, y_max,
+                     colors=variant_color, alpha=self.config.variant_line_alpha,
+                     linewidth=self.config.variant_line_width, label=variant_label)
+        
+        # Highlight loss-of-function variants in red
+        if len(lof_variant_positions) > 0:
+            ax.vlines(lof_variant_positions, y_min, y_max,
+                     colors='red', alpha=0.8,
+                     linewidth=3, label=f'Loss-of-function (n={len(lof_variant_positions)})')
         
         # Formatting
         ax.set_xlabel('Protein Position', fontsize=self.theme.label_fontsize)
