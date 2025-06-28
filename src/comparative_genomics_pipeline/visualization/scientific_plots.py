@@ -286,12 +286,14 @@ class PhylogeneticPlotter(BasePlotter):
         
         fig, ax = plt.subplots(figsize=self.config.figsize_phylogeny)
         
-        # Set up the tree plot
+        # Set up the tree plot with species labels
         if self.config.tree_layout == 'circular':
             Phylo.draw(tree, axes=ax, do_show=False, show_confidence=False,
-                      branch_labels=None if not self.config.show_branch_lengths else lambda x: f'{x.branch_length:.3f}')
+                      branch_labels=None if not self.config.show_branch_lengths else lambda x: f'{x.branch_length:.3f}',
+                      label_func=self._format_species_name)
         else:
-            Phylo.draw(tree, axes=ax, do_show=False, show_confidence=False)
+            Phylo.draw(tree, axes=ax, do_show=False, show_confidence=False,
+                      label_func=self._format_species_name)
         
         # Enhance the plot
         self._enhance_tree_plot(ax, tree, tree_file.stem)
@@ -301,43 +303,55 @@ class PhylogeneticPlotter(BasePlotter):
         
         return output_path
     
+    def _format_species_name(self, clade):
+        """Format species names for display on tree."""
+        if not clade.name:
+            return ""
+        
+        # Load species mapping from genes_to_proteins.json
+        from ..config import path_config
+        from ..util import file_util
+        
+        genes_to_proteins = file_util.open_file_return_as_json(
+            f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json"
+        )
+        
+        # Build dynamic mapping from protein IDs to species abbreviations
+        name_map = {}
+        for gene_name, orthologs in genes_to_proteins.items():
+            for ortholog in orthologs:
+                species_full = ortholog["species"]
+                # Convert "Homo sapiens" to "H. sapiens"
+                parts = species_full.split()
+                species_abbrev = f"{parts[0][0]}. {parts[1]}" if len(parts) >= 2 else species_full
+                
+                if ortholog.get("uniprot_id"):
+                    name_map[ortholog["uniprot_id"]] = species_abbrev
+                if ortholog.get("entrez_protein_id"):
+                    name_map[ortholog["entrez_protein_id"]] = species_abbrev
+        
+        # Extract species identifier from full name
+        for key, species in name_map.items():
+            if key in clade.name:
+                return species
+        
+        return clade.name
+    
     def _enhance_tree_plot(self, ax: plt.Axes, tree, title_base: str) -> None:
         """Enhance tree plot with comprehensive scientific formatting."""
-        ax.set_title(f'Phylogenetic Tree: {title_base.replace("_", " ").title()} (5 vertebrate species)',
+        terminals = tree.get_terminals()
+        species_count = len(terminals)
+        ax.set_title(f'Phylogenetic Tree: {title_base.replace("_", " ").title()} ({species_count} vertebrate species)',
                     fontsize=self.theme.title_fontsize, pad=20)
         
         # Remove axis ticks and labels for cleaner look
         ax.set_xticks([])
         ax.set_yticks([])
         
-        # Enhanced tree statistics and metadata
-        tree_info = self._get_comprehensive_tree_statistics(tree)
-        
-        # Create comprehensive information box
-        info_text = f"Tree Analysis:\n"
-        info_text += f"Species: {tree_info['taxa_count']}\n"
-        info_text += f"Internal nodes: {tree_info['internal_nodes']}\n"
-        
-        if tree_info['total_length'] > 0:
-            info_text += f"Total length: {tree_info['total_length']:.4f}\n"
-            info_text += f"Max root-tip: {tree_info['max_distance']:.4f}\n"
-            info_text += f"Avg branch: {tree_info['avg_branch_length']:.4f}\n"
-            info_text += f"Tree depth: {tree_info['tree_depth']}"
-        else:
-            info_text += "Topology only (no branch lengths)"
-        
-        ax.text(0.02, 0.02, info_text, transform=ax.transAxes,
+        # Simple species count display
+        ax.text(0.02, 0.02, f"{species_count} species", transform=ax.transAxes,
                verticalalignment='bottom', fontsize=self.theme.tick_fontsize,
                bbox=dict(boxstyle='round', facecolor='white', alpha=0.9, edgecolor='gray'))
-        
-        # Add evolutionary context if we have branch lengths
-        if tree_info['total_length'] > 0 and self.config.show_branch_lengths:
-            # Add scale bar
-            scale_length = tree_info['max_distance'] / 10  # 10% of max distance
-            ax.text(0.98, 0.02, f"Scale: {scale_length:.4f} substitutions/site", 
-                   transform=ax.transAxes, horizontalalignment='right',
-                   verticalalignment='bottom', fontsize=self.theme.tick_fontsize,
-                   bbox=dict(boxstyle='round', facecolor='yellow', alpha=0.7))
     
     def _get_tree_statistics(self, tree) -> Dict[str, float]:
         """Calculate basic tree statistics."""
