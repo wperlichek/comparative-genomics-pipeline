@@ -34,23 +34,23 @@
         },
         {
             "species": "Mus musculus",
-            "uniprot_id": "Q8VHI3",
+            "uniprot_id": "P61460",
             "entrez_protein_id": ""
         },
         {
             "species": "Macaca mulatta",
-            "uniprot_id": "",
+            "uniprot_id": "F6RIX6",
             "entrez_protein_id": ""
         },
         {
             "species": "Gallus gallus",
-            "uniprot_id": "",
+            "uniprot_id": "A0A8V1A160",
             "entrez_protein_id": ""
         },
         {
             "species": "Parus major",
             "uniprot_id": "",
-            "entrez_protein_id": ""
+            "entrez_protein_id": "XP_015499143.1"
         }
     ]
 }
