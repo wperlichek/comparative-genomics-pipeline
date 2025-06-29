@@ -271,7 +271,7 @@ class PhylogeneticPlotter(BasePlotter):
         """Enhance tree plot with comprehensive scientific formatting."""
         terminals = tree.get_terminals()
         species_count = len(terminals)
-        ax.set_title(f'Phylogenetic Tree: {title_base.replace("_", " ").title()} ({species_count} vertebrate species)',
+        ax.set_title(f'Protein Phylogenetic Tree: {title_base.replace("_", " ").title()} ({species_count} vertebrate species)',
                     fontsize=self.theme.title_fontsize, pad=20)
         
         # Remove axis ticks and labels for cleaner look

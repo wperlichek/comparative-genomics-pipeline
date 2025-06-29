@@ -111,3 +111,21 @@ This is a bioinformatics pipeline for comparative genomics analysis, specificall
 - `src/comparative_genomics_pipeline/config/path_config.py` - File path management
 - `README.md` - Project overview with current results and roadmap
 - `docs/requirements.md` - Detailed technical requirements
+
+## Working Preferences & Collaboration Style
+
+**Concise Communication:** Keep explanations brief and focused. Avoid unnecessary preamble or postamble unless detail is specifically requested.
+
+**Scientific Precision:** When updating documentation or plots, ensure scientific accuracy in terminology. For example:
+- Specify "protein phylogenetic trees" rather than generic "phylogenetic trees"
+- Distinguish between different variant types (loss-of-function vs. likely pathogenic)
+- Maintain consistency between documentation and code output
+
+**Iterative Refinement:** Expect requests for consistency across multiple components:
+- README documentation should match plot titles and descriptions
+- Plot titles should reflect the underlying methodology (e.g., protein-based analysis)
+- Update both documentation and visualization code when making conceptual changes
+
+**Parallel Structure:** When adding content for multiple genes (SCN1A, DEPDC5), maintain parallel formatting and structure in documentation, using appropriate subheadings for organization.
+
+**Implementation Details:** Be prepared to trace through the codebase to understand implementation specifics (e.g., whether trees use protein vs. DNA sequences) when making documentation updates.

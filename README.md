@@ -106,7 +106,7 @@ pytest
 
 <img src="data/output/trees/SCN1A_scientific.png" width="600">
 
-**Phylogenetic Tree:** Evolutionary relationships confirming expected species divergence patterns.
+**Protein Phylogenetic Tree:** Evolutionary relationships confirming expected species divergence patterns.
 
 <img src="data/output/conservation/SCN1A_conservation_scientific.png" width="800">
 
@@ -120,7 +120,7 @@ pytest
 
 <img src="data/output/trees/DEPDC5_scientific.png" width="600">
 
-**Phylogenetic Tree:** Evolutionary relationships confirming expected species divergence patterns.
+**Protein Phylogenetic Tree:** Evolutionary relationships confirming expected species divergence patterns.
 
 <img src="data/output/conservation/DEPDC5_conservation_scientific.png" width="800">
 
