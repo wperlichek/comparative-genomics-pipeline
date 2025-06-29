@@ -44,38 +44,47 @@ A Python pipeline for analyzing evolutionary conservation of epilepsy-associated
 
 ## 🛠️ Installation & Usage
 
-**Requirements:** Python 3.9+, Docker (optional)
+**Requirements:** Python 3.10+, Docker (recommended for reproducibility), and git.
 
+### 1. Clone the repository
 ```bash
-# Local installation
-pip install -e .
-comparative-genomics-pipeline
+git clone https://github.com/[your-username]/comparative-genomics-pipeline.git
+cd comparative-genomics-pipeline
+```
 
-# Docker (recommended for reproducibility)
+### 2. Install Python dependencies (local development)
+```bash
+pip install -e .
+```
+
+### 3. Run the pipeline (local)
+```bash
+comparative-genomics-pipeline
+```
+
+### 4. Build and run with Docker (recommended)
+```bash
 docker build -t genomics-pipeline .
 docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
+```
+- The `-v $(pwd)/data:/app/data` flag mounts your local `data/` directory for input/output.
 
-# Clear previous results
+### 5. Clear previous results
+```bash
 rm -rf ./data/output/*
+```
 
-# Run tests
+### 6. Run tests
+```bash
 pytest
 ```
 
-## Installation
+---
 
-```bash
-git clone [repository]
-cd comparative-genomics-pipeline
-pip install -e .
-comparative-genomics-pipeline
-```
-
-**Docker:**
-```bash
-docker build -t genomics-pipeline .
-docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
-```
+- Input configuration: Edit `data/input/genes_to_proteins.json` to specify which genes and species to analyze.
+- Results (plots, trees, CSVs) are saved in `data/output/` subfolders.
+- For troubleshooting Docker, see the README and `docs/requirements_notes.md` for platform-specific tips.
+- For cloud/AWS usage, see the DevOps section in the documentation.
 
 ## Development Roadmap
 
