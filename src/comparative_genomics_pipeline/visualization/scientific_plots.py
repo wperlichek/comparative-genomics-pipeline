@@ -11,7 +11,6 @@ import matplotlib.patches as mpatches
 from scipy import stats
 from scipy.signal import savgol_filter
 from Bio import Phylo
-import warnings
 
 from .plot_config import PlotConfig, PlotTheme, PUBLICATION_THEME
 
@@ -42,18 +41,6 @@ class BasePlotter:
         if close_fig:
             plt.close(fig)
     
-    def _add_statistical_annotations(self, ax: plt.Axes, data: pd.DataFrame, 
-                                   x_col: str, y_col: str) -> None:
-        """Add basic statistical annotations to plots."""
-        n_points = len(data)
-        mean_val = data[y_col].mean()
-        std_val = data[y_col].std()
-        
-        # Add text box with statistics
-        stats_text = f'N = {n_points}\nMean ± SD = {mean_val:.3f} ± {std_val:.3f}'
-        ax.text(0.02, 0.98, stats_text, transform=ax.transAxes, 
-                verticalalignment='top', bbox=dict(boxstyle='round', 
-                facecolor='white', alpha=0.8, edgecolor='gray'))
 
 
 class ConservationPlotter(BasePlotter):
@@ -296,60 +283,6 @@ class PhylogeneticPlotter(BasePlotter):
                verticalalignment='bottom', fontsize=self.theme.tick_fontsize,
                bbox=dict(boxstyle='round', facecolor='white', alpha=0.9, edgecolor='gray'))
     
-    def _get_tree_statistics(self, tree) -> Dict[str, float]:
-        """Calculate basic tree statistics."""
-        terminals = tree.get_terminals()
-        total_length = tree.total_branch_length()
-        
-        # Calculate maximum root-to-tip distance
-        max_distance = 0
-        for terminal in terminals:
-            distance = tree.distance(tree.root, terminal)
-            max_distance = max(max_distance, distance)
-        
-        return {
-            'total_length': total_length or 0,
-            'max_distance': max_distance,
-            'taxa_count': len(terminals)
-        }
-    
-    def _get_comprehensive_tree_statistics(self, tree) -> Dict[str, float]:
-        """Calculate comprehensive tree statistics for enhanced display."""
-        terminals = tree.get_terminals()
-        all_clades = list(tree.find_clades())
-        internal_nodes = [c for c in all_clades if not c.is_terminal()]
-        
-        total_length = tree.total_branch_length() or 0
-        
-        # Calculate distances and depths
-        max_distance = 0
-        distances = []
-        for terminal in terminals:
-            try:
-                distance = tree.distance(tree.root, terminal)
-                distances.append(distance)
-                max_distance = max(max_distance, distance)
-            except:
-                pass
-        
-        # Branch length statistics
-        branch_lengths = []
-        for clade in all_clades:
-            if hasattr(clade, 'branch_length') and clade.branch_length is not None:
-                branch_lengths.append(clade.branch_length)
-        
-        avg_branch_length = np.mean(branch_lengths) if branch_lengths else 0
-        tree_depth = len(tree.get_path(terminals[0])) if terminals else 0
-        
-        return {
-            'total_length': total_length,
-            'max_distance': max_distance,
-            'taxa_count': len(terminals),
-            'internal_nodes': len(internal_nodes),
-            'avg_branch_length': avg_branch_length,
-            'tree_depth': tree_depth,
-            'branch_length_std': np.std(branch_lengths) if len(branch_lengths) > 1 else 0
-        }
 
 
 class VariantPlotter(BasePlotter):
@@ -538,115 +471,6 @@ class VariantPlotter(BasePlotter):
         ax.legend(loc='upper right', fontsize=self.theme.legend_fontsize)
         
     
-    def _plot_variant_conservation_dist(self, ax: plt.Axes, consv_df: pd.DataFrame,
-                                      vars_df: pd.DataFrame, stats_results: Dict[str, Any]) -> None:
-        """Plot conservation score distributions for variants vs background."""
-        if stats_results.get('error'):
-            ax.text(0.5, 0.5, 'Insufficient data for distribution analysis',
-                   transform=ax.transAxes, ha='center', va='center')
-            return
-        
-        variant_scores = stats_results['variant_conservation']
-        background_scores = stats_results['background_conservation']
-        
-        # Get LoF variant conservation scores
-        lof_positions = [177, 227, 393, 939, 959, 1289]
-        variant_positions = vars_df['parsed_position'].values
-        lof_mask = np.isin(variant_positions, lof_positions)
-        
-        # Get conservation scores for LoF variants
-        lof_conservation = []
-        for pos in variant_positions[lof_mask]:
-            if pos in consv_df['Position'].values:
-                conservation_score = consv_df[consv_df['Position'] == pos]['ShannonEntropy_NoGaps'].iloc[0]
-                lof_conservation.append(conservation_score)
-        lof_conservation = np.array(lof_conservation)
-        
-        # Create overlaid histograms
-        bins = np.linspace(min(np.min(variant_scores), np.min(background_scores)),
-                          max(np.max(variant_scores), np.max(background_scores)), 20)
-        
-        ax.hist(background_scores, bins=bins, alpha=0.7, density=True,
-               color=self.theme.primary_color, label='Background', edgecolor='white')
-        ax.hist(variant_scores, bins=bins, alpha=0.7, density=True,
-               color=self.theme.accent_color, label='Variants', edgecolor='white')
-        
-        # Add LoF variants if we have any
-        if len(lof_conservation) > 0:
-            ax.hist(lof_conservation, bins=bins, alpha=0.8, density=True,
-                   color='red', label='Loss-of-function', edgecolor='white')
-        
-        # Add mean lines
-        ax.axvline(stats_results['background_mean'], color=self.theme.primary_color,
-                  linestyle='--', linewidth=2, alpha=0.8)
-        ax.axvline(stats_results['variant_mean'], color=self.theme.accent_color,
-                  linestyle='--', linewidth=2, alpha=0.8)
-        
-        ax.set_xlabel('Conservation Score', fontsize=self.theme.label_fontsize)
-        ax.set_ylabel('Density', fontsize=self.theme.label_fontsize)
-        ax.set_title('Conservation Distribution Comparison', fontsize=self.theme.label_fontsize)
-        ax.legend()
-        ax.grid(True, alpha=self.theme.grid_alpha)
-    
-    def _add_statistics_textbox(self, ax: plt.Axes, stats_results: Dict[str, Any]) -> None:
-        """Add statistical results textbox to plot."""
-        if np.isnan(stats_results['p_value']):
-            stats_text = "Insufficient data for statistical testing"
-        else:
-            p_val = stats_results['p_value']
-            cohens_d = stats_results['cohens_d']
-            
-            stats_text = f"Statistical Analysis:\n"
-            stats_text += f"Mann-Whitney U test\n"
-            stats_text += f"p-value: {p_val:.3e}\n"
-            stats_text += f"Effect size (d): {cohens_d:.3f}\n"
-            
-            if stats_results['significant']:
-                stats_text += "Result: Significant difference"
-            else:
-                stats_text += "Result: No significant difference"
-        
-        ax.text(0.98, 0.02, stats_text, transform=ax.transAxes,
-               verticalalignment='bottom', horizontalalignment='right',
-               fontsize=self.theme.tick_fontsize,
-               bbox=dict(boxstyle='round', facecolor='white', alpha=0.9, edgecolor='gray'))
-    
-    def _add_comprehensive_statistics_textbox(self, ax: plt.Axes, stats_results: Dict[str, Any], total_variants: int) -> None:
-        """Add comprehensive statistical results with variant summary."""
-        if np.isnan(stats_results['p_value']):
-            stats_text = "Insufficient data for statistical testing"
-        else:
-            p_val = stats_results['p_value']
-            cohens_d = stats_results['cohens_d']
-            variant_mean = stats_results['variant_mean']
-            background_mean = stats_results['background_mean']
-            
-            stats_text = f"Variant Analysis Summary:\n"
-            stats_text += f"Total variants: {total_variants}\n"
-            stats_text += f"Variant conservation: {variant_mean:.3f} ± {np.std(stats_results['variant_conservation']):.3f}\n"
-            stats_text += f"Background: {background_mean:.3f}\n"
-            stats_text += f"Mann-Whitney p: {p_val:.2e}\n"
-            stats_text += f"Effect size: {cohens_d:.3f}\n"
-            
-            # Interpret effect size
-            if abs(cohens_d) < 0.2:
-                effect_interp = "negligible"
-            elif abs(cohens_d) < 0.5:
-                effect_interp = "small"
-            elif abs(cohens_d) < 0.8:
-                effect_interp = "medium"
-            else:
-                effect_interp = "large"
-            
-            stats_text += f"Effect: {effect_interp}"
-            
-            if stats_results['significant']:
-                stats_text += " (significant)"
-            
-        ax.text(0.98, 0.02, stats_text, transform=ax.transAxes,
-               verticalalignment='bottom', horizontalalignment='right',
-               fontsize=self.theme.tick_fontsize,
-               bbox=dict(boxstyle='round', facecolor='white', alpha=0.95, edgecolor='gray'))
     
     def _cluster_variants(self, positions: np.ndarray) -> np.ndarray:
         """Cluster nearby variants to reduce visual complexity."""

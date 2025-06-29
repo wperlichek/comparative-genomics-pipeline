@@ -108,18 +108,3 @@ class PlotConfig:
 # Predefined themes
 PUBLICATION_THEME = PlotTheme()
 
-PRESENTATION_THEME = PlotTheme(
-    title_fontsize=16,
-    label_fontsize=14, 
-    tick_fontsize=12,
-    legend_fontsize=12,
-    line_width=2.0,
-    marker_size=6.0
-)
-
-COLORBLIND_THEME = PlotTheme(
-    primary_color='#1f77b4',  # Blue
-    secondary_color='#ff7f0e',  # Orange  
-    accent_color='#2ca02c',  # Green
-    error_color='#d62728'  # Red
-)

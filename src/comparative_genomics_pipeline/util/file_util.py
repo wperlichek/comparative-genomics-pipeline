@@ -15,9 +15,3 @@ def open_file_return_as_str(file):
         return f.read()
 
 
-def save_fasta_to_output_dir(file_name: str = "", dir_name: str = "", fasta: str = ""):
-    ## TODO :: try/except protection
-    with open(
-        f"{path_config.DATA_OUTPUT_DIR}/{dir_name}/{file_name}.fasta", "w"
-    ) as fasta_file:
-        fasta_file.write(fasta)
