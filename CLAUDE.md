@@ -111,8 +111,11 @@ This is a bioinformatics pipeline for comparative genomics analysis, specificall
 - `src/comparative_genomics_pipeline/config/path_config.py` - File path management
 - `README.md` - Project overview with current results and roadmap
 - `docs/requirements.md` - Detailed technical requirements
+- **`docs/early_hypothesis_research.md` - Core research questions and hypothesis driving all analysis work**
 
 ## Working Preferences & Collaboration Style
+
+**Research Context Awareness:** ALWAYS consult `docs/early_hypothesis_research.md` before performing any analysis or making recommendations. All work should be framed within the context of the core research questions and hypothesis outlined in that document.
 
 **Concise Communication:** Keep explanations brief and focused. Avoid unnecessary preamble or postamble unless detail is specifically requested.
 
