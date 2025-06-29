@@ -234,7 +234,7 @@ class PhylogeneticPlotter(BasePlotter):
         return output_path
     
     def _format_species_name(self, clade):
-        """Format species names for display on tree."""
+        """Format species names for display on tree with common names and protein IDs."""
         if not clade.name:
             return ""
         
@@ -246,7 +246,7 @@ class PhylogeneticPlotter(BasePlotter):
             f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json"
         )
         
-        # Build dynamic mapping from protein IDs to species abbreviations
+        # Build dynamic mapping from protein IDs to species info
         name_map = {}
         for gene_name, orthologs in genes_to_proteins.items():
             for ortholog in orthologs:
@@ -255,15 +255,34 @@ class PhylogeneticPlotter(BasePlotter):
                 parts = species_full.split()
                 species_abbrev = f"{parts[0][0]}. {parts[1]}" if len(parts) >= 2 else species_full
                 
+                # Add common names mapping
+                common_names = {
+                    "H. sapiens": "Human",
+                    "M. musculus": "Mouse", 
+                    "M. mulatta": "Macaque",
+                    "G. gallus": "Chicken",
+                    "P. major": "Great Tit"
+                }
+                
+                common_name = common_names.get(species_abbrev, species_abbrev)
+                
                 if ortholog.get("uniprot_id"):
-                    name_map[ortholog["uniprot_id"]] = species_abbrev
+                    name_map[ortholog["uniprot_id"]] = {
+                        "species": species_abbrev,
+                        "common": common_name,
+                        "protein_id": ortholog["uniprot_id"]
+                    }
                 if ortholog.get("entrez_protein_id"):
-                    name_map[ortholog["entrez_protein_id"]] = species_abbrev
+                    name_map[ortholog["entrez_protein_id"]] = {
+                        "species": species_abbrev,
+                        "common": common_name,
+                        "protein_id": ortholog["entrez_protein_id"]
+                    }
         
-        # Extract species identifier from full name
-        for key, species in name_map.items():
+        # Extract species identifier and protein ID from full name
+        for key, info in name_map.items():
             if key in clade.name:
-                return species
+                return f"{info['common']} ({info['species']})\n{info['protein_id']}"
         
         return clade.name
     
