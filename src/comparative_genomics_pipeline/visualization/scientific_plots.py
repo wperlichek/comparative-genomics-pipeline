@@ -76,14 +76,10 @@ class ConservationPlotter(BasePlotter):
         if output_dir is None:
             output_dir = csv_file.parent
         
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=self.config.figsize_conservation,
-                                      height_ratios=[3, 1])
+        fig, ax1 = plt.subplots(1, 1, figsize=self.config.figsize_conservation)
         
         # Main conservation plot
         self._plot_conservation_main(ax1, df, csv_file.stem)
-        
-        # Conservation distribution histogram
-        self._plot_conservation_distribution(ax2, df)
         
         plt.tight_layout()
         
@@ -210,59 +206,6 @@ class ConservationPlotter(BasePlotter):
         ax.legend(handles=legend_elements, loc='upper right', 
                  frameon=True, fancybox=True, shadow=True, fontsize=self.theme.legend_fontsize)
     
-    def _plot_conservation_distribution(self, ax: plt.Axes, df: pd.DataFrame) -> None:
-        """Plot conservation score distribution with enhanced information."""
-        entropy_nogaps = df['ShannonEntropy_NoGaps'].values
-        
-        # Histogram with optimal binning
-        n_bins = min(30, max(10, len(entropy_nogaps) // 5))
-        counts, bins, patches = ax.hist(entropy_nogaps, bins=n_bins, color=self.theme.secondary_color,
-                                       alpha=0.7, density=True, edgecolor='white')
-        
-        # Color-code bins by conservation level
-        for i, (count, patch) in enumerate(zip(counts, patches)):
-            bin_center = (bins[i] + bins[i+1]) / 2
-            if bin_center < 0.5:  # Highly conserved
-                patch.set_facecolor('#2E8B57')  # Sea green
-            elif bin_center < 1.5:  # Moderately conserved
-                patch.set_facecolor(self.theme.secondary_color)
-            else:  # Variable
-                patch.set_facecolor('#FF6347')  # Tomato
-        
-        # Add distribution curve and statistics
-        if len(entropy_nogaps) > 10:
-            kde_x = np.linspace(entropy_nogaps.min(), entropy_nogaps.max(), 100)
-            try:
-                kde = stats.gaussian_kde(entropy_nogaps)
-                ax.plot(kde_x, kde(kde_x), color=self.theme.error_color, 
-                       linewidth=2, label='Density Curve')
-            except np.linalg.LinAlgError:
-                pass
-        
-        # Add quartile lines
-        quartiles = np.percentile(entropy_nogaps, [25, 50, 75])
-        for i, q in enumerate(quartiles):
-            linestyle = '--' if i == 1 else ':'
-            ax.axvline(q, color='black', linestyle=linestyle, alpha=0.6, 
-                      label=f'Q{i+1}: {q:.2f}' if i == 1 else None)
-        
-        # Enhanced statistics in corner
-        stats_text = f'μ={np.mean(entropy_nogaps):.2f}, σ={np.std(entropy_nogaps):.2f}\n'
-        stats_text += f'Range: {np.min(entropy_nogaps):.2f}-{np.max(entropy_nogaps):.2f}\n'
-        stats_text += f'Skew: {stats.skew(entropy_nogaps):.2f}'
-        
-        ax.text(0.98, 0.98, stats_text, transform=ax.transAxes, 
-               verticalalignment='top', horizontalalignment='right',
-               bbox=dict(boxstyle='round', facecolor='white', alpha=0.8),
-               fontsize=self.theme.tick_fontsize)
-        
-        ax.set_xlabel('Shannon Entropy (bits)', fontsize=self.theme.label_fontsize)
-        ax.set_ylabel('Density', fontsize=self.theme.label_fontsize) 
-        ax.set_title('Conservation Distribution & Statistics', fontsize=self.theme.label_fontsize)
-        ax.grid(True, alpha=self.theme.grid_alpha)
-        if ax.get_legend_handles_labels()[0]:  # Only show legend if we have items
-            ax.legend(loc='upper left', fontsize=self.theme.tick_fontsize)
-
 
 class PhylogeneticPlotter(BasePlotter):
     """Publication-quality phylogenetic tree visualization."""

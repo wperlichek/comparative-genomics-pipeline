@@ -59,22 +59,6 @@ docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
 rm -rf ./data/output/*
 ```
 
-📁 **Full requirements:** [docs/requirements.md](docs/requirements.md)
-
-## Results
-
-**SCN1A Analysis (H. sapiens, M. musculus, M. mulatta, G. gallus, P. major):**
-- Sequence identity ranges from 78-99% across vertebrates
-- Phylogenetic relationships consistent with expected evolutionary divergence
-- 847 human variants successfully mapped to conservation scores
-- Disease variants show clustering in functionally critical transmembrane domains
-- Addition of P. major (78% identity) provides improved resolution for conservation analysis
-
-**Technical Validation:**
-- Successful integration of multiple genomic databases
-- Reproducible Docker workflow
-- Conservation scoring correlates with known functional domains
-
 ## Installation
 
 ```bash
