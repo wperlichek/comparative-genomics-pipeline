@@ -143,9 +143,7 @@ Updated conservation-variant plot to separate LoF variants (red) from all varian
 **Research Focus Update:** Pipeline now configured for dual-gene analysis focusing exclusively on SCN1A (Dravet syndrome, voltage-gated sodium channel) and DEPDC5 (focal epilepsy, mTOR pathway regulator). Removed references to other epilepsy genes to concentrate analysis on these two distinct but complementary mechanisms: SCN1A affecting interneuron excitability through sodium channel dysfunction, and DEPDC5 affecting cortical development through mTOR pathway dysregulation.
 
 **DEPDC5 data added**
-Early data from DEPDC5 looks promising but raises questions on how best to display comparisons with SCN1A, since no LoF variants have been identified in DEPDC5 and the focus will be on likely pathogenic variants instead.
-
-The plan is to map loss-of-function, likely pathogenic, and pathogenic variants in both SCN1A and DEPDC5 to capture key candidates. Raw variant data for both genes will be re-verified and vetted to ensure accuracy.
+Early data from DEPDC5 looks promising but raises questions on how best to display comparisons with SCN1A, since no LoF variants have been identified in DEPDC5 and the focus will be on likely pathogenic variants instead. The plan is to map loss-of-function, likely pathogenic, and pathogenic variants in both SCN1A and DEPDC5 to capture key candidates. Raw variant data for both genes will be re-verified and vetted to ensure accuracy.
 
 ---
 
