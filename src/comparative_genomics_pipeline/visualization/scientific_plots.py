@@ -407,8 +407,10 @@ class VariantPlotter(BasePlotter):
         
         
         # Intelligent variant clustering and display
-        variant_positions = vars_df['parsed_position'].values
-        lof_positions = [177, 227, 393, 939, 959, 1289]
+        variant_positions = np.array(vars_df['parsed_position'].values)
+        
+        # Dynamically classify variants from raw data descriptions - NO hardcoding!
+        lof_positions, pathogenic_positions, additional_classifications = self._get_dynamic_variant_classifications(vars_df, title_base)
         
         # Define y-axis limits for vertical lines
         y_min = consv_df['ShannonEntropy_NoGaps'].min()
@@ -420,7 +422,10 @@ class VariantPlotter(BasePlotter):
             regular_positions, lof_variant_positions = self._separate_lof_variants(clustered_positions, lof_positions)
         else:
             lof_mask = np.isin(variant_positions, lof_positions)
-            regular_positions = variant_positions[~lof_mask]
+            pathogenic_mask = np.isin(variant_positions, pathogenic_positions)
+            # Regular positions are those that are neither LOF nor pathogenic
+            regular_mask = ~(lof_mask | pathogenic_mask)
+            regular_positions = variant_positions[regular_mask]
             lof_variant_positions = variant_positions[lof_mask]
         
         # Plot regular variants with density adaptation
@@ -450,16 +455,21 @@ class VariantPlotter(BasePlotter):
                      colors='red', alpha=0.3, linewidth=6, 
                      label=f'Loss-of-function (n={len(lof_variant_positions)})', zorder=4)
             
-            # Add LoF variant annotations if not too many
+            # Add LoF variant annotations with smart positioning to avoid overlap
             if len(lof_variant_positions) <= 10:
-                for pos in lof_variant_positions:
-                    if pos in consv_df['Position'].values:
-                        conservation_score = consv_df[consv_df['Position'] == pos]['ShannonEntropy_NoGaps'].iloc[0]
-                        ax.annotate(f'{pos}', xy=(pos, conservation_score), 
-                                   xytext=(5, 10), textcoords='offset points',
-                                   fontsize=self.theme.tick_fontsize-1, 
-                                   bbox=dict(boxstyle='round,pad=0.3', facecolor='red', alpha=0.7),
-                                   color='white', weight='bold')
+                self._add_smart_annotations(ax, consv_df, lof_variant_positions, 'red', 'LOF')
+        
+        # Highlight pathogenic variants with distinct visual markers
+        pathogenic_mask = np.isin(variant_positions, pathogenic_positions)
+        pathogenic_variant_positions = variant_positions[pathogenic_mask]
+        if len(pathogenic_variant_positions) > 0:
+            ax.vlines(pathogenic_variant_positions, y_min, y_max,
+                     colors='orange', alpha=0.4, linewidth=4, 
+                     label=f'Likely Pathogenic (n={len(pathogenic_variant_positions)})', zorder=3)
+            
+            # Add likely pathogenic variant annotations with smart positioning to avoid overlap
+            if len(pathogenic_variant_positions) <= 15:
+                self._add_smart_annotations(ax, consv_df, pathogenic_variant_positions, 'orange', 'LP')
         
         # Enhanced formatting
         ax.set_xlabel('Protein Position', fontsize=self.theme.label_fontsize)
@@ -503,3 +513,150 @@ class VariantPlotter(BasePlotter):
         regular_positions = positions[~lof_mask]
         lof_variant_positions = positions[lof_mask]
         return regular_positions, lof_variant_positions
+    
+    def _get_dynamic_variant_classifications(self, vars_df: pd.DataFrame, title_base: str) -> Tuple[List[int], List[int], Dict[str, List[int]]]:
+        """Dynamically classify variants based ONLY on raw data descriptions - NO hardcoding."""
+        lof_positions = []
+        pathogenic_positions = []
+        additional_classifications = {
+            'benign': [],
+            'uncertain': [],
+            'borderline': [],
+            'reduced_function': []
+        }
+        
+        # Extract ALL variant classifications DYNAMICALLY from raw description data
+        if 'description' in vars_df.columns:
+            for _, row in vars_df.iterrows():
+                pos = row['parsed_position']
+                desc = str(row.get('description', '')).lower()
+                
+                # Comprehensive variant classification based on actual data descriptions
+                
+                # Likely pathogenic variants (strict matching for scientific accuracy)
+                if 'likely pathogenic' in desc:
+                    pathogenic_positions.append(pos)
+                
+                # Likely benign variants
+                if 'likely benign' in desc:
+                    additional_classifications['benign'].append(pos)
+                
+                # Uncertain significance
+                if 'uncertain significance' in desc:
+                    additional_classifications['uncertain'].append(pos)
+                
+                # Borderline phenotype
+                if 'borderline' in desc:
+                    additional_classifications['borderline'].append(pos)
+                
+                # Reduced function (non-LOF but impaired)
+                if any(term in desc for term in ['reduced function', 'decreased peak current', 'impaired channel', 'reduced current']):
+                    additional_classifications['reduced_function'].append(pos)
+                
+                # Comprehensive LOF detection based on actual data patterns
+                lof_indicators = [
+                    'loss of function',
+                    'loss-of-function',
+                    'non-functional channel',
+                    'results in a non-functional channel',
+                    'complete absence of sodium current',
+                    'absence of sodium current', 
+                    'complete loss of sodium ion transmembrane transport',
+                    'complete loss of sodium'
+                ]
+                
+                if any(indicator in desc for indicator in lof_indicators):
+                    lof_positions.append(pos)
+        
+        # NO HARDCODING! All classifications must come from raw data descriptions.
+        # This ensures the pipeline scales to any gene and accurately reflects the actual data.
+        
+        return sorted(list(set(lof_positions))), sorted(list(set(pathogenic_positions))), additional_classifications
+    
+    def _add_smart_annotations(self, ax: plt.Axes, consv_df: pd.DataFrame, 
+                             positions: np.ndarray, color: str, annotation_type: str) -> None:
+        """Add annotations with smart positioning to avoid overlap."""
+        if len(positions) == 0:
+            return
+        
+        # Sort positions for consistent annotation placement
+        sorted_positions = np.sort(positions)
+        
+        # Calculate minimum distance for overlap detection (in data coordinates)
+        x_range = ax.get_xlim()[1] - ax.get_xlim()[0]
+        # Use smaller threshold for tighter grouping - positions within 30 units are considered overlapping
+        min_distance = min(30, x_range * 0.02)  # 30 positions or 2% of x-range, whichever is smaller
+        
+        # Group positions that are close together
+        position_groups = []
+        current_group = [sorted_positions[0]]
+        
+        for pos in sorted_positions[1:]:
+            if pos - current_group[-1] < min_distance:
+                current_group.append(pos)
+            else:
+                position_groups.append(current_group)
+                current_group = [pos]
+        position_groups.append(current_group)
+        
+        # Get plot boundaries to avoid overlapping with axis labels
+        y_range = ax.get_ylim()[1] - ax.get_ylim()[0]
+        y_min_plot, y_max_plot = ax.get_ylim()
+        
+        # Define safe vertical offsets that stay within plot area
+        # Positive offsets: stay below top 15% of plot area
+        # Negative offsets: stay above bottom 20% of plot area (to avoid x-axis label)
+        safe_top = y_max_plot - (y_range * 0.15)
+        safe_bottom = y_min_plot + (y_range * 0.25)
+        
+        # Calculate offsets in data coordinates (not points)
+        y_offset_data = y_range * 0.06  # 6% of y-range for better spacing
+        y_offsets_data = [y_offset_data, y_offset_data * 2, y_offset_data * 3, y_offset_data * 4,
+                         -y_offset_data, -y_offset_data * 2, -y_offset_data * 3, -y_offset_data * 4]
+        # More varied horizontal offsets for better separation
+        x_offsets_data = [0, x_range * 0.01, -x_range * 0.01, x_range * 0.015, -x_range * 0.015, 
+                         x_range * 0.02, -x_range * 0.02, x_range * 0.008]
+        
+        group_idx = 0
+        for group in position_groups:
+            for i, pos in enumerate(group):
+                if pos in consv_df['Position'].values:
+                    conservation_score = consv_df[consv_df['Position'] == pos]['ShannonEntropy_NoGaps'].iloc[0]
+                    
+                    # Use alternating offsets for overlapping positions
+                    offset_idx = (group_idx * len(group) + i) % len(y_offsets_data)
+                    y_offset_data_val = y_offsets_data[offset_idx]
+                    x_offset_data_val = x_offsets_data[offset_idx]
+                    
+                    # Calculate annotation position in data coordinates
+                    if y_offset_data_val > 0:
+                        # Positive offset: place above, but check if it fits
+                        annotation_y = min(conservation_score + y_offset_data_val, safe_top)
+                    else:
+                        # Negative offset: place below, but check if it fits
+                        annotation_y = max(conservation_score + y_offset_data_val, safe_bottom)
+                    
+                    # Calculate horizontal position with offset
+                    annotation_x = pos + x_offset_data_val
+                    
+                    # Adjust font size for crowded areas
+                    font_size = max(self.theme.tick_fontsize - 2, 6) if len(group) > 3 else self.theme.tick_fontsize - 1
+                    
+                    # Use abbreviated labels for crowded areas
+                    if len(group) > 2:
+                        label = f'{annotation_type}\n{pos}'
+                    else:
+                        label = f'{pos}'
+                    
+                    # Use data coordinates for annotation to keep it within safe area
+                    # Set high z-order to ensure annotations appear on top of all other elements
+                    ax.annotate(label, xy=(pos, conservation_score), 
+                               xytext=(annotation_x, annotation_y), textcoords='data',
+                               fontsize=font_size, 
+                               bbox=dict(boxstyle='round,pad=0.2', facecolor=color, alpha=0.9),
+                               color='white', weight='bold',
+                               ha='center', va='center', zorder=10,
+                               arrowprops=dict(arrowstyle='->', color=color, alpha=0.7, lw=1.5, zorder=9)
+                               if (abs(annotation_y - conservation_score) > y_range * 0.02 or 
+                                   abs(annotation_x - pos) > x_range * 0.005) else None)
+            group_idx += 1
