@@ -32,7 +32,7 @@ A Python pipeline for analyzing evolutionary conservation of epilepsy-associated
 - Multiple sequence alignment via Clustal Omega
 - Phylogenetic tree construction
 - Shannon entropy conservation scoring
-- Human variant mapping (SCN1A and DEPDC5 variants processed)
+- Human variant mapping (SCN1A)
 - Docker containerization
 
 **Limitations:**
@@ -103,7 +103,7 @@ docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
 
 <img src="data/output/variants/SCN1A_conservation_variants_scientific.png" width="800">
 
-**Variant Mapping:** Human SCN1A and DEPDC5 variants overlaid on conservation landscape, with loss-of-function variants highlighted in highly conserved regions.
+**Variant Mapping:** Human SCN1A variant overlaid on conservation landscape, with loss-of-function variants highlighted in highly conserved regions.
 
 ## Research Focus
 
