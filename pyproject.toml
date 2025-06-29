@@ -20,8 +20,36 @@ dependencies = [
   "numpy"
 ]
 
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0.0",
+  "pytest-asyncio>=0.21.0",
+  "pytest-mock>=3.10.0",
+  "pytest-cov>=4.0.0"
+]
+
 [project.scripts]
 comparative-genomics-pipeline = "comparative_genomics_pipeline.__main__:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=comparative_genomics_pipeline",
+    "--cov-report=term-missing",
+    "--cov-report=html:htmlcov",
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests", 
+    "slow: Slow running tests",
+    "api: Tests that require API access",
+]

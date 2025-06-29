@@ -30,7 +30,25 @@ docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
 rm -rf ./data/output/*
 ```
 
-**No testing framework is currently implemented** - this is a known limitation that needs to be addressed.
+**Testing Framework:**
+```bash
+# Install dev dependencies
+pip install -e ".[dev]"
+
+# Run all tests
+pytest
+
+# Run specific test categories
+pytest -m unit          # Unit tests only
+pytest -m integration   # Integration tests only
+pytest -m "not slow"    # Skip slow tests
+
+# Run with coverage
+pytest --cov=comparative_genomics_pipeline --cov-report=html
+
+# Run specific test file
+pytest tests/unit/test_uniprot_client.py
+```
 
 ## Architecture Overview
 
@@ -75,7 +93,7 @@ This is a bioinformatics pipeline for comparative genomics analysis, specificall
 
 ## Current Limitations
 
-- **No testing infrastructure** (no pytest, no unit tests, empty quality/ directory)
+- **Limited test coverage** (basic unit and integration tests implemented, but needs expansion)
 - **Limited error handling** for API failures and network issues
 - **Hardcoded configuration** for specific gene/species combinations
 - **No automated validation** of bioinformatics outputs
