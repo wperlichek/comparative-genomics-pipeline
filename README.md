@@ -88,11 +88,19 @@ docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
 - Statistical significance testing for conservation scores
 - Clinical variant database integration (ClinVar, OMIM)
 
-## Sample Outputs
+## Current Analysis Outputs
 
-| Phylogenetic Analysis | Conservation & Variant Analysis |
-|:--------------------:|:-------------------------------:|
-| ![Tree](data/output/trees/SCN1A_scientific.png) | ![Variants](data/output/variants/SCN1A_conservation_variants_scientific.png) |
+<img src="data/output/trees/SCN1A_scientific.png" width="600">
+
+**Phylogenetic Tree:** Evolutionary relationships confirming expected species divergence patterns.
+
+<img src="data/output/conservation/SCN1A_conservation_scientific.png" width="800">
+
+**Conservation Analysis:** SCN1A evolutionary conservation across 5 vertebrate species showing 90.2% of positions are highly conserved.
+
+<img src="data/output/variants/SCN1A_conservation_variants_scientific.png" width="800">
+
+**Variant Mapping:** 847 human SCN1A variants overlaid on conservation landscape, with loss-of-function variants highlighted in conserved transmembrane domains.
 
 ## Daily Log
 
@@ -112,7 +120,7 @@ Updated conservation-variant plot to separate LoF variants (red) from all varian
 **Answer:** This is primarily a methodological artifact rather than biological reality. The apparent enrichment of variants in conserved regions occurs because: (1) We preferentially analyze protein-coding and functionally important regions that are inherently more conserved, (2) These regions receive more clinical scrutiny leading to better variant detection, and (3) Biologically, variants in truly conserved regions are actually less frequent due to purifying selection, but when present are more likely to be pathogenic and thus reported. The SCN1A analysis validates this - LoF variants cluster in conserved functional domains where they have measurable phenotypic impact.
 
 ### 2025-06-29
-**Plot Simplifications:** Removed histogram panel from variant plots to reduce clutter. Single-panel design with transparent LoF highlighting maintains all essential information.
+**Plot Simplifications:** Removed density distribution panel from conservation plots for cleaner scientific presentation. Single-panel design maintains all essential conservation statistics in legend while improving readability.
 
 ---
 
