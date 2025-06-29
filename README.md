@@ -99,7 +99,7 @@ docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
 
 <img src="data/output/conservation/SCN1A_conservation_scientific.png" width="800">
 
-**Conservation Analysis:** SCN1A and DEPDC5 evolutionary conservation across 5 vertebrate species, with SCN1A showing 90.2% of positions highly conserved.
+**Conservation Analysis:** SCN1A evolutionary conservation across 5 vertebrate species, with SCN1A showing 90.2% of positions highly conserved.
 
 <img src="data/output/variants/SCN1A_conservation_variants_scientific.png" width="800">
 
