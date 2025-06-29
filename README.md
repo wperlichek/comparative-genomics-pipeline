@@ -127,6 +127,9 @@ Updated conservation-variant plot to separate LoF variants (red) from all varian
 
 **Answer:** This is primarily a methodological artifact rather than biological reality. The apparent enrichment of variants in conserved regions occurs because: (1) We preferentially analyze protein-coding and functionally important regions that are inherently more conserved, (2) These regions receive more clinical scrutiny leading to better variant detection, and (3) Biologically, variants in truly conserved regions are actually less frequent due to purifying selection, but when present are more likely to be pathogenic and thus reported. The SCN1A analysis validates this - LoF variants cluster in conserved functional domains where they have measurable phenotypic impact.
 
+### 2025-06-29
+**Plot Simplifications:** Removed histogram panel from variant plots to reduce clutter. Single-panel design with transparent LoF highlighting maintains all essential information.
+
 ---
 
 *Self-directed computational biology project. Ongoing development and validation.*
