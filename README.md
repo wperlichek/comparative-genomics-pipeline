@@ -102,6 +102,8 @@ pytest
 
 ## Current Analysis Outputs
 
+### SCN1A
+
 <img src="data/output/trees/SCN1A_scientific.png" width="600">
 
 **Phylogenetic Tree:** Evolutionary relationships confirming expected species divergence patterns.
@@ -112,7 +114,21 @@ pytest
 
 <img src="data/output/variants/SCN1A_conservation_variants_scientific.png" width="800">
 
-**Variant Mapping:** Human SCN1A variant overlaid on conservation landscape, with loss-of-function variants highlighted in highly conserved regions.
+**Variant Mapping:** Human SCN1A variants with loss-of-function variants highlighted.
+
+### DEPDC5
+
+<img src="data/output/trees/DEPDC5_scientific.png" width="600">
+
+**Phylogenetic Tree:** Evolutionary relationships confirming expected species divergence patterns.
+
+<img src="data/output/conservation/DEPDC5_conservation_scientific.png" width="800">
+
+**Conservation Analysis:** DEPDC5 evolutionary conservation across 5 vertebrate species.
+
+<img src="data/output/variants/DEPDC5_conservation_variants_scientific.png" width="800">
+
+**Variant Mapping:** Human DEPDC5 variants with likely pathogenic variants highlighted.
 
 ## Research Focus
 
