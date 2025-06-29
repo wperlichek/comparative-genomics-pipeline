@@ -99,13 +99,19 @@ async def async_main():
     await collect_orthologous_sequences(uni_prot_client, ncbi_client)
     await align_sequences_msa(ebi_client)
     await generate_phylogenetic_trees(ebi_client)
-    
-    # Fetch and save variants for SCN1A (P35498)
-    accession = "P35498"
-    gene_symbol = "SCN1A"
-    output_dir = str(path_config.VARIANTS_OUTPUT_DIR)
-    logger.info(f"Fetching variants for {accession}...")
-    await uni_prot_client.fetch_protein_variants_by_accession_id(accession, output_dir)
+
+    # Fetch and save variants for all genes in genes_to_proteins.json
+    genes_to_proteins = file_util.open_file_return_as_json(f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json")
+    for gene_name, ortholog_list in genes_to_proteins.items():
+        # Use the first species with a UniProt ID as the canonical for variant mapping
+        canonical = next((o for o in ortholog_list if o.get("species", "").lower() in ["homo sapiens", "human"] and o.get("uniprot_id")), None)
+        if not canonical:
+            canonical = next((o for o in ortholog_list if o.get("uniprot_id")), None)
+        if canonical and canonical.get("uniprot_id"):
+            accession = canonical["uniprot_id"]
+            output_dir = str(path_config.VARIANTS_OUTPUT_DIR)
+            logger.info(f"Fetching variants for {gene_name} ({accession})...")
+            await uni_prot_client.fetch_protein_variants_by_accession_id(accession, output_dir)
 
     # Clean up async clients
     await ebi_client.close()
@@ -113,32 +119,41 @@ async def async_main():
     await ncbi_client.close()
 
     biopython_service.compute_conservation_for_all_msas()
-    
-    # Generate both traditional and scientific plots
+
+    # Generate both traditional and scientific plots for all genes
     logger.info("Generating traditional plots...")
     biopython_service.plot_all_conservation_scores()
     biopython_service.visualize_and_save_trees()
-    
+
     logger.info("Generating scientific publication-quality plots...")
     biopython_service.plot_all_conservation_scientific()
     biopython_service.visualize_trees_scientific()
-    
-    # Generate both traditional and scientific variant plots
-    conservation_csv = str(Path(path_config.CONSERVATION_OUTPUT_DIR) / f"{gene_symbol}_conservation.csv")
-    variants_csv = str(Path(output_dir) / f"{accession}_variants.csv")
-    
-    logger.info("Generating traditional variant plot...")
-    biopython_service.plot_variants_on_conservation(conservation_csv, variants_csv, output_dir)
-    
-    logger.info("Generating scientific variant plot with statistical analysis...")
-    biopython_service.plot_variants_scientific(conservation_csv, variants_csv, output_dir)
 
-    # Example: fetch a PDB structure for SCN1A if available (e.g., AlphaFold model)
+    # Generate both traditional and scientific variant plots for all genes
+    for gene_name, ortholog_list in genes_to_proteins.items():
+        canonical = next((o for o in ortholog_list if o.get("species", "").lower() in ["homo sapiens", "human"] and o.get("uniprot_id")), None)
+        if not canonical:
+            canonical = next((o for o in ortholog_list if o.get("uniprot_id")), None)
+        if canonical and canonical.get("uniprot_id"):
+            accession = canonical["uniprot_id"]
+            conservation_csv = str(Path(path_config.CONSERVATION_OUTPUT_DIR) / f"{gene_name}_conservation.csv")
+            variants_csv = str(Path(path_config.VARIANTS_OUTPUT_DIR) / f"{accession}_variants.csv")
+            output_dir = str(path_config.VARIANTS_OUTPUT_DIR)
+            logger.info(f"Generating traditional variant plot for {gene_name}...")
+            biopython_service.plot_variants_on_conservation(conservation_csv, variants_csv, output_dir)
+            logger.info(f"Generating scientific variant plot with statistical analysis for {gene_name}...")
+            biopython_service.plot_variants_scientific(conservation_csv, variants_csv, output_dir)
+
+    # Example: fetch a PDB structure for each gene if available (e.g., AlphaFold model)
     # Replace with a real PDB ID if known
-    pdb_id = "7DTD"  # Example: replace with actual PDB ID for your protein
-    pdb_path = pdb_client.fetch_pdb(pdb_id, accession=accession)
-    if pdb_path:
-        logger.info(f"Saved PDB structure to {pdb_path}")
+    # for gene_name, ortholog_list in genes_to_proteins.items():
+    #     pdb_id = "7DTD"  # Example: replace with actual PDB ID for your protein
+    #     canonical = next((o for o in ortholog_list if o.get("uniprot_id")), None)
+    #     if canonical:
+    #         accession = canonical["uniprot_id"]
+    #         pdb_path = pdb_client.fetch_pdb(pdb_id, accession=accession)
+    #         if pdb_path:
+    #             logger.info(f"Saved PDB structure to {pdb_path}")
     pdb_client.close()
 
 
