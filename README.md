@@ -1,13 +1,13 @@
 # Comparative Genomics Pipeline
 
-A Python pipeline for analyzing evolutionary conservation of epilepsy-associated ion channel genes across vertebrate species.
+A Python pipeline for analyzing evolutionary conservation of epilepsy-associated genes across vertebrate species, focusing on SCN1A (Dravet syndrome) and DEPDC5 (focal epilepsy).
 
 **Current Status:** Work in progress. Core functionality implemented, testing and validation ongoing.
 
 **Pipeline:** Ortholog retrieval → Multiple sequence alignment → Phylogenetic analysis → Conservation scoring → Human variant mapping
 
-**Primary Gene:** SCN1A (voltage-gated sodium channel)
-**Species:** Human, mouse, macaque, chicken
+**Primary Genes:** SCN1A (voltage-gated sodium channel, Dravet syndrome) and DEPDC5 (mTOR pathway regulator, focal epilepsy)
+**Species:** Human, mouse, macaque, chicken, great tit
 
 ## Implementation
 
@@ -32,11 +32,11 @@ A Python pipeline for analyzing evolutionary conservation of epilepsy-associated
 - Multiple sequence alignment via Clustal Omega
 - Phylogenetic tree construction
 - Shannon entropy conservation scoring
-- Human variant mapping (847 SCN1A variants processed)
+- Human variant mapping (SCN1A and DEPDC5 variants processed)
 - Docker containerization
 
 **Limitations:**
-- Proof-of-concept scale (4 species, 1 gene)
+- Proof-of-concept scale (5 species, 2 genes)
 - Limited error handling and input validation
 - Hardcoded configuration
 - No automated testing suite
@@ -48,30 +48,19 @@ A Python pipeline for analyzing evolutionary conservation of epilepsy-associated
 
 ```bash
 # Local installation
-git clone https://github.com/[your-username]/comparative-genomics-pipeline
-cd comparative-genomics-pipeline
 pip install -e .
 comparative-genomics-pipeline
 
 # Docker (recommended for reproducibility)
 docker build -t genomics-pipeline .
 docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
+
+# Clear previous results
+rm -rf ./data/output/*
+
+# Run tests
+pytest
 ```
-
-📁 **Full requirements:** [docs/requirements.md](docs/requirements.md)
-
-## Results
-
-**SCN1A Analysis (H. sapiens, M. musculus, M. mulatta, G. gallus):**
-- High sequence conservation across vertebrates (~99% identity)
-- Phylogenetic relationships consistent with expected evolutionary divergence
-- 847 human variants successfully mapped to conservation scores
-- Disease variants show clustering in functionally critical transmembrane domains
-
-**Technical Validation:**
-- Successful integration of multiple genomic databases
-- Reproducible Docker workflow
-- Conservation scoring correlates with known functional domains
 
 ## Installation
 
@@ -97,16 +86,52 @@ docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
 - Command-line interface with proper argument parsing
 
 **Planned Extensions:**
-- Additional epilepsy genes (SCN2A, KCNQ2, GABRG2)
+- Enhanced analysis of SCN1A and DEPDC5 variants
 - Protein domain annotation integration
 - Statistical significance testing for conservation scores
 - Clinical variant database integration (ClinVar, OMIM)
 
-## Sample Outputs
+## Current Analysis Outputs
 
-| Conservation Plot | Phylogenetic Tree | Variant Overlay |
-|:----------------:|:----------------:|:---------------:|
-| ![Conservation](data/output/conservation/SCN1A_conservation_entropy.png) | ![Tree](data/output/trees/SCN1A.png) | ![Variants](data/output/variants/SCN1A_conservation_with_variants.png) |
+<img src="data/output/trees/SCN1A_scientific.png" width="600">
+
+**Phylogenetic Tree:** Evolutionary relationships confirming expected species divergence patterns.
+
+<img src="data/output/conservation/SCN1A_conservation_scientific.png" width="800">
+
+**Conservation Analysis:** SCN1A and DEPDC5 evolutionary conservation across 5 vertebrate species, with SCN1A showing 90.2% of positions highly conserved.
+
+<img src="data/output/variants/SCN1A_conservation_variants_scientific.png" width="800">
+
+**Variant Mapping:** Human SCN1A and DEPDC5 variants overlaid on conservation landscape, with loss-of-function variants highlighted in highly conserved regions.
+
+## Research Focus
+
+**SCN1A (Dravet Syndrome):** Voltage-gated sodium channel predominantly expressed in GABAergic interneurons. Loss-of-function variants impair interneuron firing, reducing GABA release and causing network disinhibition leading to hyperexcitability and seizures.
+
+**DEPDC5 (Focal Epilepsy):** DEP domain-containing protein 5, part of the GATOR1 complex that regulates mTOR signaling. Mutations cause focal cortical dysplasia and familial focal epilepsy with variable foci, affecting neural development and excitability through mTOR pathway dysregulation.
+
+## Daily Log
+
+### 2025-06-28
+Confirmed that loss of function variants occurred in highly conserved regions, which was expected and validates the accuracy of the data pipeline.
+
+**Question:** After asking what "loss of function" means and learning that SCN1A LoF variants reduce sodium current, I expected this would cause hypoexcitability, but Dravet syndrome causes hyperexcitability and seizures. Why does REDUCING sodium current promote hyperexcitability?
+
+**Answer:** SCN1A is preferentially expressed in GABAergic interneurons. LoF variants impair interneuron firing, reducing GABA release and disinhibiting the network. Excitatory neurons use multiple sodium channel subtypes and are less SCN1A-dependent.
+
+**Reference:** [Science Translational Medicine - Interneuron-specific dual-AAV SCN1A gene replacement corrects epileptic phenotypes in mouse models of Dravet syndrome](https://www.science.org/doi/10.1126/scitranslmed.adn5603)
+
+Updated conservation-variant plot to separate LoF variants (red) from all variants (orange) in the bottom histogram for better visualization of where critical variants cluster in the conservation distribution.
+
+**Question:** Are variants more likely to occur in regions that are highly conserved because of nature or because we more strictly analyze variants in sequences that are highly conserved and it's a part of their definition?
+
+**Answer:** This is primarily a methodological artifact rather than biological reality. The apparent enrichment of variants in conserved regions occurs because: (1) We preferentially analyze protein-coding and functionally important regions that are inherently more conserved, (2) These regions receive more clinical scrutiny leading to better variant detection, and (3) Biologically, variants in truly conserved regions are actually less frequent due to purifying selection, but when present are more likely to be pathogenic and thus reported. The SCN1A analysis validates this - LoF variants cluster in conserved functional domains where they have measurable phenotypic impact.
+
+### 2025-06-29
+**Plot Simplifications:** Removed density distribution panel from conservation plots for cleaner scientific presentation. Single-panel design maintains all essential conservation statistics in legend while improving readability.
+
+**Research Focus Update:** Pipeline now configured for dual-gene analysis focusing exclusively on SCN1A (Dravet syndrome, voltage-gated sodium channel) and DEPDC5 (focal epilepsy, mTOR pathway regulator). Removed references to other epilepsy genes to concentrate analysis on these two distinct but complementary mechanisms: SCN1A affecting interneuron excitability through sodium channel dysfunction, and DEPDC5 affecting cortical development through mTOR pathway dysregulation.
 
 ---
 
