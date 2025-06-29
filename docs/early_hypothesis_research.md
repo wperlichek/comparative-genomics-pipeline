@@ -6,7 +6,7 @@
 
 ## Follow-up Questions
 
-**Where exactly do those variants occur and why do they occur?**
+**Where exactly do those variants occur?**
 
 **Can we find any evidence of this in other vertebrate species too?**
 
