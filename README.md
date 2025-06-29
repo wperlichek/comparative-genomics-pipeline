@@ -48,7 +48,7 @@ A Python pipeline for analyzing evolutionary conservation of epilepsy-associated
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/[your-username]/comparative-genomics-pipeline.git
+git clone https://github.com/wperlichek/comparative-genomics-pipeline.git
 cd comparative-genomics-pipeline
 ```
 
