@@ -437,16 +437,12 @@ class VariantPlotter(BasePlotter):
         # Statistical analysis
         stats_results = self._analyze_variant_conservation(consv_df, vars_df)
         
-        # Create plot
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=self.config.figsize_variants,
-                                      height_ratios=[3, 1])
+        # Create plot (single panel)
+        fig, ax = plt.subplots(1, 1, figsize=self.config.figsize_variants)
         
         # Main variant overlay plot
-        self._plot_variant_overlay_main(ax1, consv_df, vars_df, stats_results,
+        self._plot_variant_overlay_main(ax, consv_df, vars_df, stats_results,
                                        conservation_csv.stem)
-        
-        # Variant conservation distribution
-        self._plot_variant_conservation_dist(ax2, consv_df, vars_df, stats_results)
         
         plt.tight_layout()
         
@@ -572,10 +568,10 @@ class VariantPlotter(BasePlotter):
                          colors=variant_color, alpha=self.config.variant_line_alpha,
                          linewidth=self.config.variant_line_width, label=variant_label, zorder=2)
         
-        # Always highlight loss-of-function variants prominently
+        # Always highlight loss-of-function variants prominently (transparent to show conservation underneath)
         if len(lof_variant_positions) > 0:
             ax.vlines(lof_variant_positions, y_min, y_max,
-                     colors='red', alpha=0.9, linewidth=4, 
+                     colors='red', alpha=0.3, linewidth=6, 
                      label=f'Loss-of-function (n={len(lof_variant_positions)})', zorder=4)
             
             # Add LoF variant annotations if not too many
