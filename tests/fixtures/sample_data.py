@@ -67,16 +67,16 @@ SAMPLE_GENE_CONFIG = {
             "entrez_protein_id": "XP_001101023.1"
         }
     ],
-    "KCNQ2": [
+    "DEPDC5": [
         {
             "species": "Homo sapiens",
-            "uniprot_id": "O43526",
-            "entrez_protein_id": "ENSP00000355839.4"
+            "uniprot_id": "O75140",
+            "entrez_protein_id": ""
         },
         {
             "species": "Mus musculus", 
-            "uniprot_id": "Q9Z0N7",
-            "entrez_protein_id": "ENSMUSP00000063773.11"
+            "uniprot_id": "Q8VHI3",
+            "entrez_protein_id": ""
         }
     ]
 }

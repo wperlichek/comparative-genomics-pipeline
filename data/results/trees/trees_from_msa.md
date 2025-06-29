@@ -9,8 +9,7 @@
    human/rabbit are mammals and chickens are birds. 
 
 2. **Are there any unexpected relationships or placements in the tree?**
-   No. We see GABRA1 SCN2A and SCN1A have rabbit/human close and chicken far horizontally, which is intuitive. 
-   CACNA1H and KCNQ2 the chicken is closer to human/rabbit horizontally. 
+   No. We see SCN1A has rabbit/human close and chicken far horizontally, which is intuitive. 
    On a high level, we would expect some proteins to diverge and some to be conserved depending on evolutionary constraints.
 
 3. **How well supported are the branches (if support values are available)?**
@@ -21,16 +20,14 @@
    expect to see distance from rabbit and human.
 
 5. **What might explain any discrepancies or surprises in the tree?**
-   The KCNQ2.png suggests this protein is highly conserved across human,
-   rabbit, and chicken. Other genes show more obvious evolutionary
-   distance.
+   SCN1A appears highly conserved across human, rabbit, and chicken.
 
 6. **How do the expanded groups (reptiles, amphibians, bony fish, insects, nematodes, cephalopods, jawless vertebrates) affect the tree’s structure and interpretation?**
    - Are new major clades or unexpected groupings observed with the inclusion of these additional species?
 
-   Taking SCNA1 as example: all new groups are still about same group length, suggesting as before that SCNA1 is highly conserved and important. 
+   Taking SCN1A as example: all new groups are still about same group length, suggesting SCN1A is highly conserved and important. 
 
-   Taking GARBA1 as example, it's interesting that human, rabbit, and chicken now appear close together compared to distance in the other groups.
+   For DEPDC5, we expect to see conservation patterns related to its role in focal epilepsy pathways.
 
    My key observation here is that although chicken and human might have appear divergent when we only had Human, rabbit, chicken plotted, when we start plotting much different groups, we see how similar human, chicken, and rabbit are in all protein structures we're analyzing.
 
@@ -40,7 +37,7 @@
 
    - Are there any surprising placements or long branches that suggest rapid evolution or gene loss in certain lineages?
 
-   For GABRA1, yes. The length between "chicken" and "lizard" is significant, suggesting rapid evolution or gene loss.
+   Analysis will focus on SCN1A and DEPDC5 evolutionary patterns across vertebrates.
 
 7. **What changes, if any, are observed in the findings or interpretations compared to the tree with only mammals and birds?**
    - Are the mammal/bird groupings still as distinct, or do new patterns emerge?

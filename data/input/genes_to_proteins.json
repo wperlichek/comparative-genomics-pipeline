@@ -25,5 +25,32 @@
             "uniprot_id": "",
             "entrez_protein_id": "XP_015490172.1"
         }
+    ],
+    "DEPDC5": [
+        {
+            "species": "Homo sapiens",
+            "uniprot_id": "O75140",
+            "entrez_protein_id": ""
+        },
+        {
+            "species": "Mus musculus",
+            "uniprot_id": "Q8VHI3",
+            "entrez_protein_id": ""
+        },
+        {
+            "species": "Macaca mulatta",
+            "uniprot_id": "",
+            "entrez_protein_id": ""
+        },
+        {
+            "species": "Gallus gallus",
+            "uniprot_id": "",
+            "entrez_protein_id": ""
+        },
+        {
+            "species": "Parus major",
+            "uniprot_id": "",
+            "entrez_protein_id": ""
+        }
     ]
 }

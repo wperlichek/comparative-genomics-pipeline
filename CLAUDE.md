@@ -52,7 +52,7 @@ pytest tests/unit/test_uniprot_client.py
 
 ## Architecture Overview
 
-This is a bioinformatics pipeline for comparative genomics analysis, specifically focused on epilepsy-related ion channel genes (primarily SCN1A) across vertebrate species. The pipeline performs ortholog retrieval, multiple sequence alignment, phylogenetic analysis, conservation scoring, and human variant mapping.
+This is a bioinformatics pipeline for comparative genomics analysis, specifically focused on epilepsy-related genes SCN1A (Dravet syndrome) and DEPDC5 (focal epilepsy) across vertebrate species. The pipeline performs ortholog retrieval, multiple sequence alignment, phylogenetic analysis, conservation scoring, and human variant mapping.
 
 **Core Workflow:**
 1. Ortholog Collection (UniProt/NCBI APIs)
@@ -97,7 +97,7 @@ This is a bioinformatics pipeline for comparative genomics analysis, specificall
 - **Limited error handling** for API failures and network issues
 - **Hardcoded configuration** for specific gene/species combinations
 - **No automated validation** of bioinformatics outputs
-- **Proof-of-concept scale** (currently 5 species, 1 primary gene)
+- **Proof-of-concept scale** (currently 5 species, 2 primary genes: SCN1A and DEPDC5)
 
 ## External Dependencies
 

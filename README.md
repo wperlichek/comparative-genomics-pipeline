@@ -1,12 +1,12 @@
 # Comparative Genomics Pipeline
 
-A Python pipeline for analyzing evolutionary conservation of epilepsy-associated ion channel genes across vertebrate species.
+A Python pipeline for analyzing evolutionary conservation of epilepsy-associated genes across vertebrate species, focusing on SCN1A (Dravet syndrome) and DEPDC5 (focal epilepsy).
 
 **Current Status:** Work in progress. Core functionality implemented, testing and validation ongoing.
 
 **Pipeline:** Ortholog retrieval → Multiple sequence alignment → Phylogenetic analysis → Conservation scoring → Human variant mapping
 
-**Primary Gene:** SCN1A (voltage-gated sodium channel)
+**Primary Genes:** SCN1A (voltage-gated sodium channel, Dravet syndrome) and DEPDC5 (mTOR pathway regulator, focal epilepsy)
 **Species:** Human, mouse, macaque, chicken, great tit
 
 ## Implementation
@@ -32,11 +32,11 @@ A Python pipeline for analyzing evolutionary conservation of epilepsy-associated
 - Multiple sequence alignment via Clustal Omega
 - Phylogenetic tree construction
 - Shannon entropy conservation scoring
-- Human variant mapping (847 SCN1A variants processed)
+- Human variant mapping (SCN1A and DEPDC5 variants processed)
 - Docker containerization
 
 **Limitations:**
-- Proof-of-concept scale (4 species, 1 gene)
+- Proof-of-concept scale (5 species, 2 genes)
 - Limited error handling and input validation
 - Hardcoded configuration
 - No automated testing suite
@@ -57,6 +57,9 @@ docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
 
 # Clear previous results
 rm -rf ./data/output/*
+
+# Run tests
+pytest
 ```
 
 ## Installation
@@ -83,7 +86,7 @@ docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
 - Command-line interface with proper argument parsing
 
 **Planned Extensions:**
-- Additional epilepsy genes (SCN2A, KCNQ2, GABRG2)
+- Enhanced analysis of SCN1A and DEPDC5 variants
 - Protein domain annotation integration
 - Statistical significance testing for conservation scores
 - Clinical variant database integration (ClinVar, OMIM)
@@ -96,11 +99,17 @@ docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
 
 <img src="data/output/conservation/SCN1A_conservation_scientific.png" width="800">
 
-**Conservation Analysis:** SCN1A evolutionary conservation across 5 vertebrate species showing 90.2% of positions are highly conserved.
+**Conservation Analysis:** SCN1A and DEPDC5 evolutionary conservation across 5 vertebrate species, with SCN1A showing 90.2% of positions highly conserved.
 
 <img src="data/output/variants/SCN1A_conservation_variants_scientific.png" width="800">
 
-**Variant Mapping:** 847 human SCN1A variants overlaid on conservation landscape, with loss-of-function variants highlighted in highly conserved regions.
+**Variant Mapping:** Human SCN1A and DEPDC5 variants overlaid on conservation landscape, with loss-of-function variants highlighted in highly conserved regions.
+
+## Research Focus
+
+**SCN1A (Dravet Syndrome):** Voltage-gated sodium channel predominantly expressed in GABAergic interneurons. Loss-of-function variants impair interneuron firing, reducing GABA release and causing network disinhibition leading to hyperexcitability and seizures.
+
+**DEPDC5 (Focal Epilepsy):** DEP domain-containing protein 5, part of the GATOR1 complex that regulates mTOR signaling. Mutations cause focal cortical dysplasia and familial focal epilepsy with variable foci, affecting neural development and excitability through mTOR pathway dysregulation.
 
 ## Daily Log
 
@@ -121,6 +130,8 @@ Updated conservation-variant plot to separate LoF variants (red) from all varian
 
 ### 2025-06-29
 **Plot Simplifications:** Removed density distribution panel from conservation plots for cleaner scientific presentation. Single-panel design maintains all essential conservation statistics in legend while improving readability.
+
+**Research Focus Update:** Pipeline now configured for dual-gene analysis focusing exclusively on SCN1A (Dravet syndrome, voltage-gated sodium channel) and DEPDC5 (focal epilepsy, mTOR pathway regulator). Removed references to other epilepsy genes to concentrate analysis on these two distinct but complementary mechanisms: SCN1A affecting interneuron excitability through sodium channel dysfunction, and DEPDC5 affecting cortical development through mTOR pathway dysregulation.
 
 ---
 
