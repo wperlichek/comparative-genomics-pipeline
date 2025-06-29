@@ -136,6 +136,8 @@ pytest
 
 **DEPDC5 (Focal Epilepsy):** DEP domain-containing protein 5, part of the GATOR1 complex that regulates mTOR signaling. Mutations cause focal cortical dysplasia and familial focal epilepsy with variable foci, affecting neural development and excitability through mTOR pathway dysregulation.
 
+*For detailed research motivations and hypotheses, see [docs/early_hypothesis_research.md](docs/early_hypothesis_research.md).*
+
 ## Daily Log
 
 ### 2025-06-28
