@@ -2,6 +2,18 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## CRITICAL: Scientific Accuracy Mandate
+
+**ABSOLUTE PRIORITY:** Scientific accuracy is the highest priority when working with this bioinformatics pipeline. Never make biological or scientific claims that are not directly supported by the data or analysis results. Always:
+
+1. **Stick to the data:** Only describe what the pipeline actually measures/computes, not biological interpretations
+2. **Avoid inferences:** Do not infer protein domains, functional regions, or biological mechanisms unless explicitly annotated in the data
+3. **Distinguish analysis from biology:** Clearly separate computational results (e.g., "highly conserved regions") from biological claims (e.g., "transmembrane domains")
+4. **Verify annotations:** Check that claimed features (domains, motifs, functional sites) are actually present in the pipeline output, not assumed from biological knowledge
+5. **When uncertain:** Always err on the side of being more conservative and factual rather than more interpretive
+
+This is a research tool - scientific integrity is non-negotiable.
+
 ## Commands
 
 **Installation & Execution:**

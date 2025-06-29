@@ -100,7 +100,7 @@ docker run --rm -v $(pwd)/data:/app/data genomics-pipeline
 
 <img src="data/output/variants/SCN1A_conservation_variants_scientific.png" width="800">
 
-**Variant Mapping:** 847 human SCN1A variants overlaid on conservation landscape, with loss-of-function variants highlighted in conserved transmembrane domains.
+**Variant Mapping:** 847 human SCN1A variants overlaid on conservation landscape, with loss-of-function variants highlighted in highly conserved regions.
 
 ## Daily Log
 
