@@ -100,7 +100,9 @@ pytest
 - Statistical significance testing for conservation scores
 - Clinical variant database integration (ClinVar, OMIM)
 
-## Current Analysis Outputs
+## Current Analysis Outputs 🔄
+
+*These outputs are dynamically generated with fresh data from genomic databases on every pipeline run.*
 
 ### SCN1A
 
