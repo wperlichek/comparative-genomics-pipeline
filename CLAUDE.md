@@ -93,11 +93,11 @@ This is a bioinformatics pipeline for comparative genomics analysis, specificall
 
 ## Current Limitations
 
-- **Limited test coverage** (basic unit and integration tests implemented, but needs expansion)
+- **Test coverage needs expansion** (unit and integration tests implemented for core modules, but broader coverage needed)
 - **Limited error handling** for API failures and network issues
 - **Hardcoded configuration** for specific gene/species combinations
 - **No automated validation** of bioinformatics outputs
-- **Proof-of-concept scale** (currently 5 species, 2 primary genes: SCN1A and DEPDC5)
+- **Research scale** (currently 5 species, 2 primary genes: SCN1A and DEPDC5)
 
 ## External Dependencies
 
@@ -112,6 +112,8 @@ This is a bioinformatics pipeline for comparative genomics analysis, specificall
 - `README.md` - Project overview with current results and roadmap
 - `docs/requirements.md` - Detailed technical requirements
 - **`docs/early_hypothesis_research.md` - Core research questions and hypothesis driving all analysis work**
+- `docs/reference_papers.md` - Key research papers and citations supporting the analysis
+- `docs/research_log.md` - Development progress and research notes
 
 ## Working Preferences & Collaboration Style
 
