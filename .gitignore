@@ -6,3 +6,13 @@ dist/
 __pycache__/
 *.egg-info/
 .coverage
+
+# AWS CLI installation artifacts
+aws/
+awscliv2.zip
+*.zip
+
+# AWS credentials (safety)
+.aws/
+*.pem
+*.key
