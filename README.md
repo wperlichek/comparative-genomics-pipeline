@@ -102,7 +102,7 @@ pytest
 
 ## Current Analysis Outputs 🔄
 
-*These outputs are dynamically generated with fresh data from genomic databases on every pipeline run.*
+*These outputs are generated from genomic databases with S3 caching for protein sequences*
 
 ### SCN1A
 
@@ -145,6 +145,8 @@ pytest
 *For research motivations, see [docs/early_hypothesis_research.md](docs/early_hypothesis_research.md).*
 
 *For ongoing research findings and insights, see [docs/research_log.md](docs/research_log.md).*
+
+*For academic papers and literature references, see [docs/reference_papers.md](docs/reference_papers.md).*
 
 ---
 
