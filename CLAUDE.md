@@ -102,6 +102,7 @@ The pipeline is a functional bioinformatics research tool that has successfully 
 **✅ Fully Implemented:**
 - Complete 8-step async pipeline orchestration
 - All external API integrations (UniProt, NCBI, EBI, ClinVar, PDB)
+- AWS S3 caching for UniProt FASTA sequences with graceful fallback
 - Multiple sequence alignment and phylogenetic tree generation
 - Conservation scoring with Shannon entropy analysis
 - Clinical variant mapping and visualization
@@ -114,7 +115,6 @@ The pipeline is a functional bioinformatics research tool that has successfully 
 - Performance optimization (sequential gene processing)
 
 **❌ Not Yet Implemented:**
-- AWS S3 caching for API responses
 - Automated CI/CD pipeline
 - Advanced error recovery systems
 
@@ -123,12 +123,12 @@ The pipeline is a functional bioinformatics research tool that has successfully 
 **Performance Bottlenecks:**
 - **EBI Clustal Omega dependency**: External service wait times for alignment jobs
 - **Sequential processing**: Genes processed one at a time rather than in parallel
-- **No API caching**: Repeated calls for same sequence/variant data
+- **Partial API caching**: FASTA sequences cached in S3, but variants and NCBI data still hit APIs repeatedly
 
 **Infrastructure Gaps:**
-- **No API caching**: Repeated UniProt/NCBI calls slow development iteration
 - **Limited test coverage**: 18% coverage, significant gaps in service layer testing
 - **Basic error handling**: Minimal retry logic, no circuit breakers
+- **Partial S3 integration**: Only UniProt sequences cached, variants and NCBI data still uncached
 
 **Research Scale Constraints:**
 - **Species limitation**: Currently optimized for 5 vertebrate species
