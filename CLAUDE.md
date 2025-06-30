@@ -91,6 +91,8 @@ This is a bioinformatics pipeline for comparative genomics analysis, specificall
 
 **Configuration-Driven Design:** Centralized configuration in `config/` directory with structured input via JSON rather than command-line arguments.
 
+**API Format Preference:** Always prefer JSON over XML for API calls unless JSON is not available for a specific endpoint.
+
 ## Current Limitations
 
 - **Test coverage needs expansion** (unit and integration tests implemented for core modules, but broader coverage needed)

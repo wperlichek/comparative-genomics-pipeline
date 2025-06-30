@@ -69,10 +69,24 @@ class PlotConfig:
     cluster_nearby_variants: bool = True
     cluster_distance: int = 10  # Group variants within this distance
     
+    # Variant classification colors
+    variant_colors: Dict[str, str] = None
+    
     # Output settings
     output_format: str = 'png'
     output_dpi: int = 300
     bbox_inches: str = 'tight'
+    
+    def __post_init__(self):
+        if self.variant_colors is None:
+            self.variant_colors = {
+                'pathogenic': '#C73E1D',
+                'likely_pathogenic': '#F18F01', 
+                'uncertain': '#808080',
+                'likely_benign': '#A8D5BA',
+                'benign': '#2E86AB',
+                'other': '#9B9B9B'
+            }
     
     def apply_theme(self, theme: PlotTheme) -> None:
         """Apply scientific theme to matplotlib."""
@@ -103,6 +117,25 @@ class PlotConfig:
             'xtick.color': theme.text_color,
             'ytick.color': theme.text_color,
         })
+
+
+# ClinVar plotting constants
+CLINICAL_SIGNIFICANCE_MAPPING = {
+    'pathogenic': 'Pathogenic',
+    'likely_pathogenic': 'Likely Pathogenic',
+    'benign': 'Benign',
+    'likely_benign': 'Likely Benign',
+    'uncertain': 'Uncertain',
+    'vus': 'Uncertain',
+    'other': 'Other'
+}
+
+PLOT_POSITIONING = {
+    'example_text_x': 0.02,
+    'example_text_y': 0.98,
+    'bar_label_offset': 0.5,
+    'example_box_padding': 0.3
+}
 
 
 # Predefined themes

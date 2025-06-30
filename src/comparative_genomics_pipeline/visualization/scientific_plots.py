@@ -12,7 +12,7 @@ from scipy import stats
 from scipy.signal import savgol_filter
 from Bio import Phylo
 
-from .plot_config import PlotConfig, PlotTheme, PUBLICATION_THEME
+from .plot_config import PlotConfig, PlotTheme, PUBLICATION_THEME, CLINICAL_SIGNIFICANCE_MAPPING, PLOT_POSITIONING
 
 
 class BasePlotter:
@@ -679,3 +679,172 @@ class VariantPlotter(BasePlotter):
                                if (abs(annotation_y - conservation_score) > y_range * 0.02 or 
                                    abs(annotation_x - pos) > x_range * 0.005) else None)
             group_idx += 1
+
+
+class ClinVarPlotter(BasePlotter):
+    """ClinVar variant visualization with clean, pythonic implementation."""
+    
+    def plot_clinvar_variants(self, scn1a_csv: Path, depdc5_csv: Path, 
+                             output_dir: Optional[Path] = None) -> Path:
+        """
+        Plot ClinVar variant clinical significance for multiple genes.
+        
+        Args:
+            scn1a_csv: Path to SCN1A ClinVar variants CSV
+            depdc5_csv: Path to DEPDC5 ClinVar variants CSV
+            output_dir: Output directory for plot
+            
+        Returns:
+            Path to saved plot
+        """
+        import logging
+        logger = logging.getLogger(__name__)
+        
+        try:
+            gene_data = self._load_gene_data(scn1a_csv, depdc5_csv)
+            output_dir = output_dir or scn1a_csv.parent
+            
+            fig, axes = plt.subplots(1, len(gene_data), figsize=self.config.figsize_variants)
+            if len(gene_data) == 1:
+                axes = [axes]
+            
+            for ax, (gene_name, df) in zip(axes, gene_data.items()):
+                self._plot_single_gene(ax, gene_name, df)
+            
+            self._apply_common_styling(axes)
+            plt.tight_layout()
+            
+            output_path = output_dir / f"clinvar_variants_comparison.{self.config.output_format}"
+            self._save_figure(fig, output_path)
+            
+            logger.info(f"ClinVar variants plot saved to {output_path}")
+            return output_path
+            
+        except Exception as e:
+            logger.error(f"Failed to plot ClinVar variants: {e}")
+            raise
+    
+    def _load_gene_data(self, *csv_paths: Path) -> Dict[str, pd.DataFrame]:
+        """Load gene data from CSV files, extracting gene names from filenames."""
+        gene_data = {}
+        for csv_path in csv_paths:
+            if csv_path.exists():
+                gene_name = self._extract_gene_name(csv_path.name)
+                gene_data[gene_name] = pd.read_csv(csv_path)
+            else:
+                gene_name = self._extract_gene_name(csv_path.name)
+                gene_data[gene_name] = pd.DataFrame()
+        return gene_data
+    
+    def _extract_gene_name(self, filename: str) -> str:
+        """Extract gene name from filename (e.g., 'SCN1A_clinvar_variants.csv' -> 'SCN1A')."""
+        return filename.split('_')[0].upper()
+    
+    def _count_clinical_significance(self, df: pd.DataFrame) -> Dict[str, int]:
+        """Count variants by clinical significance using configurable mapping."""
+        if df.empty:
+            return {}
+        
+        counts = {}
+        for sig in df.get('clinical_significance', []):
+            sig_lower = str(sig).lower()
+            
+            # Use mapping to classify significance
+            classification = self._classify_significance(sig_lower)
+            counts[classification] = counts.get(classification, 0) + 1
+        
+        return counts
+    
+    def _classify_significance(self, sig_lower: str) -> str:
+        """Classify clinical significance using configuration mapping."""
+        # Check compound classifications first
+        if 'likely pathogenic' in sig_lower:
+            return CLINICAL_SIGNIFICANCE_MAPPING['likely_pathogenic']
+        if 'likely benign' in sig_lower:
+            return CLINICAL_SIGNIFICANCE_MAPPING['likely_benign']
+        
+        # Then check simple classifications
+        for key_pattern, display_name in CLINICAL_SIGNIFICANCE_MAPPING.items():
+            if key_pattern in sig_lower and key_pattern not in ['likely_pathogenic', 'likely_benign']:
+                return display_name
+        
+        return CLINICAL_SIGNIFICANCE_MAPPING['other']
+    
+    def _plot_single_gene(self, ax: plt.Axes, gene_name: str, df: pd.DataFrame) -> None:
+        """Plot variants for a single gene."""
+        counts = self._count_clinical_significance(df)
+        
+        if not counts:
+            ax.text(0.5, 0.5, 'No data available', 
+                   transform=ax.transAxes, ha='center', va='center')
+            ax.set_title(f'{gene_name} ClinVar Variants\nTotal: 0',
+                        fontsize=self.theme.title_fontsize, fontweight='bold')
+            return
+        
+        # Create bars with configured colors
+        bars = ax.bar(counts.keys(), counts.values(), 
+                     color=[self._get_variant_color(k) for k in counts.keys()])
+        
+        # Set title and labels
+        ax.set_title(f'{gene_name} ClinVar Variants\nTotal: {len(df)}',
+                    fontsize=self.theme.title_fontsize, fontweight='bold')
+        ax.set_ylabel('Count', fontsize=self.theme.label_fontsize)
+        
+        # Add count labels on bars
+        self._add_bar_labels(ax, bars)
+        
+        # Add example pathogenic variants
+        self._add_pathogenic_examples(ax, df)
+    
+    def _get_variant_color(self, significance: str) -> str:
+        """Get color for variant significance category."""
+        color_key = significance.lower().replace(' ', '_')
+        return self.config.variant_colors.get(color_key, self.theme.primary_color)
+    
+    def _add_bar_labels(self, ax: plt.Axes, bars) -> None:
+        """Add count labels on top of bars."""
+        for bar in bars:
+            height = bar.get_height()
+            ax.text(bar.get_x() + bar.get_width() / 2., 
+                   height + PLOT_POSITIONING['bar_label_offset'],
+                   f'{int(height)}', ha='center', va='bottom')
+    
+    def _add_pathogenic_examples(self, ax: plt.Axes, df: pd.DataFrame) -> None:
+        """Add examples of pathogenic variants if available."""
+        pathogenic_mask = df['clinical_significance'].str.contains(
+            'pathogenic', case=False, na=False)
+        pathogenic_examples = df[pathogenic_mask]
+        
+        if pathogenic_examples.empty:
+            return
+        
+        example_changes = self._extract_protein_changes(pathogenic_examples)
+        if example_changes:
+            self._add_example_text(ax, example_changes)
+    
+    def _extract_protein_changes(self, df: pd.DataFrame, max_examples: int = 2) -> List[str]:
+        """Extract protein change examples from dataframe."""
+        changes = []
+        for _, row in df.head(3).iterrows():
+            protein_change = row.get('protein_change')
+            if pd.notna(protein_change) and str(protein_change).strip():
+                first_change = str(protein_change).split(',')[0].strip()
+                if first_change:
+                    changes.append(first_change)
+                if len(changes) >= max_examples:
+                    break
+        return changes
+    
+    def _add_example_text(self, ax: plt.Axes, example_changes: List[str]) -> None:
+        """Add example text box to plot."""
+        text = f"Examples: {', '.join(example_changes)}"
+        ax.text(PLOT_POSITIONING['example_text_x'], 
+               PLOT_POSITIONING['example_text_y'], 
+               text, transform=ax.transAxes, fontsize=8, va='top',
+               bbox=dict(boxstyle='round,pad=0.3', facecolor='lightgray', alpha=0.7))
+    
+    def _apply_common_styling(self, axes: List[plt.Axes]) -> None:
+        """Apply common styling to all axes."""
+        for ax in axes:
+            ax.tick_params(axis='x', rotation=45)
+            ax.grid(True, alpha=0.3)

@@ -2,6 +2,7 @@ import asyncio
 import logging
 import sys
 from .client import UniProtClient, NCBIClient, EBIClient, pdp_client
+from .client.clinvar_client import ClinVarClient
 from .config import logging_config, path_config
 from .util import file_util
 from .service import biopython_service
@@ -316,17 +317,31 @@ async def async_main() -> int:
             logger.error("Failed to generate phylogenetic trees. Aborting pipeline.")
             return 1
         
-        # Step 4: Fetch variants
-        logger.info("Step 4: Fetching protein variants...")
+        # Step 4: Fetch ClinVar variants
+        logger.info("Step 4: Fetching ClinVar variants...")
+        clinvar_client = ClinVarClient()
+        genes_to_proteins = file_util.open_file_return_as_json(
+            f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json"
+        )
+        
+        if genes_to_proteins:
+            for gene_name in genes_to_proteins.keys():
+                try:
+                    variants = await clinvar_client.get_gene_variants(gene_name, limit=100)
+                    if variants:
+                        # Save variants to CSV
+                        import pandas as pd
+                        df = pd.DataFrame(variants)
+                        variants_dir = path_config.VARIANTS_OUTPUT_DIR
+                        variants_dir.mkdir(parents=True, exist_ok=True)
+                        df.to_csv(variants_dir / f"{gene_name}_clinvar_variants.csv", index=False)
+                        logger.info(f"Saved {len(variants)} ClinVar variants for {gene_name}")
+                except Exception as e:
+                    logger.error(f"Failed to fetch ClinVar variants for {gene_name}: {e}")
+        
+        # Step 5: Fetch UniProt variants
+        logger.info("Step 5: Fetching UniProt variants...")
         try:
-            genes_to_proteins = file_util.open_file_return_as_json(
-                f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json"
-            )
-            
-            if not genes_to_proteins:
-                logger.error("Failed to load genes configuration for variant fetching")
-                return 1
-            
             variant_fetch_errors = 0
             for gene_name, ortholog_list in genes_to_proteins.items():
                 try:
@@ -440,6 +455,25 @@ async def async_main() -> int:
                 
         except Exception as e:
             logger.error(f"Critical error in variant plot generation: {e}")
+            return 1
+        
+        # Step 8: Generate ClinVar comparison plot
+        logger.info("Step 8: Generating ClinVar comparison plot...")
+        try:
+            from .visualization.scientific_plots import ClinVarPlotter
+            clinvar_plotter = ClinVarPlotter()
+            
+            scn1a_clinvar = path_config.VARIANTS_OUTPUT_DIR / "SCN1A_clinvar_variants.csv"
+            depdc5_clinvar = path_config.VARIANTS_OUTPUT_DIR / "DEPDC5_clinvar_variants.csv"
+            
+            if scn1a_clinvar.exists() or depdc5_clinvar.exists():
+                clinvar_plotter.plot_clinvar_variants(scn1a_clinvar, depdc5_clinvar, path_config.VARIANTS_OUTPUT_DIR)
+                logger.info("Generated ClinVar variants comparison plot")
+            else:
+                logger.warning("No ClinVar variant files found for plotting")
+                
+        except Exception as e:
+            logger.error(f"Failed to generate ClinVar comparison plot: {e}")
             return 1
         
         logger.info("Pipeline completed successfully!")

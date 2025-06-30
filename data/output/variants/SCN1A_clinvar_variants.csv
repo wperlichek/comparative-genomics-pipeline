@@ -1,0 +1,101 @@
+id,title,clinical_significance,gene_symbol,variation_type,protein_change
+3905828,NM_001165963.4(SCN1A):c.3002C>T (p.Ala1001Val),Uncertain significance,SCN1A,single nucleotide variant,"A1001V, A187V, A972V, A973V, A989V, A990V"
+3905539,NM_001165963.4(SCN1A):c.4698T>G (p.Ser1566Arg),Uncertain significance,LOC102724058,single nucleotide variant,"S1537R, S1538R, S1554R, S1555R, S1566R, S752R"
+3903424,NM_001165963.4(SCN1A):c.1568C>G (p.Ser523Cys),Uncertain significance,SCN1A,single nucleotide variant,"S522C, S523C"
+3903334,NM_001165963.4(SCN1A):c.3027G>T (p.Met1009Ile),Uncertain significance,SCN1A,single nucleotide variant,"M1009I, M195I, M980I, M981I, M997I, M998I"
+3903202,NM_001165963.4(SCN1A):c.3136G>A (p.Asp1046Asn),Uncertain significance,LOC102724058,single nucleotide variant,"D1017N, D1018N, D1034N, D1035N, D1046N, D232N"
+3903176,NM_001165963.4(SCN1A):c.2306T>A (p.Phe769Tyr),Uncertain significance,SCN1A,single nucleotide variant,"F740Y, F741Y, F757Y, F758Y, F769Y"
+3902633,NM_001165963.4(SCN1A):c.4210G>C (p.Glu1404Gln),Uncertain significance,LOC102724058,single nucleotide variant,"E1375Q, E1376Q, E1392Q, E1393Q, E1404Q, E590Q"
+3899433,NM_001165963.4(SCN1A):c.3737A>G (p.Lys1246Arg),Uncertain significance,LOC102724058,single nucleotide variant,"K1217R, K1218R, K1234R, K1235R, K1246R, K432R"
+3899055,NM_001165963.4(SCN1A):c.448C>T (p.Pro150Ser),Uncertain significance,SCN1A,single nucleotide variant,P150S
+3898719,NM_001165963.4(SCN1A):c.1202T>C (p.Ile401Thr),Uncertain significance,SCN1A,single nucleotide variant,I401T
+3898256,NM_001165963.4(SCN1A):c.964+5G>T,Uncertain significance,SCN1A,single nucleotide variant,
+3897874,NM_001165963.4(SCN1A):c.2945del (p.Val982fs),Pathogenic,SCN1A,Deletion,"V168fs, V953fs, V954fs, V970fs, V971fs, V982fs"
+3897828,NM_001165963.4(SCN1A):c.3706G>A (p.Ala1236Thr),Pathogenic,LOC102724058,single nucleotide variant,"A1207T, A1208T, A1224T, A1225T, A1236T, A422T"
+3897808,NM_001165963.4(SCN1A):c.5424C>A (p.Phe1808Leu),Pathogenic,LOC102724058,single nucleotide variant,"F1779L, F1780L, F1796L, F1797L, F1808L, F994L"
+3897768,NM_001165963.4(SCN1A):c.4937T>A (p.Ile1646Asn),Likely pathogenic,LOC102724058,single nucleotide variant,"I1617N, I1618N, I1634N, I1635N, I1646N, I832N"
+3892360,NM_001165963.4(SCN1A):c.880A>G (p.Lys294Glu),Uncertain significance,SCN1A,single nucleotide variant,K294E
+3892359,NM_001165963.4(SCN1A):c.3239A>G (p.Asn1080Ser),Uncertain significance,LOC102724058,single nucleotide variant,"N1051S, N1052S, N266S, N1068S, N1080S, N1069S"
+3793180,NM_001165963.4(SCN1A):c.611C>T (p.Thr204Ile),Uncertain significance,SCN1A,single nucleotide variant,T204I
+3781290,NM_001165963.4(SCN1A):c.1096_1106delinsT (p.Asp366fs),Pathogenic,SCN1A,Indel,D366fs
+3781056,NM_001165963.4(SCN1A):c.659T>C (p.Val220Ala),Likely pathogenic,SCN1A,single nucleotide variant,V220A
+3780583,NM_001165963.4(SCN1A):c.3986G>A (p.Arg1329Gln),Uncertain significance,LOC102724058,single nucleotide variant,"R1300Q, R1301Q, R1317Q, R1318Q, R1329Q, R515Q"
+3778727,NM_001165963.4(SCN1A):c.3899C>A (p.Thr1300Lys),Likely pathogenic,LOC102724058,single nucleotide variant,"T1271K, T1272K, T1288K, T1289K, T1300K, T486K"
+3778587,NM_001165963.4(SCN1A):c.465G>A (p.Lys155=),Uncertain significance,SCN1A,single nucleotide variant,
+3778440,NM_001165963.4(SCN1A):c.2058A>G (p.Glu686=),Uncertain significance,SCN1A,single nucleotide variant,
+3778438,NM_001165963.4(SCN1A):c.160G>C (p.Asp54His),Uncertain significance,SCN1A,single nucleotide variant,D54H
+3777568,NM_001165963.4(SCN1A):c.5816_5817insA (p.Phe1940fs),Uncertain significance,LOC102724058,Insertion,"F1126fs, F1911fs, F1912fs, F1928fs, F1929fs, F1940fs"
+3777040,NM_001165963.4(SCN1A):c.472_473+2del,Likely pathogenic,SCN1A,Deletion,
+3776663,NM_001165963.4(SCN1A):c.5370T>G (p.Ser1790Arg),Uncertain significance,LOC102724058,single nucleotide variant,"S1761R, S1762R, S1778R, S1779R, S1790R, S976R"
+3776229,NM_001165963.4(SCN1A):c.2931_2932insGTTTCGGTG (p.Val977_Ile978insValSerVal),Uncertain significance,SCN1A,Insertion,
+3776159,NM_001165963.4(SCN1A):c.2470C>G (p.Pro824Ala),Uncertain significance,SCN1A,single nucleotide variant,"P10A, P795A, P796A, P812A, P813A, P824A"
+3776066,NM_001165963.4(SCN1A):c.4105T>C (p.Phe1369Leu),Uncertain significance,LOC102724058,single nucleotide variant,"F1340L, F1341L, F1357L, F1358L, F1369L, F555L"
+3775752,NM_001165963.4(SCN1A):c.105_106del (p.Asn36fs),Likely pathogenic,SCN1A,Deletion,N36fs
+3775730,NM_001165963.4(SCN1A):c.4925G>C (p.Arg1642Thr),Uncertain significance,LOC102724058,single nucleotide variant,"R1613T, R1614T, R1630T, R1631T, R1642T, R828T"
+3775611,NM_001165963.4(SCN1A):c.3307A>G (p.Met1103Val),Uncertain significance,LOC102724058,single nucleotide variant,"M1074V, M1075V, M1091V, M1092V, M1103V, M289V"
+3775606,NM_001165963.4(SCN1A):c.114del (p.Lys38fs),Likely pathogenic,SCN1A,Deletion,K38fs
+3775523,NM_001165963.4(SCN1A):c.5243del (p.Pro1748fs),Likely pathogenic,LOC102724058,Deletion,"P1719fs, P1720fs, P1736fs, P1737fs, P1748fs, P934fs"
+3775455,NM_001165963.4(SCN1A):c.287G>T (p.Gly96Val),Uncertain significance,SCN1A,single nucleotide variant,G96V
+3775405,NM_001165963.4(SCN1A):c.332T>A (p.Leu111Ter),Pathogenic,SCN1A,single nucleotide variant,L111*
+3775374,NM_001165963.4(SCN1A):c.238C>A (p.Leu80Met),Uncertain significance,SCN1A,single nucleotide variant,L80M
+3775239,NM_001165963.4(SCN1A):c.4003-2A>G,Likely pathogenic,LOC102724058,single nucleotide variant,
+3775165,NM_001165963.4(SCN1A):c.4266del (p.Leu1423fs),Likely pathogenic,LOC102724058,Deletion,"L1394fs, L1395fs, L1411fs, L1412fs, L1423fs, L609fs"
+3774817,NM_001165963.4(SCN1A):c.4009G>C (p.Val1337Leu),Uncertain significance,LOC102724058,single nucleotide variant,"V1308L, V1309L, V1325L, V1326L, V1337L, V523L"
+3774196,NM_001165963.4(SCN1A):c.3160C>G (p.Leu1054Val),Uncertain significance,LOC102724058,single nucleotide variant,"L1025V, L1026V, L1042V, L1043V, L1054V, L240V"
+3773645,NM_001165963.4(SCN1A):c.3967C>A (p.Pro1323Thr),Pathogenic,LOC102724058,single nucleotide variant,"P1294T, P1295T, P1311T, P1312T, P1323T, P509T"
+3772555,NM_001165963.4(SCN1A):c.4876G>T (p.Glu1626Ter),Likely pathogenic,LOC102724058,single nucleotide variant,"E1597*, E1598*, E1614*, E1615*, E1626*, E812*"
+3772283,NM_001165963.4(SCN1A):c.3251G>C (p.Ser1084Thr),Uncertain significance,LOC102724058,single nucleotide variant,"S1055T, S1056T, S1072T, S1073T, S1084T, S270T"
+3770224,GRCh37/hg19 2q24.3(chr2:166800000-167280000)x1,Pathogenic,SCN1A,copy number loss,
+3770211,NM_001165963.4(SCN1A):c.5116_5117del (p.Asn1706fs),Likely pathogenic,LOC102724058,Deletion,"N1677fs, N1678fs, N1694fs, N1695fs, N1706fs, N892fs"
+3770210,NM_001165963.4(SCN1A):c.4576C>A (p.Pro1526Thr),Likely pathogenic,LOC102724058,single nucleotide variant,"P1497T, P1498T, P1514T, P1515T, P1526T, P712T"
+3770209,NM_001165963.4(SCN1A):c.3076del (p.Tyr1025_Val1026insTer),Pathogenic,SCN1A,Deletion,
+3770208,NM_001165963.4(SCN1A):c.2357C>T (p.Ala786Val),Likely pathogenic,SCN1A,single nucleotide variant,"A757V, A758V, A774V, A775V, A786V"
+3770207,NM_001165963.4(SCN1A):c.1037C>A (p.Pro346Gln),Likely pathogenic,SCN1A,single nucleotide variant,P346Q
+3770094,NM_001165963.4(SCN1A):c.2768T>C (p.Ile923Thr),Uncertain significance,SCN1A,single nucleotide variant,"I109T, I894T, I895T, I911T, I912T, I923T"
+3767577,NM_001165963.4(SCN1A):c.5348C>G (p.Ala1783Gly),Pathogenic,LOC102724058,single nucleotide variant,"A1754G, A1755G, A1771G, A1772G, A1783G, A969G"
+3767232,NM_001165963.4(SCN1A):c.4028C>T (p.Ala1343Val),Likely pathogenic,LOC102724058,single nucleotide variant,"A1314V, A1315V, A1331V, A1332V, A1343V, A529V"
+3766806,NM_001165963.4(SCN1A):c.4898C>G (p.Thr1633Ser),Uncertain significance,LOC102724058,single nucleotide variant,"T1604S, T1605S, T1621S, T1622S, T1633S, T819S"
+3766388,NM_001165963.4(SCN1A):c.4616C>A (p.Thr1539Asn),Uncertain significance,LOC102724058,single nucleotide variant,"T1510N, T1511N, T1527N, T1528N, T1539N, T725N"
+3766191,NM_001165963.4(SCN1A):c.1667T>C (p.Leu556Ser),Uncertain significance,SCN1A,single nucleotide variant,"L555S, L556S"
+3765580,NM_001165963.4(SCN1A):c.2603A>C (p.Lys868Thr),Uncertain significance,SCN1A,single nucleotide variant,"K54T, K839T, K840T, K856T, K857T, K868T"
+3764807,NM_001165963.4(SCN1A):c.2748C>A (p.Tyr916Ter),Pathogenic,SCN1A,single nucleotide variant,"Y102*, Y887*, Y888*, Y904*, Y905*, Y916*"
+3764452,NM_001165963.4(SCN1A):c.70G>C (p.Ala24Pro),Uncertain significance,SCN1A,single nucleotide variant,A24P
+3731475,NM_001165963.4(SCN1A):c.4712C>T (p.Thr1571Ile),Uncertain significance,LOC102724058,single nucleotide variant,"T1542I, T1543I, T1559I, T1560I, T1571I, T757I"
+3731276,NM_001165963.4(SCN1A):c.4419C>T (p.Phe1473=),Uncertain significance,LOC102724058,single nucleotide variant,
+3731154,NM_001165963.4(SCN1A):c.3138T>G (p.Asp1046Glu),Uncertain significance,LOC102724058,single nucleotide variant,"D1018E, D1035E, D232E, D1017E, D1034E, D1046E"
+3730874,NM_001165963.4(SCN1A):c.2150C>T (p.Ala717Val),Uncertain significance,SCN1A,single nucleotide variant,"A705V, A688V, A689V, A717V, A706V"
+3730041,NM_001165963.4(SCN1A):c.2415+11T>C,Likely benign,SCN1A,single nucleotide variant,
+3729368,NM_001165963.4(SCN1A):c.4062T>A (p.Cys1354Ter),Pathogenic,LOC102724058,single nucleotide variant,"C1342*, C1325*, C1326*, C1343*, C1354*, C540*"
+3728845,NM_001165963.4(SCN1A):c.3146_3150dup (p.Leu1051fs),Pathogenic,LOC102724058,Duplication,"L1040fs, L1022fs, L1051fs, L237fs, L1023fs, L1039fs"
+3728526,NM_001165963.4(SCN1A):c.4003-23_4003-19del,Likely benign,LOC102724058,Microsatellite,
+3728263,NM_001165963.4(SCN1A):c.1377+2T>A,Pathogenic,SCN1A,single nucleotide variant,
+3727205,NM_001165963.4(SCN1A):c.1773A>C (p.Ala591=),Likely benign,SCN1A,single nucleotide variant,
+3726782,NM_001165963.4(SCN1A):c.4182T>C (p.Thr1394=),Likely benign,LOC102724058,single nucleotide variant,
+3726776,NM_001165963.4(SCN1A):c.3550G>A (p.Gly1184Ser),Uncertain significance,LOC102724058,single nucleotide variant,"G1173S, G1156S, G1184S, G1155S, G1172S, G370S"
+3726249,NM_001165963.4(SCN1A):c.3054G>A (p.Arg1018=),Likely benign,SCN1A,single nucleotide variant,
+3725092,NM_001165963.4(SCN1A):c.1448C>A (p.Ser483Ter),Pathogenic,SCN1A,single nucleotide variant,"S482*, S483*"
+3724492,NM_001165963.4(SCN1A):c.383+6C>T,Uncertain significance,SCN1A,single nucleotide variant,
+3722319,NM_001165963.4(SCN1A):c.316del (p.Ser106fs),Pathogenic,SCN1A,Deletion,S106fs
+3720382,NM_001165963.4(SCN1A):c.541G>T (p.Glu181Ter),Pathogenic,SCN1A,single nucleotide variant,E181*
+3720380,NM_001165963.4(SCN1A):c.869A>G (p.His290Arg),Uncertain significance,SCN1A,single nucleotide variant,H290R
+3720379,NM_001165963.4(SCN1A):c.1042G>T (p.Gly348Ter),Pathogenic,SCN1A,single nucleotide variant,G348*
+3720378,NM_001165963.4(SCN1A):c.1152G>A (p.Trp384Ter),Pathogenic,SCN1A,single nucleotide variant,W384*
+3720374,NM_001165963.4(SCN1A):c.2259T>G (p.Tyr753Ter),Pathogenic,SCN1A,single nucleotide variant,"Y753*, Y742*, Y741*, Y725*, Y724*"
+3720372,NM_001165963.4(SCN1A):c.2412C>G (p.Asn804Lys),Pathogenic,SCN1A,single nucleotide variant,"N792K, N776K, N775K, N793K, N804K"
+3720369,NM_001165963.4(SCN1A):c.3851G>C (p.Trp1284Ser),Pathogenic,LOC102724058,single nucleotide variant,"W1256S, W1272S, W1273S, W1284S, W1255S, W470S"
+3720368,NM_001165963.4(SCN1A):c.4133del (p.Asn1378fs),Pathogenic,LOC102724058,Deletion,"N1367fs, N1350fs, N1378fs, N1349fs, N1366fs, N564fs"
+3720366,NM_001165963.4(SCN1A):c.5107G>T (p.Asp1703Tyr),Likely pathogenic,LOC102724058,single nucleotide variant,"D1674Y, D1675Y, D1703Y, D1692Y, D1691Y, D889Y"
+3720365,NM_001165963.4(SCN1A):c.5298dup (p.Val1767fs),Pathogenic,LOC102724058,Duplication,"V1755fs, V1739fs, V1756fs, V1767fs, V1738fs, V953fs"
+3720277,NM_001165963.4(SCN1A):c.2177-12_2177-11insTC,Likely benign,SCN1A,Insertion,
+3719767,NM_001165963.4(SCN1A):c.3354T>C (p.Ala1118=),Likely benign,LOC102724058,single nucleotide variant,
+3718677,NM_001165963.4(SCN1A):c.3218T>C (p.Leu1073Pro),Uncertain significance,LOC102724058,single nucleotide variant,"L1044P, L1062P, L1073P, L1061P, L1045P, L259P"
+3717649,NM_001165963.4(SCN1A):c.544G>C (p.Asp182His),Uncertain significance,SCN1A,single nucleotide variant,D182H
+3717197,NM_001165963.4(SCN1A):c.3934A>G (p.Ile1312Val),Uncertain significance,LOC102724058,single nucleotide variant,"I1301V, I1312V, I1300V, I1283V, I1284V, I498V"
+3716670,NM_001165963.4(SCN1A):c.3638G>T (p.Arg1213Leu),Uncertain significance,LOC102724058,single nucleotide variant,"R1213L, R1185L, R1201L, R1202L, R1184L, R399L"
+3716442,NM_001165963.4(SCN1A):c.4181C>G (p.Thr1394Ser),Uncertain significance,LOC102724058,single nucleotide variant,"T1394S, T1365S, T1382S, T1366S, T1383S, T580S"
+3715698,NM_001165963.4(SCN1A):c.1806G>A (p.Glu602=),Likely benign,SCN1A,single nucleotide variant,
+3713676,NM_001165963.4(SCN1A):c.1950G>A (p.Val650=),Likely benign,SCN1A,single nucleotide variant,
+3713658,NM_001165963.4(SCN1A):c.5708A>G (p.Tyr1903Cys),Uncertain significance,LOC102724058,single nucleotide variant,"Y1875C, Y1891C, Y1892C, Y1903C, Y1874C, Y1089C"
+3712924,NM_001165963.4(SCN1A):c.5826C>T (p.Tyr1942=),Likely benign,LOC102724058,single nucleotide variant,
+3712539,NM_001165963.4(SCN1A):c.5857CTT[1] (p.Leu1954del),Uncertain significance,LOC102724058,Microsatellite,"L1926del, L1942del, L1925del, L1954del, L1140del, L1943del"
+3710718,NM_001165963.4(SCN1A):c.2650G>A (p.Gly884Ser),Uncertain significance,SCN1A,single nucleotide variant,"G70S, G856S, G884S, G872S, G855S, G873S"
