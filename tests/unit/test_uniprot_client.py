@@ -8,8 +8,9 @@ class TestUniProtClient:
     
     @pytest.fixture
     def client(self):
-        """Create UniProt client instance."""
-        return UniProtClient()
+        """Create UniProt client instance with S3 disabled."""
+        with patch('comparative_genomics_pipeline.client.uniprot_client.get_aws_config', side_effect=ValueError("Test mode - no AWS")):
+            return UniProtClient()
     
     @pytest.fixture
     def mock_response(self):

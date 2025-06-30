@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import sys
+import subprocess
 from .client import UniProtClient, NCBIClient, EBIClient, pdp_client
 from .client.clinvar_client import ClinVarClient
 from .config import logging_config, path_config
@@ -517,6 +518,38 @@ async def async_main() -> int:
                 logger.warning(error)
 
 
+def run_tests() -> bool:
+    """Run tests before starting the pipeline.
+    
+    Returns:
+        bool: True if all tests pass, False otherwise
+    """
+    try:
+        print("Running tests before starting pipeline...")
+        result = subprocess.run(
+            ["python", "-m", "pytest", "-v", "--tb=short"],
+            capture_output=True,
+            text=True,
+            timeout=120  # 2 minute timeout
+        )
+        
+        if result.returncode == 0:
+            print("✅ All tests passed!")
+            return True
+        else:
+            print("❌ Tests failed!")
+            print("STDOUT:", result.stdout[-1000:])  # Last 1000 chars
+            print("STDERR:", result.stderr[-1000:])  # Last 1000 chars
+            return False
+            
+    except subprocess.TimeoutExpired:
+        print("❌ Tests timed out after 2 minutes")
+        return False
+    except Exception as e:
+        print(f"❌ Error running tests: {e}")
+        return False
+
+
 def main() -> int:
     """Main entry point for the comparative genomics pipeline.
     
@@ -525,6 +558,14 @@ def main() -> int:
     """
     try:
         logging_config.setup_logging()
+        
+        # Run tests first
+        if not run_tests():
+            logger.error("Tests failed - aborting pipeline execution")
+            print("\n❌ Pipeline aborted due to test failures")
+            print("Fix the failing tests before running the pipeline")
+            return 1
+        
         logger.info("Starting comparative genomics pipeline...")
         
         # Validate critical paths exist

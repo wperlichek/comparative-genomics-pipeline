@@ -39,8 +39,9 @@ class TestPipelineWorkflow:
     @pytest.mark.integration
     async def test_uniprot_to_ebi_workflow(self, mock_uniprot_responses, mock_ebi_responses):
         """Test the workflow from UniProt sequence retrieval to EBI alignment."""
-        # Setup clients
-        uniprot_client = UniProtClient()
+        # Setup clients with S3 disabled for testing
+        with patch('comparative_genomics_pipeline.client.uniprot_client.get_aws_config', side_effect=ValueError("Test mode - no AWS")):
+            uniprot_client = UniProtClient()
         ebi_client = EBIClient()
         
         try:
