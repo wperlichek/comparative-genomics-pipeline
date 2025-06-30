@@ -786,15 +786,15 @@ class ClinVarPlotter(BasePlotter):
                      color=[self._get_variant_color(k) for k in counts.keys()])
         
         # Set title and labels
-        ax.set_title(f'{gene_name} ClinVar Variants\nTotal: {len(df)}',
+        total_count = len(df) if not df.empty else 0
+        ax.set_title(f'{gene_name} ClinVar Variants\nTotal: {total_count}',
                     fontsize=self.theme.title_fontsize, fontweight='bold')
         ax.set_ylabel('Count', fontsize=self.theme.label_fontsize)
         
         # Add count labels on bars
         self._add_bar_labels(ax, bars)
         
-        # Add example pathogenic variants
-        self._add_pathogenic_examples(ax, df)
+        # Skip example pathogenic variants to keep plot clean
     
     def _get_variant_color(self, significance: str) -> str:
         """Get color for variant significance category."""
@@ -809,39 +809,6 @@ class ClinVarPlotter(BasePlotter):
                    height + PLOT_POSITIONING['bar_label_offset'],
                    f'{int(height)}', ha='center', va='bottom')
     
-    def _add_pathogenic_examples(self, ax: plt.Axes, df: pd.DataFrame) -> None:
-        """Add examples of pathogenic variants if available."""
-        pathogenic_mask = df['clinical_significance'].str.contains(
-            'pathogenic', case=False, na=False)
-        pathogenic_examples = df[pathogenic_mask]
-        
-        if pathogenic_examples.empty:
-            return
-        
-        example_changes = self._extract_protein_changes(pathogenic_examples)
-        if example_changes:
-            self._add_example_text(ax, example_changes)
-    
-    def _extract_protein_changes(self, df: pd.DataFrame, max_examples: int = 2) -> List[str]:
-        """Extract protein change examples from dataframe."""
-        changes = []
-        for _, row in df.head(3).iterrows():
-            protein_change = row.get('protein_change')
-            if pd.notna(protein_change) and str(protein_change).strip():
-                first_change = str(protein_change).split(',')[0].strip()
-                if first_change:
-                    changes.append(first_change)
-                if len(changes) >= max_examples:
-                    break
-        return changes
-    
-    def _add_example_text(self, ax: plt.Axes, example_changes: List[str]) -> None:
-        """Add example text box to plot."""
-        text = f"Examples: {', '.join(example_changes)}"
-        ax.text(PLOT_POSITIONING['example_text_x'], 
-               PLOT_POSITIONING['example_text_y'], 
-               text, transform=ax.transAxes, fontsize=8, va='top',
-               bbox=dict(boxstyle='round,pad=0.3', facecolor='lightgray', alpha=0.7))
     
     def _apply_common_styling(self, axes: List[plt.Axes]) -> None:
         """Apply common styling to all axes."""

@@ -22,3 +22,6 @@ Updated conservation-variant plot to separate LoF variants (red) from all varian
 
 **DEPDC5 data added:**
 Early data from DEPDC5 looks promising but raises questions on how best to display comparisons with SCN1A, since no LoF variants have been identified in DEPDC5 and the focus will be on likely pathogenic variants instead. The plan is to map loss-of-function, likely pathogenic, and pathogenic variants in both SCN1A and DEPDC5 to capture key candidates. Raw variant data for both genes will be re-verified and vetted to ensure accuracy.
+
+## 2025-06-30
+Starting to dig into the ClinVar data to see how it compares with the variant info I got from UniProt. Want to cross-reference these two sources since they might have different coverage or different ways of classifying the same variants. ClinVar tends to be more clinically focused while UniProt has broader variant annotations, so comparing them should give a better picture of what variants are actually relevant for patients vs. what's just been observed in the lab.

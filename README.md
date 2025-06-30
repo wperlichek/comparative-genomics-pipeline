@@ -130,6 +130,10 @@ pytest
 
 **Variant Mapping:** Human DEPDC5 variants with likely pathogenic variants highlighted.
 
+<img src="data/output/variants/clinvar_variants_comparison.png" width="800">
+
+**ClinVar Variant Analysis:** Raw ClinVar data showing pathogenic and likely pathogenic variants for SCN1A and DEPDC5.
+
 ## Research Focus
 
 **SCN1A (Dravet Syndrome):** Voltage-gated sodium channel predominantly expressed in GABAergic interneurons. Loss-of-function variants impair interneuron firing, reducing GABA release and causing network disinhibition leading to hyperexcitability and seizures.
