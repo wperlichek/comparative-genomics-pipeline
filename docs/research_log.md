@@ -27,3 +27,8 @@ Early data from DEPDC5 looks promising but raises questions on how best to displ
 Starting to dig into the ClinVar data to see how it compares with the variant info I got from UniProt. Want to cross-reference these two sources since they might have different coverage or different ways of classifying the same variants. ClinVar tends to be more clinically focused while UniProt has broader variant annotations, so comparing them should give a better picture of what variants are actually relevant for patients vs. what's just been observed in the lab.
 
 **Technical Note:** Integrated AWS S3 caching for immutable FASTA sequence retrieval to reduce dependency on external APIs. UniProt protein sequences are cached in S3 after first retrieval, enabling faster pipeline iterations and protection against API rate limits. Graceful fallback ensures pipeline continues to work for users without AWS configuration. Cost negligible (~$0.01/month) for current research scale.
+
+## 2025-07-01
+Observation: clinical variants like in data/output/variants/DEPDC5_clinvar_variants.csv contain a lot more
+detailed information what I got back from UniProt. I need to understand why that is
+and if it's useful or bad practine to use variants from both sources. 
