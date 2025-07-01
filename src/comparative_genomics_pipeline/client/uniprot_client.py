@@ -65,7 +65,7 @@ class UniProtClient:
             return ""
 
     async def fetch_protein_variants_by_accession_id(
-        self, accession_id: str, output_dir: str
+        self, accession_id: str, output_dir: str, gene_name: str = None
     ):
         url = f"{self.BASE_URL}{accession_id}.json"
         logger.info(f"Requesting UniProt JSON for {accession_id}: {url}")
@@ -102,7 +102,8 @@ class UniProtClient:
                 )
         logger.info(f"Extracted {len(variants)} variant features for {accession_id}")
         Path(output_dir).mkdir(parents=True, exist_ok=True)
-        out_path = Path(output_dir) / f"{accession_id}_variants.csv"
+        filename = f"{gene_name}_{accession_id}_variants.csv" if gene_name else f"{accession_id}_variants.csv"
+        out_path = Path(output_dir) / filename
         with open(out_path, "w", newline="") as csvfile:
             writer = csv.DictWriter(
                 csvfile, fieldnames=["position", "original", "variant", "description"]
@@ -110,7 +111,8 @@ class UniProtClient:
             writer.writeheader()
             for v in variants:
                 writer.writerow(v)
-        logger.info(f"Saved {len(variants)} variants for {accession_id} to {out_path}")
+        identifier = gene_name if gene_name else accession_id
+        logger.info(f"Saved {len(variants)} variants for {identifier} to {out_path}")
 
     async def close(self):
         await self.client.aclose()

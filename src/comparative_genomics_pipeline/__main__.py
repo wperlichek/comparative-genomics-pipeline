@@ -361,7 +361,7 @@ async def async_main() -> int:
                         output_dir = str(path_config.VARIANTS_OUTPUT_DIR)
                         logger.info(f"Fetching variants for {gene_name} ({accession})...")
                         
-                        await uni_prot_client.fetch_protein_variants_by_accession_id(accession, output_dir)
+                        await uni_prot_client.fetch_protein_variants_by_accession_id(accession, output_dir, gene_name)
                         
                     else:
                         logger.warning(f"No UniProt ID found for {gene_name}. Skipping variant fetch.")
@@ -427,7 +427,7 @@ async def async_main() -> int:
                     if canonical and canonical.get("uniprot_id"):
                         accession = canonical["uniprot_id"]
                         conservation_csv = str(Path(path_config.CONSERVATION_OUTPUT_DIR) / f"{gene_name}_conservation.csv")
-                        variants_csv = str(Path(path_config.VARIANTS_OUTPUT_DIR) / f"{accession}_variants.csv")
+                        variants_csv = str(Path(path_config.VARIANTS_OUTPUT_DIR) / f"{gene_name}_variants.csv")
                         output_dir = str(path_config.VARIANTS_OUTPUT_DIR)
                         
                         # Check if required files exist

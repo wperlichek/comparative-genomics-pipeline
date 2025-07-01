@@ -1,4 +1,9 @@
 id,title,clinical_significance,gene_symbol,variation_type,protein_change
+3906776,NM_001165963.4(SCN1A):c.3050A>C (p.Asp1017Ala),Uncertain significance,SCN1A,single nucleotide variant,"D1005A, D1006A, D1017A, D203A, D988A, D989A"
+3906526,NM_001165963.4(SCN1A):c.5828A>G (p.Asn1943Ser),Uncertain significance,LOC102724058,single nucleotide variant,"N1129S, N1914S, N1915S, N1931S, N1932S, N1943S"
+3906499,NM_001165963.4(SCN1A):c.644T>G (p.Leu215Trp),Pathogenic,SCN1A,single nucleotide variant,L215W
+3906492,NM_001165963.4(SCN1A):c.937G>C (p.Asp313His),Uncertain significance,SCN1A,single nucleotide variant,D313H
+3906367,NM_001165963.4(SCN1A):c.3275T>A (p.Val1092Asp),Uncertain significance,LOC102724058,single nucleotide variant,"V1063D, V1064D, V1080D, V1081D, V1092D, V278D"
 3905828,NM_001165963.4(SCN1A):c.3002C>T (p.Ala1001Val),Uncertain significance,SCN1A,single nucleotide variant,"A1001V, A187V, A972V, A973V, A989V, A990V"
 3905539,NM_001165963.4(SCN1A):c.4698T>G (p.Ser1566Arg),Uncertain significance,LOC102724058,single nucleotide variant,"S1537R, S1538R, S1554R, S1555R, S1566R, S752R"
 3903424,NM_001165963.4(SCN1A):c.1568C>G (p.Ser523Cys),Uncertain significance,SCN1A,single nucleotide variant,"S522C, S523C"
@@ -94,8 +99,3 @@ id,title,clinical_significance,gene_symbol,variation_type,protein_change
 3716670,NM_001165963.4(SCN1A):c.3638G>T (p.Arg1213Leu),Uncertain significance,LOC102724058,single nucleotide variant,"R1213L, R1185L, R1201L, R1202L, R1184L, R399L"
 3716442,NM_001165963.4(SCN1A):c.4181C>G (p.Thr1394Ser),Uncertain significance,LOC102724058,single nucleotide variant,"T1394S, T1365S, T1382S, T1366S, T1383S, T580S"
 3715698,NM_001165963.4(SCN1A):c.1806G>A (p.Glu602=),Likely benign,SCN1A,single nucleotide variant,
-3713676,NM_001165963.4(SCN1A):c.1950G>A (p.Val650=),Likely benign,SCN1A,single nucleotide variant,
-3713658,NM_001165963.4(SCN1A):c.5708A>G (p.Tyr1903Cys),Uncertain significance,LOC102724058,single nucleotide variant,"Y1875C, Y1891C, Y1892C, Y1903C, Y1874C, Y1089C"
-3712924,NM_001165963.4(SCN1A):c.5826C>T (p.Tyr1942=),Likely benign,LOC102724058,single nucleotide variant,
-3712539,NM_001165963.4(SCN1A):c.5857CTT[1] (p.Leu1954del),Uncertain significance,LOC102724058,Microsatellite,"L1926del, L1942del, L1925del, L1954del, L1140del, L1943del"
-3710718,NM_001165963.4(SCN1A):c.2650G>A (p.Gly884Ser),Uncertain significance,SCN1A,single nucleotide variant,"G70S, G856S, G884S, G872S, G855S, G873S"

@@ -97,10 +97,10 @@ class TestUniProtClient:
         }
         
         with patch.object(client.client, 'get', return_value=mock_response):
-            await client.fetch_protein_variants_by_accession_id("P35498", str(temp_data_dir))
+            await client.fetch_protein_variants_by_accession_id("P35498", str(temp_data_dir), "SCN1A")
             
-            # Check that CSV file was created
-            csv_file = temp_data_dir / "P35498_variants.csv"
+            # Check that CSV file was created with gene name and accession ID
+            csv_file = temp_data_dir / "SCN1A_P35498_variants.csv"
             assert csv_file.exists()
             
             # Check CSV content
@@ -113,7 +113,7 @@ class TestUniProtClient:
         """Test handling of network errors in variant fetching."""
         with patch.object(client.client, 'get', side_effect=httpx.RequestError("Network error")):
             # Should not raise exception, just log error
-            await client.fetch_protein_variants_by_accession_id("P35498", str(temp_data_dir))
+            await client.fetch_protein_variants_by_accession_id("P35498", str(temp_data_dir), "SCN1A")
 
     @pytest.mark.unit
     async def test_close(self, client):
