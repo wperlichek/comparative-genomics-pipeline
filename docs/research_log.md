@@ -30,5 +30,5 @@ Starting to dig into the ClinVar data to see how it compares with the variant in
 
 ## 2025-07-01
 Observation: clinical variants like in data/output/variants/DEPDC5_clinvar_variants.csv contain a lot more
-detailed information what I got back from UniProt. I need to understand why that is
+detailed information than what I got back from UniProt. I need to understand why that is
 and if it's useful or bad practine to use variants from both sources. 
