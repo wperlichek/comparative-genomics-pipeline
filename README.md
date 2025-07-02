@@ -44,7 +44,7 @@ A Python pipeline for analyzing evolutionary conservation of epilepsy-associated
 
 ## 🧠 AI-Assisted Development
 
-This project uses Claude AI to help with boilerplate code generation, plot refinements, and documentation. I believe AI makes it so we can focus more on the research rather than the code—experienced programmers can shepherd and review code and orchestrate an app rather than spend time on coding details that are becoming more trivial every day.
+This project uses Claude AI to help with boilerplate code generation, plot refinements, and documentation. I believe AI makes it so we can focus more on the research rather than the code — experienced programmers can shepherd and review code and orchestrate an app rather than spend time on coding details that are sometimes important to dive into but often not.
 
 ## 🛠️ Installation & Usage
 
