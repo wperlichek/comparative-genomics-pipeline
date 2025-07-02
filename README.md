@@ -114,8 +114,6 @@ pytest
 
 **Conservation Analysis:** SCN1A evolutionary conservation across 5 vertebrate species, with SCN1A showing 90.2% of positions highly conserved.
 
-**Variant Mapping:** Human SCN1A variants with loss-of-function variants analyzed (see `data/output/variants/SCN1A_*_variants.csv`).
-
 <img src="data/output/variants/SCN1A_conservation_variants_scientific.png" width="800">
 
 **Conservation & Variants:** SCN1A conservation analysis with loss-of-function and likely pathogenic variants overlaid, showing variant distribution across conserved and variable regions.
@@ -129,8 +127,6 @@ pytest
 <img src="data/output/conservation/DEPDC5_conservation_scientific.png" width="800">
 
 **Conservation Analysis:** DEPDC5 evolutionary conservation across 5 vertebrate species.
-
-**Variant Mapping:** Human DEPDC5 variants with likely pathogenic variants analyzed (see `data/output/variants/DEPDC5_*_variants.csv`).
 
 <img src="data/output/variants/DEPDC5_conservation_variants_scientific.png" width="800">
 
