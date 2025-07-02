@@ -427,7 +427,7 @@ async def async_main() -> int:
                     if canonical and canonical.get("uniprot_id"):
                         accession = canonical["uniprot_id"]
                         conservation_csv = str(Path(path_config.CONSERVATION_OUTPUT_DIR) / f"{gene_name}_conservation.csv")
-                        variants_csv = str(Path(path_config.VARIANTS_OUTPUT_DIR) / f"{gene_name}_variants.csv")
+                        variants_csv = str(Path(path_config.VARIANTS_OUTPUT_DIR) / f"{gene_name}_{accession}_variants.csv")
                         output_dir = str(path_config.VARIANTS_OUTPUT_DIR)
                         
                         # Check if required files exist
