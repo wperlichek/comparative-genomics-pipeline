@@ -27,24 +27,28 @@ A Python pipeline for analyzing evolutionary conservation of epilepsy-associated
 ## Current Functionality
 
 **Working:**
-- Multi-database API integration (UniProt, NCBI, EBI)
-- Asynchronous data retrieval and processing
-- Multiple sequence alignment via Clustal Omega
-- Phylogenetic tree construction
-- Shannon entropy conservation scoring
-- Human variant mapping (SCN1A)
-- Docker containerization
+- Complete 8-step async pipeline with proper orchestration
+- Multi-database API integration (UniProt, NCBI, EBI Clustal Omega, ClinVar, PDB)
+- AWS S3 caching for UniProt sequences with graceful fallback
+- Multiple sequence alignment and phylogenetic tree generation
+- Shannon entropy conservation scoring with statistical analysis
+- Clinical variant mapping and visualization for both genes
+- Publication-quality scientific plots with matplotlib
+- CLI interface and Docker containerization
+- Comprehensive input validation and file I/O error handling
 
 **Limitations:**
-- Proof-of-concept scale (5 species, 2 genes)
-- Limited error handling and input validation
-- Hardcoded configuration
-- No automated testing suite
-- Minimal documentation
+- Research-scale scope (5 vertebrate species, 2 primary genes)
+- Sequential gene processing (not parallelized)
+- Basic API retry logic without exponential backoff or circuit breakers
+- Partial S3 caching (sequences only, variants/NCBI data not cached)
+- No CLI argument parsing (fixed configuration only)
+- Limited progress feedback for long-running operations
+- Output validation minimal compared to input validation
 
 ## 🧠 AI-Assisted Development
 
-This project uses Claude AI to help with boilerplate code generation, plot refinements, and documentation. I believe AI makes it so we can focus more on the research rather than the code — experienced programmers can shepherd and review code and orchestrate an app rather than spend time on coding details that are sometimes important to dive into but often not.
+This project uses Claude AI to help with boilerplate code generation, plot refinements, documentation, and even entire feature generation. I believe AI makes it so we can focus more on the research rather than the code — experienced programmers can shepherd and review code and orchestrate an app rather than spend time on coding details that are sometimes important to dive into but often not.
 
 ## 🛠️ Installation & Usage
 
