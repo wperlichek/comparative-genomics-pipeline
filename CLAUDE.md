@@ -170,3 +170,9 @@ The pipeline is a functional bioinformatics research tool that has successfully 
 **Parallel Structure:** When adding content for multiple genes (SCN1A, DEPDC5), maintain parallel formatting and structure in documentation, using appropriate subheadings for organization.
 
 **Implementation Details:** Be prepared to trace through the codebase to understand implementation specifics (e.g., whether trees use protein vs. DNA sequences) when making documentation updates.
+
+**Feature Request Protocol:** When the user provides a structured feature request (either using the full `CLAUDE_FEATURE_REQUEST_TEMPLATE.md` format or the quick start template format), automatically recognize this as a feature request and:
+1. Use the TodoWrite tool to plan implementation steps based on the template sections
+2. Follow the specified technical requirements, integration points, and implementation preferences
+3. Prioritize the scientific context and research goals outlined in the request
+4. Implement according to the component, input/output, and validation criteria provided
