@@ -116,6 +116,10 @@ pytest
 
 **Variant Mapping:** Human SCN1A variants with loss-of-function variants analyzed (see `data/output/variants/SCN1A_*_variants.csv`).
 
+<img src="data/output/variants/SCN1A_conservation_variants_scientific.png" width="800">
+
+**Conservation & Variants:** SCN1A conservation analysis with loss-of-function and likely pathogenic variants overlaid, showing variant distribution across conserved and variable regions.
+
 ### DEPDC5
 
 <img src="data/output/trees/DEPDC5_scientific.png" width="600">
@@ -127,6 +131,10 @@ pytest
 **Conservation Analysis:** DEPDC5 evolutionary conservation across 5 vertebrate species.
 
 **Variant Mapping:** Human DEPDC5 variants with likely pathogenic variants analyzed (see `data/output/variants/DEPDC5_*_variants.csv`).
+
+<img src="data/output/variants/DEPDC5_conservation_variants_scientific.png" width="800">
+
+**Conservation & Variants:** DEPDC5 conservation analysis with likely pathogenic variants overlaid, showing how mutations cluster in specific functional regions.
 
 <img src="data/output/variants/clinvar_variants_comparison.png" width="800">
 
