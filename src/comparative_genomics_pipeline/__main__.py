@@ -481,6 +481,7 @@ async def async_main() -> int:
         logger.info("Step 9: Generating protein domain visualizations...")
         try:
             from .visualization.domain_visualization import visualize_protein_domains
+            from .visualization.conservation_domain_plot import create_conservation_domain_plot
             
             genes_to_proteins = file_util.open_file_return_as_json(
                 f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json"
@@ -506,12 +507,20 @@ async def async_main() -> int:
                                 # Save domain data
                                 pdb_client.save_domain_data(domain_data)
                                 
-                                # Generate visualization
+                                # Generate standard domain visualization
                                 plot_path = visualize_protein_domains(domain_data)
                                 if plot_path:
                                     logger.info(f"Generated domain visualization: {plot_path}")
                                 else:
                                     logger.warning(f"Failed to generate domain visualization for {accession}")
+                                
+                                # Generate conservation-domain overlay plot
+                                try:
+                                    conservation_plot_path = create_conservation_domain_plot(gene_name, accession)
+                                    logger.info(f"Generated conservation-domain plot: {conservation_plot_path}")
+                                except Exception as e:
+                                    logger.warning(f"Failed to generate conservation-domain plot for {gene_name}: {e}")
+                                    
                             else:
                                 logger.warning(f"Failed to fetch domain data for {accession}")
                         else:
