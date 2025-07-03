@@ -477,6 +477,52 @@ async def async_main() -> int:
             logger.error(f"Failed to generate ClinVar comparison plot: {e}")
             return 1
         
+        # Step 9: Generate protein domain visualizations
+        logger.info("Step 9: Generating protein domain visualizations...")
+        try:
+            from .visualization.domain_visualization import visualize_protein_domains
+            
+            genes_to_proteins = file_util.open_file_return_as_json(
+                f"{path_config.DATA_INPUT_DIR}/genes_to_proteins.json"
+            )
+            
+            if genes_to_proteins:
+                for gene_name, ortholog_list in genes_to_proteins.items():
+                    # Focus on SCN1A P35498 as requested
+                    if gene_name == "SCN1A":
+                        canonical = next((
+                            o for o in ortholog_list 
+                            if o.get("species", "").lower() in ["homo sapiens", "human"] 
+                            and o.get("uniprot_id") == "P35498"
+                        ), None)
+                        
+                        if canonical and canonical.get("uniprot_id"):
+                            accession = canonical["uniprot_id"]
+                            logger.info(f"Fetching domain data for {gene_name} {accession}")
+                            
+                            # Fetch domain data from UniProt
+                            domain_data = pdb_client.fetch_uniprot_domains(accession)
+                            if domain_data:
+                                # Save domain data
+                                pdb_client.save_domain_data(domain_data)
+                                
+                                # Generate visualization
+                                plot_path = visualize_protein_domains(domain_data)
+                                if plot_path:
+                                    logger.info(f"Generated domain visualization: {plot_path}")
+                                else:
+                                    logger.warning(f"Failed to generate domain visualization for {accession}")
+                            else:
+                                logger.warning(f"Failed to fetch domain data for {accession}")
+                        else:
+                            logger.warning(f"P35498 not found in {gene_name} orthologs")
+            else:
+                logger.warning("No genes configuration found for domain visualization")
+                
+        except Exception as e:
+            logger.error(f"Failed to generate domain visualizations: {e}")
+            # Don't return 1 here - domain visualization is not critical
+        
         logger.info("Pipeline completed successfully!")
         return 0
         

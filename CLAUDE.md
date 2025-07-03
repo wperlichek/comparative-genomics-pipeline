@@ -14,6 +14,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a research tool - scientific integrity is non-negotiable.
 
+## CRITICAL: Visualization Clarity Mandate
+
+**ABSOLUTE PRIORITY:** All visualizations must prioritize human readability and interpretability. Always:
+
+1. **Optimize for clarity:** Visualizations should be immediately understandable without extensive explanation
+2. **Avoid clutter:** Remove overlapping text, excessive labels, or visual noise that impedes comprehension
+3. **Use appropriate scale:** Choose figure sizes, font sizes, and spacing that make content easily readable
+4. **Organize information:** Group related elements logically and use clear visual hierarchy
+5. **Default to simplicity:** Unless explicitly requested, prefer clean, straightforward visualizations over complex multi-layered plots
+6. **Test readability:** Ensure that all text, labels, and visual elements are clearly distinguishable and appropriately sized
+
+Research visualizations must communicate findings effectively - visual clarity is essential for scientific communication.
+
 ## Commands
 
 **Installation & Execution:**

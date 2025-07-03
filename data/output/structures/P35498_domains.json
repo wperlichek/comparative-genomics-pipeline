@@ -1,0 +1,489 @@
+{
+  "accession": "P35498",
+  "protein_length": 2009,
+  "domains": [
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 1,
+      "end": 128,
+      "length": 128
+    },
+    {
+      "type": "Region",
+      "description": "Disordered",
+      "start": 28,
+      "end": 60,
+      "length": 33
+    },
+    {
+      "type": "Repeat",
+      "description": "I",
+      "start": 110,
+      "end": 454,
+      "length": 345
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S1 of repeat I",
+      "start": 129,
+      "end": 146,
+      "length": 18
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 147,
+      "end": 152,
+      "length": 6
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S2 of repeat I",
+      "start": 153,
+      "end": 177,
+      "length": 25
+    },
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 178,
+      "end": 188,
+      "length": 11
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S3 of repeat I",
+      "start": 189,
+      "end": 205,
+      "length": 17
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 206,
+      "end": 213,
+      "length": 8
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S4 of repeat I",
+      "start": 214,
+      "end": 235,
+      "length": 22
+    },
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 236,
+      "end": 245,
+      "length": 10
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S5 of repeat I",
+      "start": 246,
+      "end": 269,
+      "length": 24
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 270,
+      "end": 369,
+      "length": 100
+    },
+    {
+      "type": "Intramembrane",
+      "description": "Pore-forming",
+      "start": 370,
+      "end": 384,
+      "length": 15
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 385,
+      "end": 397,
+      "length": 13
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S6 of repeat I",
+      "start": 398,
+      "end": 423,
+      "length": 26
+    },
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 424,
+      "end": 768,
+      "length": 345
+    },
+    {
+      "type": "Region",
+      "description": "Disordered",
+      "start": 455,
+      "end": 529,
+      "length": 75
+    },
+    {
+      "type": "Region",
+      "description": "Disordered",
+      "start": 584,
+      "end": 627,
+      "length": 44
+    },
+    {
+      "type": "Repeat",
+      "description": "II",
+      "start": 750,
+      "end": 1022,
+      "length": 273
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S1 of repeat II",
+      "start": 769,
+      "end": 787,
+      "length": 19
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 788,
+      "end": 797,
+      "length": 10
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S2 of repeat II",
+      "start": 798,
+      "end": 820,
+      "length": 23
+    },
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 821,
+      "end": 830,
+      "length": 10
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S3 of repeat II",
+      "start": 831,
+      "end": 849,
+      "length": 19
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 850,
+      "end": 854,
+      "length": 5
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S4 of repeat II",
+      "start": 855,
+      "end": 874,
+      "length": 20
+    },
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 875,
+      "end": 891,
+      "length": 17
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S5 of repeat II",
+      "start": 892,
+      "end": 912,
+      "length": 21
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 913,
+      "end": 938,
+      "length": 26
+    },
+    {
+      "type": "Intramembrane",
+      "description": "Pore-forming",
+      "start": 939,
+      "end": 952,
+      "length": 14
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 953,
+      "end": 965,
+      "length": 13
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S6 of repeat II",
+      "start": 966,
+      "end": 992,
+      "length": 27
+    },
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 993,
+      "end": 1218,
+      "length": 226
+    },
+    {
+      "type": "Region",
+      "description": "Disordered",
+      "start": 1129,
+      "end": 1163,
+      "length": 35
+    },
+    {
+      "type": "Repeat",
+      "description": "III",
+      "start": 1200,
+      "end": 1514,
+      "length": 315
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S1 of repeat III",
+      "start": 1219,
+      "end": 1237,
+      "length": 19
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 1238,
+      "end": 1250,
+      "length": 13
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S2 of repeat III",
+      "start": 1251,
+      "end": 1276,
+      "length": 26
+    },
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 1277,
+      "end": 1278,
+      "length": 2
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S3 of repeat III",
+      "start": 1279,
+      "end": 1304,
+      "length": 26
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 1305,
+      "end": 1313,
+      "length": 9
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S4 of repeat III",
+      "start": 1314,
+      "end": 1332,
+      "length": 19
+    },
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 1333,
+      "end": 1345,
+      "length": 13
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S5 of repeat III",
+      "start": 1346,
+      "end": 1369,
+      "length": 24
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 1370,
+      "end": 1415,
+      "length": 46
+    },
+    {
+      "type": "Intramembrane",
+      "description": "Pore-forming",
+      "start": 1416,
+      "end": 1433,
+      "length": 18
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 1434,
+      "end": 1457,
+      "length": 24
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S6 of repeat III",
+      "start": 1458,
+      "end": 1483,
+      "length": 26
+    },
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 1484,
+      "end": 1541,
+      "length": 58
+    },
+    {
+      "type": "Repeat",
+      "description": "IV",
+      "start": 1523,
+      "end": 1821,
+      "length": 299
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S1 of repeat IV",
+      "start": 1542,
+      "end": 1560,
+      "length": 19
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 1561,
+      "end": 1571,
+      "length": 11
+    },
+    {
+      "type": "Region",
+      "description": "S1-S2 loop of repeat IV",
+      "start": 1561,
+      "end": 1571,
+      "length": 11
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S2 of repeat IV",
+      "start": 1572,
+      "end": 1593,
+      "length": 22
+    },
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 1594,
+      "end": 1601,
+      "length": 8
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S3 of repeat IV",
+      "start": 1602,
+      "end": 1623,
+      "length": 22
+    },
+    {
+      "type": "Region",
+      "description": "S3b-S4 loop of repeat IV",
+      "start": 1619,
+      "end": 1636,
+      "length": 18
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 1624,
+      "end": 1636,
+      "length": 13
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S4 of repeat IV",
+      "start": 1637,
+      "end": 1655,
+      "length": 19
+    },
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 1656,
+      "end": 1665,
+      "length": 10
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S5 of repeat IV",
+      "start": 1666,
+      "end": 1688,
+      "length": 23
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 1689,
+      "end": 1711,
+      "length": 23
+    },
+    {
+      "type": "Intramembrane",
+      "description": "Pore-forming",
+      "start": 1712,
+      "end": 1726,
+      "length": 15
+    },
+    {
+      "type": "Topological domain",
+      "description": "Extracellular",
+      "start": 1727,
+      "end": 1759,
+      "length": 33
+    },
+    {
+      "type": "Transmembrane",
+      "description": "Helical; Name=S6 of repeat IV",
+      "start": 1760,
+      "end": 1788,
+      "length": 29
+    },
+    {
+      "type": "Topological domain",
+      "description": "Cytoplasmic",
+      "start": 1789,
+      "end": 2009,
+      "length": 221
+    },
+    {
+      "type": "Domain",
+      "description": "IQ",
+      "start": 1915,
+      "end": 1944,
+      "length": 30
+    },
+    {
+      "type": "Region",
+      "description": "Disordered",
+      "start": 1986,
+      "end": 2009,
+      "length": 24
+    }
+  ]
+}
